@@ -8,19 +8,19 @@ number:
 date:
 consensus: true
 v: 3
-area: Security
+# area: Security
 # workgroup: WG Working Group
 keyword:
  - delta certificate
  - chameleon certificate
  - related certificate
 venue:
-  group: "Limited Additional Mechanisms for PKIX and SMIME (lamps)"
-  type: "Working Group"
-  mail: "spasm@ietf.org"
-  arch: "https://mailarchive.ietf.org/arch/browse/spasm/"
-  github: "cbonnell/draft-lamps-chameleon-certs"
-  latest: "https://CBonnell.github.io/draft-lamps/chameleon-certs/draft-lamps-chameleon-certs.html"
+#  group: "Limited Additional Mechanisms for PKIX and SMIME (lamps)"
+#  type: "Working Group"
+#  mail: "spasm@ietf.org"
+#  arch: "https://mailarchive.ietf.org/arch/browse/spasm/"
+  github: "CBonnell/chameleon-certs"
+  latest: "https://CBonnell.github.io/chameleon-certs/draft-lamps-chameleon-certs.html"
 
 author:
  -
