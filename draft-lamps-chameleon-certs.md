@@ -19,35 +19,51 @@
 # Change the file extension to match the format (.xml for XML, etc...)
 #
 ###
-title: "TODO - Your title"
-abbrev: "TODO - Abbreviation"
+title: "A Mechanism for Encoding Differences in Related Certificates"
 category: info
 
-docname: draft-todo-yourname-protocol-latest
+docname: draft-lamps-chameleon-certs-latest
 submissiontype: IETF  # also: "independent", "IAB", or "IRTF"
 number:
 date:
 consensus: true
 v: 3
-area: AREA
-workgroup: WG Working Group
+area: Security
+# workgroup: WG Working Group
 keyword:
- - next generation
- - unicorn
- - sparkling distributed ledger
+ - delta certificate
+ - chameleon certificate
+ - related certificate
 venue:
-  group: WG
-  type: Working Group
-  mail: WG@example.com
-  arch: https://example.com/WG
-  github: USER/REPO
-  latest: https://example.com/LATEST
+  group: "Limited Additional Mechanisms for PKIX and SMIME (lamps)"
+  type: "Working Group"
+  mail: "spasm@ietf.org"
+  arch: "https://mailarchive.ietf.org/arch/browse/spasm/"
+  github: "cbonnell/draft-lamps-chameleon-certs"
+  latest: "https://CBonnell.github.io/draft-lamps/chameleon-certs/draft-lamps-chameleon-certs.html"
 
 author:
  -
-    fullname: Your Name Here
-    organization: Your Organization Here
-    email: your.email@example.com
+    fullname: Corey Bonnell
+    organization: DigiCert, Inc.
+    email: corey.bonnell@digicert.com
+ -
+    fullname: John Gray
+    organization: Entrust
+    email: john.gray@entrust.com
+ -
+    fullname: David Hook
+    organization: KeyFactor
+    email: david.hook@keyfactor.com
+ -
+    fullname: Tomofumi Okubo
+    organization: DigiCert, Inc.
+    email: tomofumi.okubo@digicert.com
+ -
+    fullname: Mike Ounsworth
+    organization: Entrust
+    email: mike.ounsworth@entrust.com
+
 
 normative:
 
