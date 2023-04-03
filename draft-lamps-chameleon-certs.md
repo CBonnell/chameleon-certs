@@ -144,7 +144,7 @@ DeltaCertificateDescriptor ::= SEQUENCE {
 ```
 
 The serialNumber field MUST be present and contain the
-serial number of the Delta Certificate. 
+serial number of the Delta Certificate.
 
 If present, the signature field specifies the signature algorithm used
 by the issuing certification authority to sign the Delta Certificate.
@@ -198,9 +198,8 @@ the Delta Certificate. The ordering of extensions in the DCD extension's
 in the Base Certificate. Maintaining this relative ordering ensures that
 the Delta Certificate's extensions can be constructed with a single pass.
 
-The certification authority then adds the computed 
-DCD extension to the to-be-signed Base Certificate and signs the
-Base Certificate.
+The certification authority then adds the computed DCD extension to the
+to-be-signed Base Certificate and signs the Base Certificate.
 
 ## Reconstructing a Delta Certificate from a Base Certificate
 
@@ -226,7 +225,7 @@ from a Base Certificate:
    the Base Certificate.
 7. Replace the value of the signatureValue field of the Base Certificate
    with the value of the DCD extension's signatureValue field.
-   
+
 # Delta certificate request content and semantics
 
 Using the two attributes that are defined below, it is possible to
