@@ -46,7 +46,6 @@ author:
 
 
 normative:
- - RFC5280
 
 informative:
 
