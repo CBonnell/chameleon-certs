@@ -55,8 +55,8 @@ informative:
 This document specifies a method to efficiently convey the
 differences between two certificates in an X.509 version 3 extension.
 This method allows a
-relying party to extract information sufficient to construct the related
-certificate and perform certification path validation using the
+relying party to extract information sufficient to construct the Related
+Certificate and perform certification path validation using the
 constructed certificate. In particular, this method is especially
 useful as part of a key or signature algorithm migration, where subjects
 may be issued multiple certificates containing different public keys or
@@ -87,11 +87,18 @@ certificate. This information can then be used to construct the related
 certificate as needed by relying parties.
 
 This document specifies an X.509 v3 certificate extension that includes
-sufficient information for a relying party to construct a related
-certificate. Additionally, this document specifies two
+sufficient information for a relying party to construct a Related
+Certificate. Additionally, this document specifies two
 PKCS #10 Certification Signing Request attributes that can be used by
-applicants to request two related certificates using a single PKCS #10
+applicants to request two Related Certificates using a single PKCS #10
 Certification Signing Request.
+
+------------ Put below somwehere?----------------
+For transactions, Delta Certificates are constructed either on the server or the client depending on the application. The server chooses to construct and send a certificates based on what the client can process. Similarly, the client constructs and sends a certificate based on what the server can process. This assures backwards compatibility as the certificate sent to the Relying Party (server or client) is chosen based on what it could process. The negotiation on which certificate to use is out-of-scope of this document and is deferred to each protocol and software. In these cases, only the Subscriber is required to process the DCD extension and send the certificate the Relying Party can process.
+
+For validating digital signatures on objects, the Relying Party may or may not understand the DCD extension in the Base Certificate. When the Relying Party does not understand the DCD extension, the Relying Party only uses the Base Certificate to validate. If the Relying Party is capable of processing the DCD extension, there is an option to construct a Delta Certificate to be used for a certification path validation.
+
+For digitally signing objects, the Subscriber signs the object with the Base Certificate and if it understands the DCD extension, the Subscriber constructs the Delta Certificate and choose to sign with both certificates or the one that it prefers. This behavior is deferred to the software in use.
 
 # Conventions and Definitions
 
@@ -101,15 +108,17 @@ Certification Signing Request.
 
 For conciseness, this document defines several terms used throughout.
 
-Base Certificate: A X.509 v3 certificate which contains a delta
-certificate descriptor extension.
+Base Certificate: A X.509 v3 certificate which contains a Delta
+Certificate Descriptor extension.
 
-DCD: An acronym meaning "delta certificate descriptor", which is a
+DCD: An acronym meaning "Delta Certificate Descriptor", which is a
 reference to the X.509 v3 certificate extension defined in this document.
 
 Delta Certificate: A X.509 v3 certificate which can be reconstructed
 by incorporating the fields and extensions contained in a Base
 Certificate.
+
+Related Certificate: A combination of a Base Certificate and a Delta Certificate.
 
 # Delta certificate descriptor extension content and semantics
 
@@ -163,7 +172,7 @@ included in the Base Certificate and Delta Certificate is equal.
 If present, the extensions field the extensions whose
 criticality and/or value are different in the Delta Certificate compared
 to the Base Certificate. If the extensions field is
-absent, then all extensions in the Delta Certificate have the same
+absent, then all extensions in the Delta Certificate MUST have the same
 criticality and value as the Base Certificate. This field MUST NOT
 contain any extensions which do
 not appear in the Base Certificate. Additionally, the Base Certificate
@@ -325,14 +334,15 @@ a Delta Certificate.
 
 # Security Considerations
 
+The validation for each certificate follows the certification path validation method defined in in {{!RFC5280}} however, there are some additional considerations for the software to handle the Base Certificate and Delta Certificate. The Base Certificate and Delta Certificate MAY have different security properties such as a different signing algorithms, different key types or the same key types with different key sizes or signing algorithms. The preference on which certificate to be used or using both when available is deferred to the server or client software.
 
-TODO Security
+The software is expected to make choices depending on the certificate's security properties or a policy set for the particular PKI. One example of handling two certificates is "fallback" which is should the validation of the first certificate fails, it attemps to validate the second certificate. Another example to handle two certificate is "upgrade" where the validation of the first certificate succeeds but still attemps the validation of the second certificate. While this document provides a vehicle to convey information of two certificates in one, it does not address the rules that are expected to be set by the policy of a PKI on how to issue a Base Certificates and how to handle them. 
 
+What algorithms are used for the Base Certificate and Delta Certificate respectively should be carefully set by the policy of each PKI reflecting the best current practices in usage of cryptography. The behavior of the server or client software is expected to be well-defined in accordance with the policy in order to avoid downgrade attacks or substitution attacks.
 
 # IANA Considerations
 
-This document has no IANA actions.
-
+Todo
 
 --- back
 
