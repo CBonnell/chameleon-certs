@@ -188,16 +188,16 @@ able to process the Base Certificate.
 
 The DCD extension is identified with the following object identifier:
 
-```
+~~~
 id-ce-delta-certificate-descriptor ::= OBJECT IDENTIFIER {
    joint-iso-itu-t(2) country(16) us(840) organization(1)
    entrust(114027) 80 6 1
 }
-```
+~~~
 
 The ASN.1 syntax of the extension is as follows:
 
-```
+~~~
 DeltaCertificateDescriptor ::= SEQUENCE {
   serialNumber          CertificateSerialNumber,
   signature             [0] IMPLICIT AlgorithmIdentifier OPTIONAL,
@@ -207,7 +207,7 @@ DeltaCertificateDescriptor ::= SEQUENCE {
   extensions            [4] IMPLICIT Extensions OPTIONAL,
   signatureValue        BIT STRING
 }
-```
+~~~
 
 The serialNumber field MUST be present and contain the
 serial number of the Delta Certificate.
@@ -312,16 +312,16 @@ and the requested Delta Certificate.
 
 The attribute is identified with the following object identifier:
 
-```
+~~~
 id-at-delta-certificate-request ::= OBJECT IDENTIFIER {
    joint-iso-itu-t(2) country(16) us(840) organization(1)
    entrust(114027) 80 6 2
 }
-```
+~~~
 
 The ASN.1 syntax of the attribute is as follows:
 
-```
+~~~
 DeltaCertificateRequest ::= SEQUENCE {
   subject               [1] IMPLICIT Name OPTIONAL,
   subjectPublicKeyInfo  [1] IMPLICIT SubjectPublicKeyInfo OPTIONAL,
@@ -334,7 +334,7 @@ deltaCertificateRequest ATTRIBUTE ::= {
    SINGLE VALUE TRUE
    ID id-at-delta-certificate-request
 }
-```
+~~~
 
 The delta certificate request signature attribute is used to convey
 the signature that is calculated over the CertificationRequestInfo
@@ -344,16 +344,16 @@ how to determine the value of this attribute.
 
 This attribute is identified with the following object identifier:
 
-```
+~~~
 id-at-delta-certificate-request-signature ::= OBJECT IDENTIFIER {
    joint-iso-itu-t(2) country(16) us(840) organization(1)
    entrust(114027) 80 6 3
 }
-```
+~~~
 
 The ASN.1 syntax of the attribute is as follows:
 
-```
+~~~
 DeltaCertificateRequestSignature ::= BIT STRING
 
 deltaCertificateRequestSignature ATTRIBUTE ::= {
@@ -361,7 +361,7 @@ deltaCertificateRequestSignature ATTRIBUTE ::= {
    SINGLE VALUE TRUE
    ID id-at-delta-certificate-request-signature
 }
-```
+~~~
 
 ## Creating a certification signing request for Related Certificates
 
