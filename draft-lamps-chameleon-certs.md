@@ -419,7 +419,7 @@ where the validation of the first certificate succeeds but still
 attempts the validation of the second certificate. While this document
 provides a vehicle to convey information of two certificates in one,
 it does not address the rules that are expected to be set by the policy
-of a PKI on how to issue Related Certificates and how to handle them. 
+of a PKI on how to issue Related Certificates and how to handle them.
 
 The algorithms that are used for the Base Certificate and Delta
 Certificate respectively should be carefully set by the policy of each
