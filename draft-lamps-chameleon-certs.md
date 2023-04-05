@@ -125,7 +125,7 @@ generally stem from the certification of different keys, where the named
 subject may have multiple keys of different algorithms certified by
 separate certificates. The use of different keys allows for the subject
 to use the key that is most appropriate for a given operation and
-intended recipient. For example, as part of on an ongoing algorithm
+intended recipient. For example, as part of an ongoing algorithm
 migration, it is useful to use stronger algorithms when both of the
 systems utilized by the subscriber/sender and recipient have been
 upgraded. However, in the case where systems have not yet been updated,
@@ -238,7 +238,7 @@ criticality and/or value are different in the Delta Certificate compared
 to the Base Certificate. If the extensions field is
 absent, then all extensions in the Delta Certificate MUST have the same
 criticality and value as the Base Certificate. This field MUST NOT
-contain any extensions which do not appear in the Base Certificate.
+contain any extension types which do not appear in the Base Certificate.
 Additionally, the Base Certificate SHALL NOT include any extensions
 which are not included in the Delta Certificate, with the exception of
 the DCD extension itself. Therefore, it is not possible to add or remove
@@ -254,15 +254,16 @@ extensions fields MUST be present in the extension value.
 
 The signature of the Delta Certificate must be known so that its
 value can be included in the signatureValue field of the delta
-certificate descriptor extension. Given this, the Base Certificate will
-necessarily need to be issued after the Delta Certificate is issued.
+certificate descriptor extension. Given this, Delta Certificate will
+necessarily need to be issued prior to the issuance of the Base
+Certificate.
 
 After the Delta Certificate is issued, the certification authority
 compares the signature, issuer, subject, subjectPublicKeyInfo, and
 extensions fields of the Delta Certificate and the to-be-signed
 certificate which will contain the DCD extension. The certification
 authority then populates the delta certificate descriptor extension with
-the values of the fields which differ from the Delta Certificate. The
+the values of the fields which differ from the Base Certificate. The
 ordering of extensions in the DCD extension's
 "extensions" field MUST be the same as the ordering of those extensions
 in the Base Certificate. Maintaining this relative ordering ensures that
@@ -297,7 +298,7 @@ from a Base Certificate:
    iterate over the DCD extension's "extensions" field, replacing the
    criticality and/or extension value of each identified extension in
    the Base Certificate.
-8. Replace the value of the signatureValue field of the Base Certificate
+8. Replace the value of the signature field of the Base Certificate
    with the value of the DCD extension's signatureValue field.
 
 # Delta certificate request content and semantics {#dcr-attribute}
