@@ -24,23 +24,23 @@ venue:
 
 author:
  -
-    fullname: Corey Bonnell
+    fullname: C. Bonnell
     organization: DigiCert, Inc.
     email: corey.bonnell@digicert.com
  -
-    fullname: John Gray
+    fullname: J. Gray
     organization: Entrust
     email: john.gray@entrust.com
  -
-    fullname: David Hook
+    fullname: D. Hook
     organization: KeyFactor
     email: david.hook@keyfactor.com
  -
-    fullname: Tomofumi Okubo
+    fullname: T. Okubo
     organization: DigiCert, Inc.
     email: tomofumi.okubo@digicert.com
  -
-    fullname: Mike Ounsworth
+    fullname: M. Ounsworth
     organization: Entrust
     email: mike.ounsworth@entrust.com
 
@@ -72,65 +72,121 @@ authority.
 # Introduction
 
 In certain public key infrastructures, it is common to issue multiple
-certificates to a single subject. In particular, as part of an algorithm migration, multiple certificates may be issued
-to a single subject which convey different public keys of different
-types or are signed with different signature algorithms. In cases where
-relying party systems cannot be immediately updated to support new
-algorithms, it is useful to issue certificates to subjects that convey
-public keys whose algorithm is being phased out to maintain
-interoperability. However, multiple certificates adds complexity to
-certificate management and exposes limitations in applications and protocols that support
-a single certificate chain. For this
-reason, it is useful to efficiently convey information concerning
-the elements of two certificates that are related within a single
-certificate. This information can then be used to construct the related
-certificate as needed by relying parties.
+certificates to a single subject. In particular, as part of an algorithm
+migration, multiple certificates may be issued to a single subject which
+convey public keys of different types or are signed with different
+signature algorithms. In cases where relying party systems cannot be
+immediately updated to support new algorithms, it is useful to issue
+certificates to subjects that convey public keys whose algorithm is
+being phased out to maintain interoperability. However, multiple
+certificates adds complexity to certificate management and exposes
+limitations in applications and protocols that support a single
+certificate chain. For this reason, it is useful to efficiently convey
+information concerning the elements of two certificates that are related
+within a single certificate. This information can then be used to
+construct the related certificate as needed by relying parties.
 
 This document specifies an X.509 v3 certificate extension that includes
 sufficient information for a relying party to construct a Related
 Certificate. Additionally, this document specifies two
 PKCS #10 Certification Signing Request attributes that can be used by
-applicants to request two Related Certificates using a single PKCS #10
+applicants to request Related Certificates using a single PKCS #10
 Certification Signing Request.
-
------------- Put below somwehere?----------------
-For transactions, Delta Certificates are constructed either on the server or the client depending on the application. The server chooses to construct and send a certificates based on what the client can process. Similarly, the client constructs and sends a certificate based on what the server can process. This assures backwards compatibility as the certificate sent to the Relying Party (server or client) is chosen based on what it could process. The negotiation on which certificate to use is out-of-scope of this document and is deferred to each protocol and software. In these cases, only the Subscriber is required to process the DCD extension and send the certificate the Relying Party can process.
-
-For validating digital signatures on objects, the Relying Party may or may not understand the DCD extension in the Base Certificate. When the Relying Party does not understand the DCD extension, the Relying Party only uses the Base Certificate to validate. If the Relying Party is capable of processing the DCD extension, there is an option to construct a Delta Certificate to be used for a certification path validation.
-
-For digitally signing objects, the Subscriber signs the object with the Base Certificate and if it understands the DCD extension, the Subscriber constructs the Delta Certificate and choose to sign with both certificates or the one that it prefers. This behavior is deferred to the software in use.
 
 # Conventions and Definitions
 
 {::boilerplate bcp14-tagged}
 
-## Terminology
+## Definitions
 
-For conciseness, this document defines several terms used throughout.
+For conciseness, this document defines several terms that are
+frequently used throughout.
 
-Base Certificate: A X.509 v3 certificate which contains a Delta
-Certificate Descriptor extension.
+Base Certificate: A X.509 v3 certificate which contains a delta
+certificate descriptor extension.
 
-DCD: An acronym meaning "Delta Certificate Descriptor", which is a
-reference to the X.509 v3 certificate extension defined in this document.
+DCD: An acronym meaning "Delta Certificate descriptor", which is a
+reference to the X.509 v3 certificate extension defined in this
+document.
 
 Delta Certificate: A X.509 v3 certificate which can be reconstructed
 by incorporating the fields and extensions contained in a Base
 Certificate.
 
-Related Certificate: A combination of a Base Certificate and a Delta Certificate.
+Related Certificates: A Base Certificate and Delta Certificate pair.
 
-# Delta certificate descriptor extension content and semantics
+# Relationship between Base Certificates and Delta Certificates
 
-The delta certificate descriptor ("DCD") extension is used to reconstruct the
-Delta Certificate by incorporating both the fields and extensions
-present in the Base Certificate as well as
-the information contained within the extension itself.
+In some public key infrastructures, it may be common to issue multiple
+certificates to the same subject. These certificates generally contain
+the same (or substantially similar) identity information and generally
+have identical validity periods. The differences in certificate content
+generally stem from the certification of different keys, where the named
+subject may have multiple keys of different algorithms certified by
+separate certificates. The use of different keys allows for the subject
+to use the key that is most appropriate for a given operation and
+intended recipient. For example, as part of on an ongoing algorithm
+migration, it is useful to use stronger algorithms when both of the
+systems utilized by the subscriber/sender and recipient have been
+upgraded. However, in the case where systems have not yet been updated,
+the use of a legacy key algorithm may be required. Additionally,
+multiple certificates may be issued to the same subject that certify
+keys for different purposes, such as one key for signing and another
+key for encryption.
 
-The subject and issuer distinguished names of the Base Certificate
-and the Delta Certificate MUST be identical.
+The management of such related certificates may be complex, and there
+may be limitations in protocols regarding the handling of multiple
+certificate chains. To account for these concerns, this document
+proposes a method to efficiently encode the differences between two
+related certificates with sufficient information such that a relying
+party can derive the complete related certificate from another. For the
+purposes of this document, the "Base Certificate" contains its own
+fields and extensions and additionally includes an extension that
+conveys all differences contained within the related certificate. The
+certificate whose elements which differ from the Base Certificate and
+are captured in the Delta Certificate descriptor extension of the Base
+Certificate is known as the "Delta Certificate".
 
-The extension is identified with the following object identifier:
+Delta Certificates are reconstructed from the Base Certificate either on
+the sender's side or the recipient's side depending on the protocol and
+application(s) in use. The sender may elect to send the Base Certificate
+or the Delta Certificate based on information that it has about what the
+recipient can process. Similarly, the client may send either the Base
+Certificate or the Delta Certificate based on what the server can
+process. This assures backwards compatibility as the certificate sent
+to the peer (server or client) is chosen based on what it can process.
+The negotiation on which certificate to use is out-of-scope of
+this document and is deferred to each protocol and application.
+
+In the absence of information concerning the capabilities of the peer,
+it is unknown whether it understands the DCD extension in the Base
+Certificate. When the recipient does not understand the DCD extension,
+it only processes the information within the Base Certificate and
+ignores the information found in a non-critical DCD extension. If the
+recipient receives a Base Certificate and is capable of processing the
+DCD extension, then it may reconstruct the Delta Certificate to be used
+for processing.
+
+In a protocol, the sender may perform a cryptographic operation with
+the key conveyed within the Base Certificate. If it understands the DCD
+extension, then it may reconstruct the Delta Certificate and choose to
+perform the same operation with the key conveyed within the DCD
+extension. This behavior is deferred to the software in use.
+
+# Delta certificate descriptor extension
+
+The Delta Certificate descriptor ("DCD") extension is used to
+reconstruct the Delta Certificate by incorporating both the fields and
+extensions present in the Base Certificate as well as the information
+contained within the extension itself.
+
+Certification authorities SHOULD NOT mark this extension as critical so
+that applications that do not understand the extension will still be
+able to process the Base Certificate.
+
+## Delta certificate descriptor content {#dcd-extension-content}
+
+The DCD extension is identified with the following object identifier:
 
 ```
 id-ce-delta-certificate-descriptor ::= OBJECT IDENTIFIER {
@@ -146,9 +202,11 @@ DeltaCertificateDescriptor ::= SEQUENCE {
   serialNumber          CertificateSerialNumber,
   signature             [0] IMPLICIT AlgorithmIdentifier OPTIONAL,
   issuer                [1] IMPLICIT Name OPTIONAL,
-  subjectPublicKeyInfo  [2] IMPLICIT SubjectPublicKeyInfo OPTIONAL,
-  extensions            [3] IMPLICIT Extensions OPTIONAL,
-  signatureValue        BIT STRING }
+  subject               [2] IMPLICIT Name OPTIONAL,
+  subjectPublicKeyInfo  [3] IMPLICIT SubjectPublicKeyInfo OPTIONAL,
+  extensions            [4] IMPLICIT Extensions OPTIONAL,
+  signatureValue        BIT STRING
+}
 ```
 
 The serialNumber field MUST be present and contain the
@@ -156,37 +214,41 @@ serial number of the Delta Certificate.
 
 If present, the signature field specifies the signature algorithm used
 by the issuing certification authority to sign the Delta Certificate.
-If the signature field is absent, then the value of the signature field of the
-Base Certificate and Delta Certificate is equal.
+If the signature field is absent, then the value of the signature field
+of the Base Certificate and Delta Certificate is equal.
 
 If present, the issuer field specifies the distinguished name of the
-issuing certification authority to sign the Delta Certificate. If the
-issuer field is absent, then the distinguished name of the issuing
+issuing certification authority which signed the Delta Certificate. If
+the issuer field is absent, then the distinguished name of the issuing
 certification authority for both the Base Certificate and Delta
 Certificate is the same.
 
-If present, the subjectPublicKeyInfo field contains the public key included in
-the Delta Certificate. If this field is absent, then the public key
-included in the Base Certificate and Delta Certificate is equal.
+If present, the subject field specifies the distinguished name of the
+named subject as encoded in the Delta Certificate. If the
+subject field is absent, then the distinguished name of the named
+subject for both the Base Certificate and Delta Certificate is the same.
+
+If present, the subjectPublicKeyInfo field contains the public key
+included in the Delta Certificate. If this field is absent, then the
+public key included in the Base Certificate and Delta Certificate is
+equal.
 
 If present, the extensions field the extensions whose
 criticality and/or value are different in the Delta Certificate compared
 to the Base Certificate. If the extensions field is
 absent, then all extensions in the Delta Certificate MUST have the same
 criticality and value as the Base Certificate. This field MUST NOT
-contain any extensions which do
-not appear in the Base Certificate. Additionally, the Base Certificate
-SHALL NOT include any extensions which are not included in the Delta
-Certificate, with the exception of the DCD
-extension itself.
-Therefore, it is not possible to add or remove extensions using the
-DCD extension.
+contain any extensions which do not appear in the Base Certificate.
+Additionally, the Base Certificate SHALL NOT include any extensions
+which are not included in the Delta Certificate, with the exception of
+the DCD extension itself. Therefore, it is not possible to add or remove
+extensions using the DCD extension.
 
-The signatureValue field contains the value of the signatureValue field
+The signatureValue field contains the value of the signature field
 of the Delta Certificate. It MUST be present.
 
-At least one of signature, issuer, subjectPublicKeyInfo, or extensions
-MUST be present in the extension value.
+One or more of the signature, issuer, subject, subjectPublicKeyInfo, or
+extensions fields MUST be present in the extension value.
 
 ## Issuing a Base Certificate
 
@@ -196,15 +258,16 @@ certificate descriptor extension. Given this, the Base Certificate will
 necessarily need to be issued after the Delta Certificate is issued.
 
 After the Delta Certificate is issued, the certification authority
-compares the signature, issuer, subjectPublicKeyInfo, and extensions fields
-of the Delta Certificate and the to-be-signed certificate which
-will contain the DCD extension. The
-certification authority then populates the delta certificate
-descriptor extension with the values of the fields which differ from
-the Delta Certificate. The ordering of extensions in the DCD extension's
+compares the signature, issuer, subject, subjectPublicKeyInfo, and
+extensions fields of the Delta Certificate and the to-be-signed
+certificate which will contain the DCD extension. The certification
+authority then populates the delta certificate descriptor extension with
+the values of the fields which differ from the Delta Certificate. The
+ordering of extensions in the DCD extension's
 "extensions" field MUST be the same as the ordering of those extensions
 in the Base Certificate. Maintaining this relative ordering ensures that
-the Delta Certificate's extensions can be constructed with a single pass.
+the Delta Certificate's extensions can be constructed with a single
+pass.
 
 The certification authority then adds the computed DCD extension to the
 to-be-signed Base Certificate and signs the Base Certificate.
@@ -220,21 +283,24 @@ from a Base Certificate:
 3. If the DCD extension contains a value for the signature field, then
    replace the value of the signature field of the Base Certificate with
    the value of the DCD extension's signature field.
-4. If the DCD extensions contains a value for the issuer field, then
+4. If the DCD extension contains a value for the issuer field, then
    replace the value of the issuer field of the Base Certificate with
    the value of the DCD extension's issuer field.
-5. If the DCD extension contains a value for the subjectPublicKeyInfo
+5. If the DCD extension contains a value for the subject field, then
+   replace the value of the subject field of the Base Certificate with
+   the value of the DCD extension's subject field.
+6. If the DCD extension contains a value for the subjectPublicKeyInfo
    field, then replace the value of the subjectPublicKeyInfo field of
    the Base Certificate with the value of the DCD extension's
    subjectPublicKeyInfo field.
-6. If the DCD extension contains a value for the extensions field, then
+7. If the DCD extension contains a value for the extensions field, then
    iterate over the DCD extension's "extensions" field, replacing the
    criticality and/or extension value of each identified extension in
    the Base Certificate.
-7. Replace the value of the signatureValue field of the Base Certificate
+8. Replace the value of the signatureValue field of the Base Certificate
    with the value of the DCD extension's signatureValue field.
 
-# Delta certificate request content and semantics
+# Delta certificate request content and semantics {#dcr-attribute}
 
 Using the two attributes that are defined below, it is possible to
 create Certification Signing Requests for both Base and Delta
@@ -257,9 +323,10 @@ The ASN.1 syntax of the attribute is as follows:
 
 ```
 DeltaCertificateRequest ::= SEQUENCE {
-  subjectPublicKeyInfo  [0] IMPLICIT SubjectPublicKeyInfo OPTIONAL,
-  extensions            [1] IMPLICIT Extensions OPTIONAL,
-  signatureAlgorithm    [2] IMPLICIT AlgorithmIdentifier OPTIONAL,
+  subject               [1] IMPLICIT Name OPTIONAL,
+  subjectPublicKeyInfo  [1] IMPLICIT SubjectPublicKeyInfo OPTIONAL,
+  extensions            [2] IMPLICIT Extensions OPTIONAL,
+  signatureAlgorithm    [3] IMPLICIT AlgorithmIdentifier OPTIONAL,
 }
 
 deltaCertificateRequest ATTRIBUTE ::= {
@@ -273,7 +340,7 @@ The delta certificate request signature attribute is used to convey
 the signature that is calculated over the CertificationRequestInfo
 using the signature algorithm and key that is specified in the delta
 certificate request attribute. The following section describes in detail
-how to calculate the value of this attribute.
+how to determine the value of this attribute.
 
 This attribute is identified with the following object identifier:
 
@@ -296,11 +363,10 @@ deltaCertificateRequestSignature ATTRIBUTE ::= {
 }
 ```
 
-## Creating a combined certification signing request
+## Creating a certification signing request for Related Certificates
 
 The following procedure is used by certificate requestors to create a
-combined certification signing request for both a Base Certificate and
-a Delta Certificate.
+combined certification signing request for Related Certificates.
 
 1. The certificate requestor creates a CertificationRequestInfo
    containing the subject, subjectPKInfo, and attributes for
@@ -334,15 +400,59 @@ a Delta Certificate.
 
 # Security Considerations
 
-The validation for each certificate follows the certification path validation method defined in in {{!RFC5280}} however, there are some additional considerations for the software to handle the Base Certificate and Delta Certificate. The Base Certificate and Delta Certificate MAY have different security properties such as a different signing algorithms, different key types or the same key types with different key sizes or signing algorithms. The preference on which certificate to be used or using both when available is deferred to the server or client software.
+The validation of Base Certificates and Delta Certificates follows the
+certification path validation algorithm defined in {{!RFC5280}}.
+However, there are some additional considerations for the software to
+handle the Base Certificate and Delta Certificate. The Base Certificate
+and Delta Certificate may have different security properties such as
+different signing algorithms, different key types or the same key types
+with different key sizes or signing algorithms. The preference on which
+certificate to be used or using both when available is deferred to the
+server or client software.
 
-The software is expected to make choices depending on the certificate's security properties or a policy set for the particular PKI. One example of handling two certificates is "fallback" which is should the validation of the first certificate fails, it attemps to validate the second certificate. Another example to handle two certificate is "upgrade" where the validation of the first certificate succeeds but still attemps the validation of the second certificate. While this document provides a vehicle to convey information of two certificates in one, it does not address the rules that are expected to be set by the policy of a PKI on how to issue a Base Certificates and how to handle them. 
+The software is expected to make choices depending on the certificate's
+security properties or a policy set for the particular PKI. One example
+of handling two certificates is "fallback" where if the validation of
+the first certificate fails, it attempts to validate the second
+certificate. Another example to handle two certificate is "upgrade",
+where the validation of the first certificate succeeds but still
+attempts the validation of the second certificate. While this document
+provides a vehicle to convey information of two certificates in one,
+it does not address the rules that are expected to be set by the policy
+of a PKI on how to issue Related Certificates and how to handle them. 
 
-What algorithms are used for the Base Certificate and Delta Certificate respectively should be carefully set by the policy of each PKI reflecting the best current practices in usage of cryptography. The behavior of the server or client software is expected to be well-defined in accordance with the policy in order to avoid downgrade attacks or substitution attacks.
+The algorithms that are used for the Base Certificate and Delta
+Certificate respectively should be carefully set by the policy of each
+PKI reflecting the best current practices in usage of cryptography. The
+behavior of the server or client software is expected to be well-defined
+in accordance with the policy in order to avoid downgrade attacks or
+substitution attacks.
+
+The validity period of Related Certificates is identical. Therefore,
+the certification authority (or a delegated entity) MUST provide
+certificate status information for both the Base Certificate and Delta
+Certificate throughout their validity period. To ease revocation
+processing for relying parties, it is RECOMMENDED that the
+certificate status for Related Certificates be identical.
 
 # IANA Considerations
 
-Todo
+For the Delta Certificate descriptor extension as defined in
+{{dcd-extension-content}}, IANA is requested to assign an object
+identifier (OID) for the certificate extension. The OID for the
+certificate extension should be allocated in the
+"SMI Security for PKIX Certificate Extension" registry
+(1.3.6.1.5.5.7.1).
+
+For the Delta Certificate Request and Delta Certificate Request
+Signature attributes as defined in {{dcr-attribute}}, IANA
+is requested to create a new registry under SMI Security Codes and
+assign two object identifiers (OID).
+
+For the ASN.1 Module for the extension and attributes defined in this
+document, IANA is requested to assign an object identifier (OID).  The
+OID for the module should be allocated in the
+"SMI Security for PKIX Module Identifier" registry (1.3.6.1.5.5.7.0).
 
 --- back
 
