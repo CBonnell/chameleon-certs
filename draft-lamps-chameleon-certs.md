@@ -231,9 +231,9 @@ subject for both the Base Certificate and Delta Certificate is the same.
 If present, the subjectPublicKeyInfo field contains the public key
 included in the Delta Certificate. If this field is absent, then the
 public key included in the Base Certificate and Delta Certificate is
-equal.
+the same.
 
-If present, the extensions field the extensions whose
+If present, the extensions field contains the extensions whose
 criticality and/or value are different in the Delta Certificate compared
 to the Base Certificate. If the extensions field is
 absent, then all extensions in the Delta Certificate MUST have the same
@@ -339,7 +339,7 @@ deltaCertificateRequest ATTRIBUTE ::= {
 The delta certificate request signature attribute is used to convey
 the signature that is calculated over the CertificationRequestInfo
 using the signature algorithm and key that is specified in the delta
-certificate request attribute. The following section describes in detail
+certificate request attribute. {{dcd-csr-create}} describes in detail
 how to determine the value of this attribute.
 
 This attribute is identified with the following object identifier:
@@ -363,7 +363,7 @@ deltaCertificateRequestSignature ATTRIBUTE ::= {
 }
 ~~~
 
-## Creating a certification signing request for Related Certificates
+## Creating a certification signing request for Related Certificates {#dcd-csr-create}
 
 The following procedure is used by certificate requestors to create a
 combined certification signing request for Related Certificates.
