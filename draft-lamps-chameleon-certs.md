@@ -376,7 +376,7 @@ combined certification signing request for Related Certificates.
    attribute that specifies the requested differences between the
    to-be-issued Base Certificate and Delta Certificate requests.
 3. The certificate requestor adds the delta certificate request
-   attribute that was created by step 3 to the list of attributes in
+   attribute that was created by step 2 to the list of attributes in
    the CertificationRequestInfo.
 4. The certificate requestor signs the CertificationRequestInfo. If
    the value of the subjectPublicKeyInfo field in the delta certificate
