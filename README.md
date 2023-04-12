@@ -1,6 +1,6 @@
-# A Mechanism for Encoding Differences in Related Certificates
+# A Mechanism for Encoding Differences in Paired Certificates
 
-This is the working area for the individual Internet-Draft, "A Mechanism for Encoding Differences in Related Certificates".
+This is the working area for the individual Internet-Draft, "A Mechanism for Encoding Differences in Paired Certificates".
 
 * [Editor's Copy](https://CBonnell.github.io/chameleon-certs/#go.draft-lamps-chameleon-certs.html)
 * [Datatracker Page](https://datatracker.ietf.org/doc/draft-lamps-chameleon-certs)
