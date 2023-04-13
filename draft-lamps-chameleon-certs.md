@@ -285,32 +285,33 @@ to-be-signed Base Certificate and signs the Base Certificate.
 The following procedure describes how to reconstruct a Delta Certificate
 from a Base Certificate:
 
-1. Remove the DCD extension from the Base Certificate.
-2. Replace the value of the serialNumber field of the Base Certificate
-   with the value of the DCD extension's serialNumber field.
+1. Create an initial Delta Certificate template by copying the Base
+   Certificate excluding the DCD extension.
+2. Replace the value of the serialNumber field of the Delta Certificate
+   template with the value of the DCD extension's serialNumber field.
 3. If the DCD extension contains a value for the signature field, then
-   replace the value of the signature field of the Base Certificate with
-   the value of the DCD extension's signature field.
+   replace the value of the signature field of the Delta Certificate
+   template with the value of the DCD extension's signature field.
 4. If the DCD extension contains a value for the issuer field, then
-   replace the value of the issuer field of the Base Certificate with
-   the value of the DCD extension's issuer field.
+   replace the value of the issuer field of the Delta Certificate
+   template with the value of the DCD extension's issuer field.
 5. If the DCD extension contains a value for the validity field, then
-   replace the value of the validity field of the Base Certificate with
-   the value of the DCD extension's validity field.
-6. Replace the value of the subjectPublicKeyInfo field of the Base
-   Certificate with the value of the DCD extension's
+   replace the value of the validity field of the Delta Certificate
+   template with the value of the DCD extension's validity field.
+6. Replace the value of the subjectPublicKeyInfo field of the Delta
+   Certificate template with the value of the DCD extension's
    subjectPublicKeyInfo field.
 7. If the DCD extension contains a value for the subject field, then
-   replace the value of the subject field of the Base Certificate with
-   the value of the DCD extension's subject field.
+   replace the value of the subject field of the Delta Certificate
+   template with the value of the DCD extension's subject field.
 8. If the DCD extension contains a value for the extensions field, then
    iterate over the DCD extension's "extensions" field, replacing the
    criticality and/or extension value of each identified extension in
-   the Base Certificate. If any extension is present in the field that
-   does not appear in the Base Certificate, then this reconstruction
-   process MUST fail.
-9. Replace the value of the signature field of the Base Certificate
-   with the value of the DCD extension's signatureValue field.
+   the Delta Certificate template. If any extension is present in the
+   field that does not appear in the Delta Certificate template, then
+   this reconstruction process MUST fail.
+9. Replace the value of the signature field of the Delta Certificate
+   template with the value of the DCD extension's signatureValue field.
 
 # Delta certificate request content and semantics {#dcr-attribute}
 
