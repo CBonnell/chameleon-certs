@@ -326,6 +326,7 @@ and the requested Delta Certificate.
 The attribute is identified with the following object identifier:
 
 (TODO: replace this temporary OID)
+
 ~~~
 id-at-delta-certificate-request ::= OBJECT IDENTIFIER {
    joint-iso-itu-t(2) country(16) us(840) organization(1)
@@ -338,7 +339,7 @@ The ASN.1 syntax of the attribute is as follows:
 ~~~
 DeltaCertificateRequest ::= SEQUENCE {
   subject               [0] IMPLICIT Name OPTIONAL,
-  subjectPublicKeyInfo  SubjectPublicKeyInfo,
+  subjectPKInfo         SubjectPublicKeyInfo,
   extensions            [1] IMPLICIT Extensions OPTIONAL,
   signatureAlgorithm    [2] IMPLICIT AlgorithmIdentifier OPTIONAL,
 }
@@ -359,6 +360,7 @@ how to determine the value of this attribute.
 This attribute is identified with the following object identifier:
 
 (TODO: replace this temporary OID)
+
 ~~~
 id-at-delta-certificate-request-signature ::= OBJECT IDENTIFIER {
    joint-iso-itu-t(2) country(16) us(840) organization(1)
