@@ -26,22 +26,20 @@ does not violate the constraints of serial number
 uniqueness for certificates issued by a single certification
 authority. 
     " name="description">
-<meta content="xml2rfc 3.17.0" name="generator">
+<meta content="xml2rfc 3.17.1" name="generator">
 <meta content="delta certificate" name="keyword">
 <meta content="chameleon certificate" name="keyword">
 <meta content="paired certificate" name="keyword">
 <meta content="draft-lamps-chameleon-certs-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.17.0
-    Python 3.10.10
+  xml2rfc 3.17.1
+    Python 3.10.11
     appdirs 1.4.4
     ConfigArgParse 1.5.3
     google-i18n-address 2.5.2
-    html5lib 1.1
     intervaltree 3.1.0
     Jinja2 3.1.2
     lxml 4.9.2
-    MarkupSafe 2.1.1
     pycountry 22.3.5
     PyYAML 6.0
     requests 2.28.1
@@ -680,7 +678,8 @@ sub, sup {
 .references dt {
   text-align: right;
   font-weight: bold;
-  min-width: 7em;
+  min-width: 10ch;
+  margin-right: 1.5ch;
 }
 .references dt:target::before {
   content: "⇒";
@@ -688,7 +687,7 @@ sub, sup {
   margin: 0 10px 0 -25px;
 }
 .references dd {
-  margin-left: 8em !important;
+  margin-left: 12ch !important;
   overflow: auto;
 }
 
@@ -1066,11 +1065,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">A Mechanism for Encoding Differences in </td>
-<td class="right">April 2023</td>
+<td class="right">May 2023</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Bonnell, et al.</td>
-<td class="center">Expires 15 October 2023</td>
+<td class="center">Expires 18 November 2023</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1083,12 +1082,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-lamps-chameleon-certs-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2023-04-13" class="published">13 April 2023</time>
+<time datetime="2023-05-17" class="published">17 May 2023</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2023-10-15">15 October 2023</time></dd>
+<dd class="expires"><time datetime="2023-11-18">18 November 2023</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1162,7 +1161,7 @@ authority.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 15 October 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 18 November 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1526,19 +1525,21 @@ Certificates within a single PKCS #10 Certificate Signing Request.<a href="#sect
 differences between the request for issuance of the Base Certificate
 and the requested Delta Certificate.<a href="#section-5-2" class="pilcrow">¶</a></p>
 <p id="section-5-3">The attribute is identified with the following object identifier:<a href="#section-5-3" class="pilcrow">¶</a></p>
-<p id="section-5-4">(TODO: replace this temporary OID)
-~~~
+<p id="section-5-4">(TODO: replace this temporary OID)<a href="#section-5-4" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-5-5">
+<pre>
 id-at-delta-certificate-request ::= OBJECT IDENTIFIER {
    joint-iso-itu-t(2) country(16) us(840) organization(1)
    entrust(114027) 80 6 2
 }
-~~~<a href="#section-5-4" class="pilcrow">¶</a></p>
-<p id="section-5-5">The ASN.1 syntax of the attribute is as follows:<a href="#section-5-5" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-5-6">
+</pre><a href="#section-5-5" class="pilcrow">¶</a>
+</div>
+<p id="section-5-6">The ASN.1 syntax of the attribute is as follows:<a href="#section-5-6" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-5-7">
 <pre>
 DeltaCertificateRequest ::= SEQUENCE {
   subject               [0] IMPLICIT Name OPTIONAL,
-  subjectPublicKeyInfo  SubjectPublicKeyInfo,
+  subjectPKInfo         SubjectPublicKeyInfo,
   extensions            [1] IMPLICIT Extensions OPTIONAL,
   signatureAlgorithm    [2] IMPLICIT AlgorithmIdentifier OPTIONAL,
 }
@@ -1548,23 +1549,25 @@ deltaCertificateRequest ATTRIBUTE ::= {
    SINGLE VALUE TRUE
    ID id-at-delta-certificate-request
 }
-</pre><a href="#section-5-6" class="pilcrow">¶</a>
+</pre><a href="#section-5-7" class="pilcrow">¶</a>
 </div>
-<p id="section-5-7">The delta certificate request signature attribute is used to convey
+<p id="section-5-8">The delta certificate request signature attribute is used to convey
 the signature that is calculated over the CertificationRequestInfo
 using the signature algorithm and key that is specified in the delta
 certificate request attribute. <a href="#dcd-csr-create" class="auto internal xref">Section 5.1</a> describes in detail
-how to determine the value of this attribute.<a href="#section-5-7" class="pilcrow">¶</a></p>
-<p id="section-5-8">This attribute is identified with the following object identifier:<a href="#section-5-8" class="pilcrow">¶</a></p>
-<p id="section-5-9">(TODO: replace this temporary OID)
-~~~
+how to determine the value of this attribute.<a href="#section-5-8" class="pilcrow">¶</a></p>
+<p id="section-5-9">This attribute is identified with the following object identifier:<a href="#section-5-9" class="pilcrow">¶</a></p>
+<p id="section-5-10">(TODO: replace this temporary OID)<a href="#section-5-10" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-5-11">
+<pre>
 id-at-delta-certificate-request-signature ::= OBJECT IDENTIFIER {
    joint-iso-itu-t(2) country(16) us(840) organization(1)
    entrust(114027) 80 6 3
 }
-~~~<a href="#section-5-9" class="pilcrow">¶</a></p>
-<p id="section-5-10">The ASN.1 syntax of the attribute is as follows:<a href="#section-5-10" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-5-11">
+</pre><a href="#section-5-11" class="pilcrow">¶</a>
+</div>
+<p id="section-5-12">The ASN.1 syntax of the attribute is as follows:<a href="#section-5-12" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-5-13">
 <pre>
 DeltaCertificateRequestSignature ::= BIT STRING
 
@@ -1573,7 +1576,7 @@ deltaCertificateRequestSignature ATTRIBUTE ::= {
    SINGLE VALUE TRUE
    ID id-at-delta-certificate-request-signature
 }
-</pre><a href="#section-5-11" class="pilcrow">¶</a>
+</pre><a href="#section-5-13" class="pilcrow">¶</a>
 </div>
 <div id="dcd-csr-create">
 <section id="section-5.1">

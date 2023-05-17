@@ -5,14 +5,14 @@
 Network Working Group                                         C. Bonnell
 Internet-Draft                                            DigiCert, Inc.
 Intended status: Informational                                   J. Gray
-Expires: 15 October 2023                                         Entrust
+Expires: 18 November 2023                                        Entrust
                                                                  D. Hook
                                                                KeyFactor
                                                                 T. Okubo
                                                           DigiCert, Inc.
                                                             M. Ounsworth
                                                                  Entrust
-                                                           13 April 2023
+                                                             17 May 2023
 
 
       A Mechanism for Encoding Differences in Paired Certificates
@@ -61,7 +61,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 15 October 2023.
+   This Internet-Draft will expire on 18 November 2023.
 
 Copyright Notice
 
@@ -369,15 +369,18 @@ Table of Contents
 
    The attribute is identified with the following object identifier:
 
-   (TODO: replace this temporary OID) ~~~ id-at-delta-certificate-
-   request ::= OBJECT IDENTIFIER { joint-iso-itu-t(2) country(16)
-   us(840) organization(1) entrust(114027) 80 6 2 } ~~~
+   (TODO: replace this temporary OID)
+
+   id-at-delta-certificate-request ::= OBJECT IDENTIFIER {
+      joint-iso-itu-t(2) country(16) us(840) organization(1)
+      entrust(114027) 80 6 2
+   }
 
    The ASN.1 syntax of the attribute is as follows:
 
    DeltaCertificateRequest ::= SEQUENCE {
      subject               [0] IMPLICIT Name OPTIONAL,
-     subjectPublicKeyInfo  SubjectPublicKeyInfo,
+     subjectPKInfo         SubjectPublicKeyInfo,
      extensions            [1] IMPLICIT Extensions OPTIONAL,
      signatureAlgorithm    [2] IMPLICIT AlgorithmIdentifier OPTIONAL,
    }
@@ -396,9 +399,12 @@ Table of Contents
 
    This attribute is identified with the following object identifier:
 
-   (TODO: replace this temporary OID) ~~~ id-at-delta-certificate-
-   request-signature ::= OBJECT IDENTIFIER { joint-iso-itu-t(2)
-   country(16) us(840) organization(1) entrust(114027) 80 6 3 } ~~~
+   (TODO: replace this temporary OID)
+
+   id-at-delta-certificate-request-signature ::= OBJECT IDENTIFIER {
+      joint-iso-itu-t(2) country(16) us(840) organization(1)
+      entrust(114027) 80 6 3
+   }
 
    The ASN.1 syntax of the attribute is as follows:
 
