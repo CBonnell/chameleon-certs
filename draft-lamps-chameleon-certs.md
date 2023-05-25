@@ -198,8 +198,9 @@ able to process the Base Certificate.
 The DCD extension is identified with the following object identifier:
 
 (TODO: replace this temporary OID)
+
 ~~~
-id-ce-deltaCertificateDescriptor ::= OBJECT IDENTIFIER {
+id-ce-deltaCertificateDescriptor OBJECT IDENTIFIER ::= {
    joint-iso-itu-t(2) country(16) us(840) organization(1)
    entrust(114027) 80 6 1
 }
@@ -210,12 +211,12 @@ The ASN.1 syntax of the extension is as follows:
 ~~~
 DeltaCertificateDescriptor ::= SEQUENCE {
   serialNumber          CertificateSerialNumber,
-  signature             [0] IMPLICIT AlgorithmIdentifier OPTIONAL,
+  signature             [0] IMPLICIT AlgorithmIdentifier {SIGNATURE_ALGORITHM, {...}} OPTIONAL,
   issuer                [1] IMPLICIT Name OPTIONAL,
   validity              [2] IMPLICIT Validity OPTIONAL,
   subject               [3] IMPLICIT Name OPTIONAL,
   subjectPublicKeyInfo  SubjectPublicKeyInfo,
-  extensions            [4] IMPLICIT Extensions OPTIONAL,
+  extensions            [4] IMPLICIT Extensions{CertExtensions} OPTIONAL,
   signatureValue        BIT STRING
 }
 ~~~
@@ -335,7 +336,7 @@ The attribute is identified with the following object identifier:
 (TODO: replace this temporary OID)
 
 ~~~
-id-at-deltaCertificateRequest ::= OBJECT IDENTIFIER {
+id-at-deltaCertificateRequest OBJECT IDENTIFIER ::= {
    joint-iso-itu-t(2) country(16) us(840) organization(1)
    entrust(114027) 80 6 2
 }
@@ -344,15 +345,15 @@ id-at-deltaCertificateRequest ::= OBJECT IDENTIFIER {
 The ASN.1 syntax of the attribute is as follows:
 
 ~~~
-DeltaCertificateRequest ::= SEQUENCE {
+DeltaCertificateRequestValue ::= SEQUENCE {
   subject               [0] IMPLICIT Name OPTIONAL,
   subjectPKInfo         SubjectPublicKeyInfo,
-  extensions            [1] IMPLICIT Extensions OPTIONAL,
-  signatureAlgorithm    [2] IMPLICIT AlgorithmIdentifier OPTIONAL,
+  extensions            [1] IMPLICIT Extensions{CertExtensions} OPTIONAL,
+  signatureAlgorithm    [2] IMPLICIT AlgorithmIdentifier {SIGNATURE_ALGORITHM, {...}} OPTIONAL
 }
 
-deltaCertificateRequest ATTRIBUTE ::= {
-   WITH SYNTAX DeltaCertificateRequest
+DeltaCertificateRequest ::= ATTRIBUTE {
+   WITH SYNTAX DeltaCertificateRequestValue
    SINGLE VALUE TRUE
    ID id-at-deltaCertificateRequest
 }
@@ -369,7 +370,7 @@ This attribute is identified with the following object identifier:
 (TODO: replace this temporary OID)
 
 ~~~
-id-at-deltaCertificateRequestSignature ::= OBJECT IDENTIFIER {
+id-at-deltaCertificateRequestSignature OBJECT IDENTIFIER ::= {
    joint-iso-itu-t(2) country(16) us(840) organization(1)
    entrust(114027) 80 6 3
 }
@@ -378,10 +379,10 @@ id-at-deltaCertificateRequestSignature ::= OBJECT IDENTIFIER {
 The ASN.1 syntax of the attribute is as follows:
 
 ~~~
-DeltaCertificateRequestSignature ::= BIT STRING
+DeltaCertificateRequestSignatureValue ::= BIT STRING
 
 deltaCertificateRequestSignature ATTRIBUTE ::= {
-   WITH SYNTAX DeltaCertificateRequestSignature
+   WITH SYNTAX DeltaCertificateRequestSignatureValue
    SINGLE VALUE TRUE
    ID id-at-deltaCertificateRequestSignature
 }
@@ -474,40 +475,49 @@ DeltaCertificateDescriptor { iso(1) identified-organization(3) dod(6) internet(1
   security(5) mechanisms(5) pkix(7) id-mod(0)
   id-mod-deltaCertificateDescriptor(TBD) }
 
-DEFINITIONS IMPLICIT TAGS ::=
+DEFINITIONS EXPLICIT TAGS ::=
 
 BEGIN
 
+EXPORTS ALL;
+
 IMPORTS
-  EXTENSION, ATTRIBUTE
+  AlgorithmIdentifier{}, SIGNATURE-ALGORITHM
+  FROM AlgorithmInformation-2009  -- RFC 5912
+  { iso(1) identified-organization(3) dod(6) internet(1) security(5)
+    mechanisms(5) pkix(7) id-mod(0)
+    id-mod-algorithmInformation-02(58) }
+
+  EXTENSION, ATTRIBUTE, Extensions{}
   FROM PKIX-CommonTypes-2009  -- RFC 5912
   { iso(1) identified-organization(3) dod(6) internet(1)
     security(5) mechanisms(5) pkix(7) id-mod(0)
     id-mod-pkixCommon-02(57) }
 
-  CertificateSerialNumber, AlgorithmIdentifier, Name,
-  Validity, SubjectPublicKeyInfo, Extensions
-  FROM PKIX1Implicit-2009 -- RFC 5912
+  CertificateSerialNumber, Name, Validity, SubjectPublicKeyInfo, CertExtensions
+  FROM PKIX1Explicit-2009  -- RFC 5912
   { iso(1) identified-organization(3) dod(6) internet(1) security(5)
-    mechanisms(5) pkix(7) id-mod(0) id-mod-pkix1-implicit-02(59) }
+    mechanisms(5) pkix(7) id-mod(0) id-mod-pkix1-explicit-02(51) };
 
--- EXPORTS ALL
+-- Temporary OID arc --
+
+id-temporaryArc OBJECT IDENTIFIER ::= {
+  joint-iso-itu-t(2) country(16) us(840) organization(1)
+  entrust(114027) 80 6
+}
 
 -- Extension --
 
-id-ce-deltaCertificateDescriptor ::= OBJECT IDENTIFIER {
-   joint-iso-itu-t(2) country(16) us(840) organization(1)
-   entrust(114027) 80 6 1
-}
+id-ce-deltaCertificateDescriptor OBJECT IDENTIFIER ::= { id-temporaryArc 1 }
 
 DeltaCertificateDescriptor ::= SEQUENCE {
   serialNumber          CertificateSerialNumber,
-  signature             [0] IMPLICIT AlgorithmIdentifier OPTIONAL,
+  signature             [0] IMPLICIT AlgorithmIdentifier {SIGNATURE_ALGORITHM, {...}} OPTIONAL,
   issuer                [1] IMPLICIT Name OPTIONAL,
   validity              [2] IMPLICIT Validity OPTIONAL,
   subject               [3] IMPLICIT Name OPTIONAL,
   subjectPublicKeyInfo  SubjectPublicKeyInfo,
-  extensions            [4] IMPLICIT Extensions OPTIONAL,
+  extensions            [4] IMPLICIT Extensions{CertExtensions} OPTIONAL,
   signatureValue        BIT STRING
 }
 
@@ -519,33 +529,27 @@ ext-deltaCertificateDescriptor EXTENSION ::= {
 
 -- Request Attributes --
 
-id-at-deltaCertificateRequest ::= OBJECT IDENTIFIER {
-  joint-iso-itu-t(2) country(16) us(840) organization(1)
-  entrust(114027) 80 6 2
-}
+id-at-deltaCertificateRequest OBJECT IDENTIFIER ::= { id-temporaryArc 2 }
 
-DeltaCertificateRequest ::= SEQUENCE {
+DeltaCertificateRequestValue ::= SEQUENCE {
   subject               [0] IMPLICIT Name OPTIONAL,
   subjectPKInfo         SubjectPublicKeyInfo,
-  extensions            [1] IMPLICIT Extensions OPTIONAL,
-  signatureAlgorithm    [2] IMPLICIT AlgorithmIdentifier OPTIONAL,
+  extensions            [1] IMPLICIT Extensions{CertExtensions} OPTIONAL,
+  signatureAlgorithm    [2] IMPLICIT AlgorithmIdentifier {SIGNATURE_ALGORITHM, {...}} OPTIONAL
 }
 
-deltaCertificateRequest ATTRIBUTE ::= {
-   WITH SYNTAX DeltaCertificateRequest
+DeltaCertificateRequest ::= ATTRIBUTE {
+   WITH SYNTAX DeltaCertificateRequestValue
    SINGLE VALUE TRUE
    ID id-at-deltaCertificateRequest
 }
 
-id-at-deltaCertificateRequestSignature ::= OBJECT IDENTIFIER {
-  joint-iso-itu-t(2) country(16) us(840) organization(1)
-  entrust(114027) 80 6 3
-}
+id-at-deltaCertificateRequestSignature OBJECT IDENTIFIER ::= { id-temporaryArc 3 }
 
-DeltaCertificateRequestSignature ::= BIT STRING
+DeltaCertificateRequestSignatureValue ::= BIT STRING
 
-deltaCertificateRequestSignature ATTRIBUTE ::= {
-   WITH SYNTAX DeltaCertificateRequestSignature
+DeltaCertificateRequestSignature ::= ATTRIBUTE {
+   WITH SYNTAX DeltaCertificateRequestSignatureValue
    SINGLE VALUE TRUE
    ID id-at-deltaCertificateRequestSignature
 }
