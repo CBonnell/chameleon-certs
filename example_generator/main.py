@@ -239,7 +239,7 @@ def print_cert(name, description, pyasn1_cert: rfc5280.Certificate):
     print()
     print(description)
     print()
-    print('```')
+    print('~~~')
     with tempfile.NamedTemporaryFile() as t:
         t.write(encoded)
         t.flush()
@@ -249,7 +249,7 @@ def print_cert(name, description, pyasn1_cert: rfc5280.Certificate):
         print(output)
 
     print(crypto_cert.public_bytes(serialization.Encoding.PEM).decode())
-    print('```')
+    print('~~~')
     print()
 
 dilithium_root_key = _generate_dilthium_key()

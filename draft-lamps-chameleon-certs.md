@@ -566,7 +566,7 @@ This appendix includes some example certificates which demonstrate the use of th
 
 This is the ECDSA root certificate.
 
-```
+~~~
   0 773: SEQUENCE {
   4 614:   SEQUENCE {
   8   3:     [0] {
@@ -731,13 +731,13 @@ iRDRdQgHeY1d6rrB9IPneN3mnjRQuc+oVHWwJ8DRgSO5ojxHwgrtXHBNil0B1/kE
 nZiwchh5oKlS
 -----END CERTIFICATE-----
 
-```
+~~~
 
 ## Dilithium root
 
 This is the Dilithium root certificate. It contains a Delta Certificate Descriptor extension which includes sufficient information to recreate the ECDSA P-521 root
 
-```
+~~~
    0 6479: SEQUENCE {
    4 3162:   SEQUENCE {
    8    3:     [0] {
@@ -1141,13 +1141,13 @@ LJCTosLUKTdOirnZFxkpMktgh6TF/SI3SWSAkL7d4hkwS2a35e0AAAAAAAAAChAW
 ICkw
 -----END CERTIFICATE-----
 
-```
+~~~
 
 ## ECDSA signing end-entity
 
 This is an end-entity signing certificate which certifies an ECDSA key.
 
-```
+~~~
   0 609: SEQUENCE {
   4 451:   SEQUENCE {
   8   3:     [0] {
@@ -1295,13 +1295,13 @@ pP/GLSryq9yWbyglTYBfYaMCQgEnaofHHnLtZ9LtxaMPiKd9aoRkdH7Cz6NKFycJ
 A8ur1R+nONKoEfwA7vvARoVmIyiAjBkHTesesB5TLFOQ1paXbw==
 -----END CERTIFICATE-----
 
-```
+~~~
 
 ## Dilithium signing end-entity
 
 This is an end-entity signing certificate which certifies a Dilithium key. It contains a Delta Certificate Descriptor extension which includes sufficient information to recreate the ECDSA signing end-entity certificate.
 
-```
+~~~
    0 6166: SEQUENCE {
    4 2849:   SEQUENCE {
    8    3:     [0] {
@@ -1655,13 +1655,13 @@ dwqy6UxsjIiPuy2MlOe/0KAGVE0ZeGAAi00V+gTOsG5w5IUil47XyQ0d32nX5cAR
 t9bkPD9cnN8AAAAAAAAAAAAAAAAJEBkhJis=
 -----END CERTIFICATE-----
 
-```
+~~~
 
 ## EC dual use end-entity
 
 This is an end-entity key exchange certificate which certifies a EC key. It contains a Delta Certificate Descriptor extension which includes sufficient information to the recreate the ECDSA signing end-entity certificate.
 
-```
+~~~
   0 971: SEQUENCE {
   4 812:   SEQUENCE {
   8   3:     [0] {
@@ -1875,7 +1875,7 @@ f8Rjr9L1jAWVBYaegzuRMkkiHixxI4uIIpnRj6Oa7ZVYe5EyDy1TJkPmUAJCAdD9
 Dh+8bOUaSTINy5Fc9DXd
 -----END CERTIFICATE-----
 
-```
+~~~
 
 # Acknowledgments
 {:numbered="false"}
