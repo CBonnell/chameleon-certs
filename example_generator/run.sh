@@ -14,7 +14,7 @@ git clone -b main https://github.com/open-quantum-safe/liboqs-python.git
 cd liboqs-python
 python3 setup.py install
 
-cd $GITHUB_WORKSPACE
+cd $GITHUB_WORKSPACE/example_generator
 
 pip install --no-cache-dir -r requirements.txt
 
