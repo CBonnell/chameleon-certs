@@ -93,7 +93,7 @@ Table of Contents
    6.  Security Considerations
    7.  IANA Considerations
    8.  Normative References
-   Appendix A.  Appendix A.  ASN.1 Module
+   Appendix A.  ASN.1 Module
    Acknowledgments
    Authors' Addresses
 
@@ -518,31 +518,32 @@ Table of Contents
               One (ASN.1): Specification of basic notation", ISO/
               IEC 8824-1:2015, November 2015.
 
-Appendix A.  Appendix A.  ASN.1 Module
+Appendix A.  ASN.1 Module
 
    The following ASN.1 [X.680] module provides the complete definition
    of the extensions, attributes, and associated identifiers specified
    in this document.
 
 DeltaCertificateDescriptor { iso(1) identified-organization(3) dod(6) internet(1)
-         security(5) mechanisms(5) pkix(7) id-mod(0)
-         id-mod-deltaCertificateDescriptor(TBD) }
+  security(5) mechanisms(5) pkix(7) id-mod(0)
+  id-mod-deltaCertificateDescriptor(TBD) }
 
 DEFINITIONS IMPLICIT TAGS ::=
 
 BEGIN
 
 IMPORTS
-        EXTENSION, ATTRIBUTE
-        FROM PKIX-CommonTypes-2009  -- RFC 5912
-        { iso(1) identified-organization(3) dod(6) internet(1)
-          security(5) mechanisms(5) pkix(7) id-mod(0)
-          id-mod-pkixCommon-02(57) }
+  EXTENSION, ATTRIBUTE
+  FROM PKIX-CommonTypes-2009  -- RFC 5912
+  { iso(1) identified-organization(3) dod(6) internet(1)
+    security(5) mechanisms(5) pkix(7) id-mod(0)
+    id-mod-pkixCommon-02(57) }
 
-        CertificateSerialNumber, AlgorithmIdentifier, Name, Validity, SubjectPublicKeyInfo, Extensions
-        FROM PKIX1Implicit-2009 -- RFC 5912
-        { iso(1) identified-organization(3) dod(6) internet(1) security(5)
-          mechanisms(5) pkix(7) id-mod(0) id-mod-pkix1-implicit-02(59) }
+  CertificateSerialNumber, AlgorithmIdentifier, Name,
+  Validity, SubjectPublicKeyInfo, Extensions
+  FROM PKIX1Implicit-2009 -- RFC 5912
+  { iso(1) identified-organization(3) dod(6) internet(1) security(5)
+    mechanisms(5) pkix(7) id-mod(0) id-mod-pkix1-implicit-02(59) }
 
 -- EXPORTS ALL
 

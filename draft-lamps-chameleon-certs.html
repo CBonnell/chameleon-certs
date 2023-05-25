@@ -1236,7 +1236,7 @@ authority.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
             <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
-            <p id="section-toc.1-1.9.1"><a href="#appendix-A" class="auto internal xref">Appendix A</a>.  <a href="#name-appendix-a-asn1-module" class="internal xref">Appendix A. ASN.1 Module</a></p>
+            <p id="section-toc.1-1.9.1"><a href="#appendix-A" class="auto internal xref">Appendix A</a>.  <a href="#name-asn1-module" class="internal xref">ASN.1 Module</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
             <p id="section-toc.1-1.10.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
@@ -1698,32 +1698,33 @@ The OID for the module should be allocated in the
 </section>
 <div id="asn1-module">
 <section id="appendix-A">
-      <h2 id="name-appendix-a-asn1-module">
-<a href="#appendix-A" class="section-number selfRef">Appendix A. </a><a href="#name-appendix-a-asn1-module" class="section-name selfRef">Appendix A. ASN.1 Module</a>
+      <h2 id="name-asn1-module">
+<a href="#appendix-A" class="section-number selfRef">Appendix A. </a><a href="#name-asn1-module" class="section-name selfRef">ASN.1 Module</a>
       </h2>
 <p id="appendix-A-1">The following ASN.1 <span>[<a href="#X.680" class="cite xref">X.680</a>]</span> module provides the complete definition of the extensions, attributes, and
 associated identifiers specified in this document.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="appendix-A-2">
 <pre>
 DeltaCertificateDescriptor { iso(1) identified-organization(3) dod(6) internet(1)
-         security(5) mechanisms(5) pkix(7) id-mod(0)
-         id-mod-deltaCertificateDescriptor(TBD) }
+  security(5) mechanisms(5) pkix(7) id-mod(0)
+  id-mod-deltaCertificateDescriptor(TBD) }
 
 DEFINITIONS IMPLICIT TAGS ::=
 
 BEGIN
 
 IMPORTS
-        EXTENSION, ATTRIBUTE
-        FROM PKIX-CommonTypes-2009  -- RFC 5912
-        { iso(1) identified-organization(3) dod(6) internet(1)
-          security(5) mechanisms(5) pkix(7) id-mod(0)
-          id-mod-pkixCommon-02(57) }
+  EXTENSION, ATTRIBUTE
+  FROM PKIX-CommonTypes-2009  -- RFC 5912
+  { iso(1) identified-organization(3) dod(6) internet(1)
+    security(5) mechanisms(5) pkix(7) id-mod(0)
+    id-mod-pkixCommon-02(57) }
 
-        CertificateSerialNumber, AlgorithmIdentifier, Name, Validity, SubjectPublicKeyInfo, Extensions
-        FROM PKIX1Implicit-2009 -- RFC 5912
-        { iso(1) identified-organization(3) dod(6) internet(1) security(5)
-          mechanisms(5) pkix(7) id-mod(0) id-mod-pkix1-implicit-02(59) }
+  CertificateSerialNumber, AlgorithmIdentifier, Name,
+  Validity, SubjectPublicKeyInfo, Extensions
+  FROM PKIX1Implicit-2009 -- RFC 5912
+  { iso(1) identified-organization(3) dod(6) internet(1) security(5)
+    mechanisms(5) pkix(7) id-mod(0) id-mod-pkix1-implicit-02(59) }
 
 -- EXPORTS ALL
 
