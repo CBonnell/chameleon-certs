@@ -1,5 +1,3 @@
-import argparse
-import shutil
 from datetime import datetime, timezone, timedelta
 from typing import NamedTuple, Union, Optional
 
@@ -12,7 +10,7 @@ from pyasn1.codec.der.encoder import encode
 from pyasn1.type import univ
 from pyasn1_alt_modules import rfc5280, rfc5480
 
-from example_generator import chameleon
+import chameleon
 
 _P256_PRIVATE_KEY = serialization.load_pem_private_key("""
 -----BEGIN EC PRIVATE KEY-----

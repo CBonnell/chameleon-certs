@@ -1,13 +1,10 @@
-from datetime import datetime
-from typing import Optional, Union, Tuple, Sequence
+from typing import Optional, Sequence
 
 from cryptography import x509
-from cryptography.hazmat.primitives import hashes
 from pyasn1.codec.der.decoder import decode
 from pyasn1.codec.der.encoder import encode
 from pyasn1.type import univ, namedtype, tag
 from pyasn1_alt_modules import rfc5280
-
 
 id_ce_prototype_chameleon_delta_descriptor = univ.ObjectIdentifier('2.16.840.1.114027.80.6.1')
 
