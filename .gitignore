@@ -21,3 +21,6 @@ draft-lamps-chameleon-certs.xml
 package-lock.json
 report.xml
 !requirements.txt
+
+/liboqs/
+/libqos-python/
