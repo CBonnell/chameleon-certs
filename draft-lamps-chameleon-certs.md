@@ -463,7 +463,7 @@ The OID for the module should be allocated in the
 
 --- back
 
-# Appendix A. ASN.1 Module {#asn1-module}
+# ASN.1 Module {#asn1-module}
 
 The following ASN.1 {{X.680}} module provides the complete definition of the extensions, attributes, and
 associated identifiers specified in this document.
@@ -471,24 +471,25 @@ associated identifiers specified in this document.
 ~~~
 
 DeltaCertificateDescriptor { iso(1) identified-organization(3) dod(6) internet(1)
-         security(5) mechanisms(5) pkix(7) id-mod(0)
-         id-mod-deltaCertificateDescriptor(TBD) }
+  security(5) mechanisms(5) pkix(7) id-mod(0)
+  id-mod-deltaCertificateDescriptor(TBD) }
 
 DEFINITIONS IMPLICIT TAGS ::=
 
 BEGIN
 
 IMPORTS
-        EXTENSION, ATTRIBUTE
-        FROM PKIX-CommonTypes-2009  -- RFC 5912
-        { iso(1) identified-organization(3) dod(6) internet(1)
-          security(5) mechanisms(5) pkix(7) id-mod(0)
-          id-mod-pkixCommon-02(57) }
+  EXTENSION, ATTRIBUTE
+  FROM PKIX-CommonTypes-2009  -- RFC 5912
+  { iso(1) identified-organization(3) dod(6) internet(1)
+    security(5) mechanisms(5) pkix(7) id-mod(0)
+    id-mod-pkixCommon-02(57) }
 
-        CertificateSerialNumber, AlgorithmIdentifier, Name, Validity, SubjectPublicKeyInfo, Extensions
-        FROM PKIX1Implicit-2009 -- RFC 5912
-        { iso(1) identified-organization(3) dod(6) internet(1) security(5)
-          mechanisms(5) pkix(7) id-mod(0) id-mod-pkix1-implicit-02(59) }
+  CertificateSerialNumber, AlgorithmIdentifier, Name,
+  Validity, SubjectPublicKeyInfo, Extensions
+  FROM PKIX1Implicit-2009 -- RFC 5912
+  { iso(1) identified-organization(3) dod(6) internet(1) security(5)
+    mechanisms(5) pkix(7) id-mod(0) id-mod-pkix1-implicit-02(59) }
 
 -- EXPORTS ALL
 
