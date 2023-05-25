@@ -465,7 +465,7 @@ The OID for the module should be allocated in the
 
 # Appendix A. ASN.1 Module {#asn1-module}
 
-The following ASN.1 {{X.860}} module provides the complete definition of the extensions, attributes, and
+The following ASN.1 {{X.680}} module provides the complete definition of the extensions, attributes, and
 associated identifiers specified in this document.
 
 ~~~
