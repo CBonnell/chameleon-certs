@@ -1,7 +1,8 @@
+import tempfile
 from datetime import datetime, timezone, timedelta
 from typing import NamedTuple, Union, Optional
 
-import oqs
+import oqs, subprocess
 from cryptography import x509
 from cryptography.hazmat.primitives import serialization, hashes
 from cryptography.hazmat.primitives.asymmetric import ec
@@ -237,6 +238,13 @@ def print_cert(name, pyasn1_cert: rfc5280.Certificate):
     print('*' * 10 + f' {name} ' + '*' * 10)
     print(crypto_cert.public_bytes(serialization.Encoding.PEM).decode())
 
+    with tempfile.NamedTemporaryFile() as t:
+        t.write(encoded)
+        t.flush()
+
+        output = subprocess.check_output(['dumpasn1', t.name])
+
+        print(output)
 
 dilithium_root_key = _generate_dilthium_key()
 dilithium_ee_key = _generate_dilthium_key()
