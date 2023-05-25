@@ -192,7 +192,7 @@ The DCD extension is identified with the following object identifier:
 
 (TODO: replace this temporary OID)
 ~~~
-id-ce-delta-certificate-descriptor ::= OBJECT IDENTIFIER {
+id-ce-deltaCertificateDescriptor ::= OBJECT IDENTIFIER {
    joint-iso-itu-t(2) country(16) us(840) organization(1)
    entrust(114027) 80 6 1
 }
@@ -328,7 +328,7 @@ The attribute is identified with the following object identifier:
 (TODO: replace this temporary OID)
 
 ~~~
-id-at-delta-certificate-request ::= OBJECT IDENTIFIER {
+id-at-deltaCertificateRequest ::= OBJECT IDENTIFIER {
    joint-iso-itu-t(2) country(16) us(840) organization(1)
    entrust(114027) 80 6 2
 }
@@ -347,7 +347,7 @@ DeltaCertificateRequest ::= SEQUENCE {
 deltaCertificateRequest ATTRIBUTE ::= {
    WITH SYNTAX DeltaCertificateRequest
    SINGLE VALUE TRUE
-   ID id-at-delta-certificate-request
+   ID id-at-deltaCertificateRequest
 }
 ~~~
 
@@ -362,7 +362,7 @@ This attribute is identified with the following object identifier:
 (TODO: replace this temporary OID)
 
 ~~~
-id-at-delta-certificate-request-signature ::= OBJECT IDENTIFIER {
+id-at-deltaCertificateRequestSignature ::= OBJECT IDENTIFIER {
    joint-iso-itu-t(2) country(16) us(840) organization(1)
    entrust(114027) 80 6 3
 }
@@ -376,7 +376,7 @@ DeltaCertificateRequestSignature ::= BIT STRING
 deltaCertificateRequestSignature ATTRIBUTE ::= {
    WITH SYNTAX DeltaCertificateRequestSignature
    SINGLE VALUE TRUE
-   ID id-at-delta-certificate-request-signature
+   ID id-at-deltaCertificateRequestSignature
 }
 ~~~
 
@@ -449,12 +449,102 @@ Signature attributes as defined in {{dcr-attribute}}, IANA
 is requested to create a new registry under SMI Security Codes and
 assign two object identifiers (OID).
 
-For the ASN.1 Module for the extension and attributes defined in this
-document, IANA is requested to assign an object identifier (OID).  The
-OID for the module should be allocated in the
+For the ASN.1 Module for the extension and attributes defined in
+{{asn1-module}}, IANA is requested to assign an object identifier (OID).
+The OID for the module should be allocated in the
 "SMI Security for PKIX Module Identifier" registry (1.3.6.1.5.5.7.0).
 
 --- back
+
+# Appendix A. ASN.1 Module {#asn1-module}
+
+The following ASN.1 {{X.860}} module provides the complete definition of the extensions, attributes, and
+associated identifiers specified in this document.
+
+~~~
+
+DeltaCertificateDescriptor { iso(1) identified-organization(3) dod(6) internet(1)
+         security(5) mechanisms(5) pkix(7) id-mod(0)
+         id-mod-deltaCertificateDescriptor(TBD) }
+
+DEFINITIONS IMPLICIT TAGS ::=
+
+BEGIN
+
+IMPORTS
+        EXTENSION, ATTRIBUTE
+        FROM PKIX-CommonTypes-2009  -- RFC 5912
+        { iso(1) identified-organization(3) dod(6) internet(1)
+          security(5) mechanisms(5) pkix(7) id-mod(0)
+          id-mod-pkixCommon-02(57) }
+
+        CertificateSerialNumber, AlgorithmIdentifier, Name, Validity, SubjectPublicKeyInfo, Extensions
+        FROM PKIX1Implicit-2009 -- RFC 5912
+        { iso(1) identified-organization(3) dod(6) internet(1) security(5)
+          mechanisms(5) pkix(7) id-mod(0) id-mod-pkix1-implicit-02(59) }
+
+-- EXPORTS ALL
+
+-- Extension --
+
+id-ce-deltaCertificateDescriptor ::= OBJECT IDENTIFIER {
+   joint-iso-itu-t(2) country(16) us(840) organization(1)
+   entrust(114027) 80 6 1
+}
+
+DeltaCertificateDescriptor ::= SEQUENCE {
+  serialNumber          CertificateSerialNumber,
+  signature             [0] IMPLICIT AlgorithmIdentifier OPTIONAL,
+  issuer                [1] IMPLICIT Name OPTIONAL,
+  validity              [2] IMPLICIT Validity OPTIONAL,
+  subject               [3] IMPLICIT Name OPTIONAL,
+  subjectPublicKeyInfo  SubjectPublicKeyInfo,
+  extensions            [4] IMPLICIT Extensions OPTIONAL,
+  signatureValue        BIT STRING
+}
+
+ext-deltaCertificateDescriptor EXTENSION ::= {
+  SYNTAX DeltaCertificateDescriptor
+  IDENTIFIED BY id-ce-deltaCertificateDescriptor
+  CRITICALITY { FALSE }
+}
+
+-- Request Attributes --
+
+id-at-deltaCertificateRequest ::= OBJECT IDENTIFIER {
+  joint-iso-itu-t(2) country(16) us(840) organization(1)
+  entrust(114027) 80 6 2
+}
+
+DeltaCertificateRequest ::= SEQUENCE {
+  subject               [0] IMPLICIT Name OPTIONAL,
+  subjectPKInfo         SubjectPublicKeyInfo,
+  extensions            [1] IMPLICIT Extensions OPTIONAL,
+  signatureAlgorithm    [2] IMPLICIT AlgorithmIdentifier OPTIONAL,
+}
+
+deltaCertificateRequest ATTRIBUTE ::= {
+   WITH SYNTAX DeltaCertificateRequest
+   SINGLE VALUE TRUE
+   ID id-at-deltaCertificateRequest
+}
+
+id-at-deltaCertificateRequestSignature ::= OBJECT IDENTIFIER {
+  joint-iso-itu-t(2) country(16) us(840) organization(1)
+  entrust(114027) 80 6 3
+}
+
+DeltaCertificateRequestSignature ::= BIT STRING
+
+deltaCertificateRequestSignature ATTRIBUTE ::= {
+   WITH SYNTAX DeltaCertificateRequestSignature
+   SINGLE VALUE TRUE
+   ID id-at-deltaCertificateRequestSignature
+}
+
+END
+
+~~~
 
 # Acknowledgments
 {:numbered="false"}
