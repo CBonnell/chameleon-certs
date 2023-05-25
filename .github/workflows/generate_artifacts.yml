@@ -9,7 +9,7 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout code and build artifacts
         uses: actions/checkout@v3
       - name: Build artifacts
-        run: sudo bash ${GITHUB_WORKSPACE}/example_generator/run.sh
+        run: sudo bash ${GITHUB_WORKSPACE}/example_generator/run.sh ${GITHUB_WORKSPACE}
