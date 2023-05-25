@@ -25,7 +25,7 @@ venue:
 author:
  -
     fullname: C. Bonnell
-    organization: DigiCert, Inc.
+    organization: DigiCert
     email: corey.bonnell@digicert.com
  -
     fullname: J. Gray
@@ -37,7 +37,7 @@ author:
     email: david.hook@keyfactor.com
  -
     fullname: T. Okubo
-    organization: DigiCert, Inc.
+    organization: DigiCert
     email: tomofumi.okubo@digicert.com
  -
     fullname: M. Ounsworth
