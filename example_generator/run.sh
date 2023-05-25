@@ -18,4 +18,4 @@ cd $1/example_generator
 
 pip install --no-cache-dir -r requirements.txt
 
-python main.py
+python main.py | tee artifacts.txt
