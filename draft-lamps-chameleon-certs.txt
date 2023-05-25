@@ -3,13 +3,13 @@
 
 
 Network Working Group                                         C. Bonnell
-Internet-Draft                                            DigiCert, Inc.
+Internet-Draft                                                  DigiCert
 Intended status: Informational                                   J. Gray
 Expires: 26 November 2023                                        Entrust
                                                                  D. Hook
                                                                KeyFactor
                                                                 T. Okubo
-                                                          DigiCert, Inc.
+                                                                DigiCert
                                                             M. Ounsworth
                                                                  Entrust
                                                              25 May 2023
@@ -520,7 +520,7 @@ Acknowledgments
 Authors' Addresses
 
    C. Bonnell
-   DigiCert, Inc.
+   DigiCert
    Email: corey.bonnell@digicert.com
 
 
@@ -535,7 +535,7 @@ Authors' Addresses
 
 
    T. Okubo
-   DigiCert, Inc.
+   DigiCert
    Email: tomofumi.okubo@digicert.com
 
 
