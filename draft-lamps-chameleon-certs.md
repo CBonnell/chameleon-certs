@@ -46,6 +46,13 @@ author:
 
 
 normative:
+  X.680:
+      title: "Information technology - Abstract Syntax Notation One (ASN.1): Specification of basic notation"
+      date: November 2015
+      author:
+        org: ITU-T
+      seriesinfo:
+        ISO/IEC: 8824-1:2015
 
 informative:
 
