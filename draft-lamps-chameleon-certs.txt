@@ -5,14 +5,14 @@
 Network Working Group                                         C. Bonnell
 Internet-Draft                                                  DigiCert
 Intended status: Informational                                   J. Gray
-Expires: 26 November 2023                                        Entrust
+Expires: 27 November 2023                                        Entrust
                                                                  D. Hook
                                                                KeyFactor
                                                                 T. Okubo
                                                                 DigiCert
                                                             M. Ounsworth
                                                                  Entrust
-                                                             25 May 2023
+                                                             26 May 2023
 
 
       A Mechanism for Encoding Differences in Paired Certificates
@@ -61,7 +61,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 26 November 2023.
+   This Internet-Draft will expire on 27 November 2023.
 
 Copyright Notice
 
