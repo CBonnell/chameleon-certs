@@ -233,15 +233,15 @@ def issue_ecdsa_key_exchange_ee(delta_cert: rfc5280.Certificate):
 _CONFIG_FILE = """
 OID = 2 16 840 1 114027 80 6 1
 Comment = Delta Certificate Descriptor extension
-Description = id-ce-deltaCertificateDescriptor
+Description = deltaCertificateDescriptor
 
 OID = 2 16 840 1 114027 80 6 2
 Comment = Delta Certificate Request attribute
-Description = id-at-deltaCertificateRequest
+Description = deltaCertificateRequest
 
 OID = 2 16 840 1 114027 80 6 3
 Comment = Delta Certificate Request Signature attribute
-Description = id-at-deltaCertificateRequestSignature
+Description = deltaCertificateRequestSignature
 """
 
 
