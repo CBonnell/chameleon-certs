@@ -311,7 +311,7 @@ print('## Dual use example')
 print()
 
 ecdsa_signing_ee = issue_ecdsa_signing_ee()
-print('EC signing end-entity certificate',
+print_cert('EC signing end-entity certificate',
       'This is an end-entity signing certificate which certifies an EC key.',
       ecdsa_signing_ee)
 
