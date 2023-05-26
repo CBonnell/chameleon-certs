@@ -305,7 +305,7 @@ print_cert('EC signing end-entity certificate with encoded Delta Certificate',
            'This is an end-entity signing certificate which certifies an EC key. It contains a Delta '
             'Certificate Descriptor extension which includes sufficient information to recreate the Dilithium '
             'signing end-entity certificate.',
-           dilithium_signing_ee),
+           ecdsa_signing_ee_base),
 
 print('## Dual use example')
 print()
