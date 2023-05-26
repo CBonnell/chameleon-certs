@@ -68,7 +68,7 @@ constructed certificate. In particular, this method is especially
 useful as part of a key or signature algorithm migration, where subjects
 may be issued multiple certificates containing different public keys or
 signed with different CA private keys or signature algorithms. This
-method does not require any changes to the certification path
+method does not require any changes to the certification path validation
 algorithm as described in RFC 5280. Additionally, this method
 does not violate the constraints of serial number
 uniqueness for certificates issued by a single certification
@@ -96,7 +96,7 @@ certificate as needed by relying parties.
 This document specifies an X.509 v3 certificate extension that includes
 sufficient information for a relying party to construct both paired
 certificates with a single certificate. This
-method does not require any changes to the certification path
+method does not require any changes to the certification path validation
 algorithm as described in {{!RFC5280}}. Additionally, this method
 does not violate the constraints of serial number
 uniqueness for certificates issued by a single certification
