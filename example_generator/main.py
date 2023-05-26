@@ -215,14 +215,14 @@ def _issue_ee(subject_name, issuer_name, subject_key, issuer_key, kus, delta_cer
     return _issue_certificate(builder, subject_key, issuer_key, delta_cert)
 
 
-def issue_dilithium_signing_ee(subject_key, issuer_key, delta_cert):
+def issue_dilithium_signing_ee(subject_key, issuer_key, delta_cert=None):
     return _issue_ee(_EE_SUBJECT_NAME, _DILITHIUM_ROOT_NAME, subject_key, issuer_key,
                      (True, False, False, False, False, False, False, False, False), delta_cert)
 
 
-def issue_ecdsa_signing_ee():
+def issue_ecdsa_signing_ee(delta_cert=None):
     return _issue_ee(_EE_SUBJECT_NAME, _ECDSA_ROOT_NAME, _P256_PRIVATE_KEY, _P521_PRIVATE_KEY,
-                     (True, False, False, False, False, False, False, False, False))
+                     (True, False, False, False, False, False, False, False, False), delta_cert)
 
 
 def issue_ecdsa_key_exchange_ee(delta_cert: rfc5280.Certificate):
@@ -235,50 +235,70 @@ def print_cert(name, description, pyasn1_cert: rfc5280.Certificate):
 
     crypto_cert = x509.load_der_x509_certificate(encoded)
 
-    print(f'## {name} ')
+    print(f'### {name} ')
     print()
     print(description)
     print()
     print('~~~')
+    print(crypto_cert.public_bytes(serialization.Encoding.PEM).decode())
+    print('~~~')
+    print()
     with tempfile.NamedTemporaryFile() as t:
         t.write(encoded)
         t.flush()
 
         output = subprocess.check_output(['dumpasn1', t.name]).decode()
 
+        print('~~~')
         print(output)
+        print('~~~')
 
-    print(crypto_cert.public_bytes(serialization.Encoding.PEM).decode())
-    print('~~~')
     print()
 
 dilithium_root_key = _generate_dilthium_key()
 dilithium_ee_key = _generate_dilthium_key()
 
+print('## Root certificates')
+print()
+print('The two certificates in this section represent the two root Certification Authorities which issue the '
+      'end-entity certificates in the following section.')
+print()
+
 ecdsa_root = issue_ecdsa_root()
-print_cert('ECDSA P-521 root', 'This is the ECDSA root certificate.', ecdsa_root)
+print_cert('EC P-521 root certificate', 'This is the EC root certificate.', ecdsa_root)
 
 dilithium_root = issue_dilthium_root(dilithium_root_key, ecdsa_root)
-print_cert('Dilithium root',
+print_cert('Dilithium root certificate',
            'This is the Dilithium root certificate. It contains a Delta Certificate Descriptor extension which '
         'includes sufficient information to recreate the ECDSA P-521 root',
            dilithium_root)
 
-ecdsa_signing_ee = issue_ecdsa_signing_ee()
-print_cert('ECDSA signing end-entity',
-           'This is an end-entity signing certificate which certifies an ECDSA key.',
-           ecdsa_signing_ee)
+print('## Algorithm migration example')
+print()
 
-dilthium_signing_ee = issue_dilithium_signing_ee(dilithium_ee_key, dilithium_root_key, ecdsa_signing_ee)
-print_cert('Dilithium signing end-entity',
-           'This is an end-entity signing certificate which certifies a Dilithium key. It contains a Delta '
-            'Certificate Descriptor extension which includes sufficient information to recreate the ECDSA '
+dilithium_signing_ee = issue_dilithium_signing_ee(dilithium_ee_key, dilithium_root_key)
+print_cert('Dilithium signing end-entity certificate',
+           'This is an end-entity signing certificate which certifies a Dilithium key.',
+           dilithium_signing_ee)
+
+ecdsa_signing_ee_base = issue_ecdsa_signing_ee(dilithium_signing_ee)
+print_cert('EC signing end-entity certificate with encoded Delta Certificate',
+           'This is an end-entity signing certificate which certifies an EC key. It contains a Delta '
+            'Certificate Descriptor extension which includes sufficient information to recreate the Dilithium '
             'signing end-entity certificate.',
-           dilthium_signing_ee)
+           dilithium_signing_ee),
+
+print('## Dual use example')
+print()
+
+ecdsa_signing_ee = issue_ecdsa_signing_ee()
+print('EC signing end-entity certificate',
+      'This is an end-entity signing certificate which certifies an EC key.',
+      ecdsa_signing_ee)
 
 ecdsa_dual_use_ee = issue_ecdsa_key_exchange_ee(ecdsa_signing_ee)
-print_cert('EC dual use end-entity',
-           'This is an end-entity key exchange certificate which certifies a EC key. It contains a Delta '
-           'Certificate Descriptor extension which includes sufficient information to the recreate the ECDSA '
+print_cert('EC dual use end-entity certificate with encoded Delta Certificate',
+           'This is an end-entity key exchange certificate which certifies an EC key. It contains a Delta '
+           'Certificate Descriptor extension which includes sufficient information to the recreate the EC '
            'signing end-entity certificate.',
            ecdsa_dual_use_ee)
