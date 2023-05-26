@@ -230,6 +230,21 @@ def issue_ecdsa_key_exchange_ee(delta_cert: rfc5280.Certificate):
                      (False, False, False, False, True, False, False, False, False), delta_cert)
 
 
+_CONFIG_FILE = """
+OID = 2 16 840 1 114027 80 6 1
+Comment = Delta Certificate Descriptor extension
+Description = id-ce-deltaCertificateDescriptor
+
+OID = 2 16 840 1 114027 80 6 2
+Comment = Delta Certificate Request attribute
+Description = id-at-deltaCertificateRequest
+
+OID = 2 16 840 1 114027 80 6 3
+Comment = Delta Certificate Request Signature attribute
+Description = id-at-deltaCertificateRequestSignature
+"""
+
+
 def print_cert(name, description, pyasn1_cert: rfc5280.Certificate):
     encoded = encode(pyasn1_cert)
 
@@ -243,15 +258,19 @@ def print_cert(name, description, pyasn1_cert: rfc5280.Certificate):
     print(crypto_cert.public_bytes(serialization.Encoding.PEM).decode())
     print('~~~')
     print()
-    with tempfile.NamedTemporaryFile() as t:
-        t.write(encoded)
-        t.flush()
+    with tempfile.NamedTemporaryFile('w') as config_file:
+        config_file.write(_CONFIG_FILE)
+        config_file.flush()
 
-        output = subprocess.check_output(['dumpasn1', t.name]).decode()
+        with tempfile.NamedTemporaryFile() as cert_file:
+            cert_file.write(encoded)
+            cert_file.flush()
 
-        print('~~~')
-        print(output)
-        print('~~~')
+            output = subprocess.check_output(['dumpasn1', '-c', config_file.name, cert_file.name]).decode()
+
+            print('~~~')
+            print(output)
+            print('~~~')
 
     print()
 
