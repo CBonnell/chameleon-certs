@@ -561,10 +561,39 @@ END
 # Examples
 
 This appendix includes some example certificates which demonstrate the use of the mechanism specified in this document.
+Two use cases of this mechanism are demonstrated: algorithm migration and dual use. The PEM text and dumpasn1 output for
+each certificate is provided.
 
-## ECDSA P-521 root
+## Root certificates
 
-This is the ECDSA root certificate.
+The two certificates in this section represent the two root Certification Authorities which issue the end-entity certificates in the following section.
+
+### EC P-521 root certificate
+
+This is the EC root certificate.
+
+~~~
+-----BEGIN CERTIFICATE-----
+MIIDBTCCAmagAwIBAgIUdZEeu4lEPANMQ4Ut/Odnc431EMQwCgYIKoZIzj0EAwQw
+gYsxCzAJBgNVBAYTAlhYMTUwMwYDVQQKDCxSb3lhbCBJbnN0aXR1dGUgb2YgUHVi
+bGljIEtleSBJbmZyYXN0cnVjdHVyZTErMCkGA1UECwwiUG9zdC1IZWZmYWx1bXAg
+UmVzZWFyY2ggRGVwYXJ0bWVudDEYMBYGA1UEAwwPRUNEU0EgUm9vdCAtIEcxMB4X
+DTIzMDUyNjEzMDYzMVoXDTMzMDUxMzEzMDYzMVowgYsxCzAJBgNVBAYTAlhYMTUw
+MwYDVQQKDCxSb3lhbCBJbnN0aXR1dGUgb2YgUHVibGljIEtleSBJbmZyYXN0cnVj
+dHVyZTErMCkGA1UECwwiUG9zdC1IZWZmYWx1bXAgUmVzZWFyY2ggRGVwYXJ0bWVu
+dDEYMBYGA1UEAwwPRUNEU0EgUm9vdCAtIEcxMIGbMBAGByqGSM49AgEGBSuBBAAj
+A4GGAAQB0P1yV6hMdH9WJXXAc4Xb6/L1K+pYCD24L90VMdiq48yHX/Av9/otomDY
+62LW0vXWSSeOMhc2oGKMu7MDCLbmGNsA9irSBMZGA1m8gYq4lhvw8PwOxaropCgX
+POVvAN6bFXweXILGT1Yvyt78Skwo9tNCzz72FvyC0ztyhckh8r82/dijYzBhMA8G
+A1UdEwEB/wQFMAMBAf8wDgYDVR0PAQH/BAQDAgEGMB0GA1UdDgQWBBSOwhQJYHbq
+kDjpOa4bbVLEF32fvjAfBgNVHSMEGDAWgBSOwhQJYHbqkDjpOa4bbVLEF32fvjAK
+BggqhkjOPQQDBAOBjAAwgYgCQgHivbIinPYg05GqnJiiTbYk99oBusIPryKeUWmn
+7hpiVek+2rvyThgb38HPWSAVYKzzdr+U37O9RB1jdnYwdU60fAJCAL7faPjE9OvK
+Vo2Hnfup6J7p0RD0n+8YAc1yYJwXN30We1fxwk1DkUG4SD5P5tIJL/cPogHmmaZM
+GgzGspA2nRph
+-----END CERTIFICATE-----
+
+~~~
 
 ~~~
   0 773: SEQUENCE {
@@ -572,7 +601,7 @@ This is the ECDSA root certificate.
   8   3:     [0] {
  10   1:       INTEGER 2
        :       }
- 13  20:     INTEGER 61 9B 9D 7E D8 62 16 3E 33 4D EA 15 D2 63 83 68 50 91 4C 63
+ 13  20:     INTEGER 75 91 1E BB 89 44 3C 03 4C 43 85 2D FC E7 67 73 8D F5 10 C4
  35  10:     SEQUENCE {
  37   8:       OBJECT IDENTIFIER ecdsaWithSHA512 (1 2 840 10045 4 3 4)
        :       }
@@ -604,8 +633,8 @@ This is the ECDSA root certificate.
        :         }
        :       }
 189  30:     SEQUENCE {
-191  13:       UTCTime 25/05/2023 20:35:19 GMT
-206  13:       UTCTime 12/05/2033 20:35:19 GMT
+191  13:       UTCTime 26/05/2023 13:06:31 GMT
+206  13:       UTCTime 13/05/2033 13:06:31 GMT
        :       }
 221 139:     SEQUENCE {
 224  11:       SET {
@@ -696,46 +725,168 @@ This is the ECDSA root certificate.
 634 140:   BIT STRING, encapsulates {
 638 136:     SEQUENCE {
 641  66:       INTEGER
-       :         01 74 D5 A3 F9 4B CC F0 BC 1C 03 81 EA 81 02 40
-       :         68 E2 BF C0 FF 57 78 4A 66 F0 57 20 DF 2A 43 AA
-       :         10 9D 42 E9 7E C4 FA 9F 1F 8F 40 3D E3 D6 2A D3
-       :         4C E9 04 D9 70 BE 44 FC 0C 9D B7 68 98 05 D4 B9
-       :         6B 8B
+       :         01 E2 BD B2 22 9C F6 20 D3 91 AA 9C 98 A2 4D B6
+       :         24 F7 DA 01 BA C2 0F AF 22 9E 51 69 A7 EE 1A 62
+       :         55 E9 3E DA BB F2 4E 18 1B DF C1 CF 59 20 15 60
+       :         AC F3 76 BF 94 DF B3 BD 44 1D 63 76 76 30 75 4E
+       :         B4 7C
 709  66:       INTEGER
-       :         01 F8 79 09 8C FC 4E E8 72 89 10 D1 75 08 07 79
-       :         8D 5D EA BA C1 F4 83 E7 78 DD E6 9E 34 50 B9 CF
-       :         A8 54 75 B0 27 C0 D1 81 23 B9 A2 3C 47 C2 0A ED
-       :         5C 70 4D 8A 5D 01 D7 F9 04 9D 98 B0 72 18 79 A0
-       :         A9 52
+       :         00 BE DF 68 F8 C4 F4 EB CA 56 8D 87 9D FB A9 E8
+       :         9E E9 D1 10 F4 9F EF 18 01 CD 72 60 9C 17 37 7D
+       :         16 7B 57 F1 C2 4D 43 91 41 B8 48 3E 4F E6 D2 09
+       :         2F F7 0F A2 01 E6 99 A6 4C 1A 0C C6 B2 90 36 9D
+       :         1A 61
        :       }
        :     }
        :   }
 
+~~~
+
+### Dilithium root certificate
+
+This is the Dilithium root certificate. It contains a Delta Certificate Descriptor extension which includes sufficient information to recreate the ECDSA P-521 root
+
+~~~
 -----BEGIN CERTIFICATE-----
-MIIDBTCCAmagAwIBAgIUYZudfthiFj4zTeoV0mODaFCRTGMwCgYIKoZIzj0EAwQw
-gYsxCzAJBgNVBAYTAlhYMTUwMwYDVQQKDCxSb3lhbCBJbnN0aXR1dGUgb2YgUHVi
-bGljIEtleSBJbmZyYXN0cnVjdHVyZTErMCkGA1UECwwiUG9zdC1IZWZmYWx1bXAg
-UmVzZWFyY2ggRGVwYXJ0bWVudDEYMBYGA1UEAwwPRUNEU0EgUm9vdCAtIEcxMB4X
-DTIzMDUyNTIwMzUxOVoXDTMzMDUxMjIwMzUxOVowgYsxCzAJBgNVBAYTAlhYMTUw
-MwYDVQQKDCxSb3lhbCBJbnN0aXR1dGUgb2YgUHVibGljIEtleSBJbmZyYXN0cnVj
-dHVyZTErMCkGA1UECwwiUG9zdC1IZWZmYWx1bXAgUmVzZWFyY2ggRGVwYXJ0bWVu
-dDEYMBYGA1UEAwwPRUNEU0EgUm9vdCAtIEcxMIGbMBAGByqGSM49AgEGBSuBBAAj
-A4GGAAQB0P1yV6hMdH9WJXXAc4Xb6/L1K+pYCD24L90VMdiq48yHX/Av9/otomDY
-62LW0vXWSSeOMhc2oGKMu7MDCLbmGNsA9irSBMZGA1m8gYq4lhvw8PwOxaropCgX
-POVvAN6bFXweXILGT1Yvyt78Skwo9tNCzz72FvyC0ztyhckh8r82/dijYzBhMA8G
-A1UdEwEB/wQFMAMBAf8wDgYDVR0PAQH/BAQDAgEGMB0GA1UdDgQWBBSOwhQJYHbq
-kDjpOa4bbVLEF32fvjAfBgNVHSMEGDAWgBSOwhQJYHbqkDjpOa4bbVLEF32fvjAK
-BggqhkjOPQQDBAOBjAAwgYgCQgF01aP5S8zwvBwDgeqBAkBo4r/A/1d4SmbwVyDf
-KkOqEJ1C6X7E+p8fj0A949Yq00zpBNlwvkT8DJ23aJgF1LlriwJCAfh5CYz8Tuhy
-iRDRdQgHeY1d6rrB9IPneN3mnjRQuc+oVHWwJ8DRgSO5ojxHwgrtXHBNil0B1/kE
-nZiwchh5oKlS
+MIIZTzCCDFqgAwIBAgIUZnCGGMVMAm3yS76tvDlbOa45t5QwDQYLKwYBBAECggsH
+BgUwgY8xCzAJBgNVBAYTAlhYMTUwMwYDVQQKDCxSb3lhbCBJbnN0aXR1dGUgb2Yg
+UHVibGljIEtleSBJbmZyYXN0cnVjdHVyZTErMCkGA1UECwwiUG9zdC1IZWZmYWx1
+bXAgUmVzZWFyY2ggRGVwYXJ0bWVudDEcMBoGA1UEAwwTRGlsaXRoaXVtIFJvb3Qg
+LSBHMTAeFw0yMzA1MjYxMzA2MzFaFw0zMzA1MTMxMzA2MzFaMIGPMQswCQYDVQQG
+EwJYWDE1MDMGA1UECgwsUm95YWwgSW5zdGl0dXRlIG9mIFB1YmxpYyBLZXkgSW5m
+cmFzdHJ1Y3R1cmUxKzApBgNVBAsMIlBvc3QtSGVmZmFsdW1wIFJlc2VhcmNoIERl
+cGFydG1lbnQxHDAaBgNVBAMME0RpbGl0aGl1bSBSb290IC0gRzEwgge0MA0GCysG
+AQQBAoILBwYFA4IHoQB7StC53PkXiBLhRp0ZAuHNjkOkiU8vd5eh4KH1qiLLRda3
+hXUGT1aOLXGNaQqA4h0e8tH9ysN8grz142/KnfypTitm/QVCAIqnWMlFy5B5sQX1
+lSVYwYRhDXkyickuinqBc/PvRH0MI/pcsh0wawZCZJFItMnVSkBqv0SJJEQVkVoB
+Whrvvl1Y0iwBpbXayNNhUX1mytXi+bFGeDsMKtWzMc1Lz36h9Wg67Ybu4VAbg9YA
+1zcUrRLHihxlX8qG1yWy0r2V62zx4HprCK3vBRMNm/XnXKZfv++bIUaok9CP1IKK
+SFNa0/YIZaEwd22dPlJnUxe8C2q59CsUZlOUWApQDwG72IraDX2u0vDx6DaOWGm4
+UjmutRTng60q4TOTxaaMwXr3+QLUHNGmy5QnG4oci/MhgjvJlJc2BhhlgMF39Tg9
+Z0Om8FGvrc6Z9FGjfyPp9aDW8IDmMeqwYAtaeWLq0IKCWgsoO3kAb8ZAmsfz27Aa
+VLRp29nqMYy7nniQMv7BTube2MjvSOl5X5AXFbQD6SkrfT3BZ6+QREVvTEt4GRzq
+NE75TtFX1M+BuXgi8h1LPuCQYa6jk/vGMUfo0NxRLCm8qyU7lA9JUM4hEHWIOREk
+d9FAGwQMjU+utgfnEPnSrWy3aChQdErJiCnW7tof71PgO9HLjxEgmxjLdWP7RsPm
+2QK7+5lhZIVPZIH64TzgXfjO33SHKWgi2nhrs33VY9k4SbEysrrICltYcVprELNT
+1YZGBhE/tbpGOXL1RTlL2HPRyw3eNo/nlaB6yu5neZoJXMTX1f9V911Iuh6mU+G8
+eTYap9nV+w6wH6F0TngLPdF86eEaXXOXDCCJpSggjSN2E575sx5dqnDQAlOVEn6R
+1vQqEQYEOdU/f4WM76APNz1MMzoWkE5JViZIQPQF83yxro8sezSk/q74hBfa/q22
+gNwjjdOTkS0NZl1lYjFVQbTdSie9dHoehRya3zbkVdJrK3/qiN3K2CWsjNJhrQi3
+qQmngUoMB9Lp14WqAJ8P9dmDPvKOBpgsph7GYzwTWWnep9O3sVEuTwedCJ7ctVW/
+hN1IeKpZ/ffsn2mbQTPA/qccf6zE9W357ZZAdYEtmggPPnGEeQqQT+75ynJaHhHu
+ue4nTa9PetkFST5O1OH7Ba4pVcGSDL62A+4lIk7HE3HvIxeAUJIHBMYOJcZeilTS
+TL2kIrVEl4yPRR/0XVADCaX6MUmv0skPnDVbDcVTEEtw6JWMlTYQJtCUiLg11Yvd
+Qu7oddra1H5V62QCNNEoJGxOk5sBJZtrgokAPanrdKHELqk9RAq52sGvZZQZNXZL
+SghWTBB/nsfJU40Z7R7zmMZJH5WbbaI9i0D6qdcCi3v/O89Z53pXAdKjMng97XON
+Z/oVv+Q5Cdr6kRbuISPryxiV5qNiWc/8i1oVKDP/wpCmKZRB/wYP5oKx+RIJx3KS
+eHk02ftgtYsRXC02aNuSNkFcJ8kVm3qZ1Aac8c+qKgbM1xcLPbdPocs/CjNCX64X
+nZmgiSP7a0tktid9NC5Ynm/9txKAO6rl9PRhDmGqf9JZa9JNUETV2raZ/wuf7lNh
+KK1oCjMJ626yerhk5bS0QOD5siSRksIfa86PWdMUj3glDV2GtKh/ARSEzy734DFV
+37anyZFmAW8IOWQvoeo2BgB7e90Dmxt9F8fp2iqPgCkbqW7dOuAC/tN787wwQikY
+p/tUFn2wsFHhrfOzbp28ImAtC38Hgdc2/XntMnIoJ/6OMWQSv1r+khgnUDNsuVNN
+84a7ShW/T8k1LsOY8EUotvfELqkjm78ggEfuMt3Wwtehes3vm7THfhBOsO1i64j5
+hsasi4vRGo76EwT0szOoObIuXRKC1tDxrpuSqnyzrEY2Blh7P3sWTRO8i3t+nUNr
+nGS6ea4CCdOuI3CpJimxzwg1Ec1TZmn2LiaPFwo5AZ2BxAEFiUxXQC3ugE3csEai
+DA2RKtndyx2tKXgHFs2mAKeqcdlxoAxbYrJ+dM7kPUAqZVZyGXA7PcZ+NWN+xEZu
+a4bctTwAa0hyc5zCX4dbxEceh/MruT6pPCiX/EehAjeuFtr/grRkP0Ro/1UiDSKr
+s0xBtdWbiUOGBpxleEg8V3h9gIv15ofH4F92/dnopD4r+TOcaEW9wCELi9iQTGYl
+2bOBgBqV3YCdb2xCcA1AljUTPTttBg/DVKJh31/SOj50MrjSQlCsjrsPlmmPA5Lj
+bs8SVTlRMBdueA9fwsq2aN4dRW4j7OMRbh6UpDUXoFwlutqVGu+r1O1SR3otVxja
+oPJHr4gKbYHFqa5G9VEkMtCazyE7uc5xAzQh3E+aP9DhrFZRieEQd2ftgQVotJFU
+CiCTHgqX4Ggkum2j2Z6gOV953FAZMmlVM4BaQgWu6Dzd6VMPoAaC5jtBOM/siZ42
+x2ESbHYtBZGtWpW3TLnm1/0zeLez7BRO4xyFjuizTb93tmxQlX+GV0L8ddL8pAMk
+MTm58+d98Rn+hKuZojwaMBFLlzeNgN5CtUXYZ8LEwaMBb28DhiQVC3zw4jVnTpGS
+8sMkqYYIdIU2QelWtIJ/adsAarOPG/7JwBhko4C3o82WpReEHKh314w1VjgT6qOC
+AzAwggMsMA8GA1UdEwEB/wQFMAMBAf8wDgYDVR0PAQH/BAQDAgEGMB0GA1UdDgQW
+BBQR2SgXC+AqR80zlzW3DistnJRMSjAfBgNVHSMEGDAWgBQR2SgXC+AqR80zlzW3
+DistnJRMSjCCAscGCmCGSAGG+mtQBgEEggK3MIICswIUdZEeu4lEPANMQ4Ut/Odn
+c431EMSgCgYIKoZIzj0EAwShgY4wgYsxCzAJBgNVBAYTAlhYMTUwMwYDVQQKDCxS
+b3lhbCBJbnN0aXR1dGUgb2YgUHVibGljIEtleSBJbmZyYXN0cnVjdHVyZTErMCkG
+A1UECwwiUG9zdC1IZWZmYWx1bXAgUmVzZWFyY2ggRGVwYXJ0bWVudDEYMBYGA1UE
+AwwPRUNEU0EgUm9vdCAtIEcxo4GOMIGLMQswCQYDVQQGEwJYWDE1MDMGA1UECgws
+Um95YWwgSW5zdGl0dXRlIG9mIFB1YmxpYyBLZXkgSW5mcmFzdHJ1Y3R1cmUxKzAp
+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
+GyUp
 -----END CERTIFICATE-----
 
 ~~~
-
-## Dilithium root
-
-This is the Dilithium root certificate. It contains a Delta Certificate Descriptor extension which includes sufficient information to recreate the ECDSA P-521 root
 
 ~~~
    0 6479: SEQUENCE {
@@ -743,7 +894,7 @@ This is the Dilithium root certificate. It contains a Delta Certificate Descript
    8    3:     [0] {
   10    1:       INTEGER 2
          :       }
-  13   20:     INTEGER 2A 3A 37 2C 0B 01 9B 50 C1 BE C2 C1 40 70 B8 75 EB 1F 45 7A
+  13   20:     INTEGER 66 70 86 18 C5 4C 02 6D F2 4B BE AD BC 39 5B 39 AE 39 B7 94
   35   13:     SEQUENCE {
   37   11:       OBJECT IDENTIFIER '1 3 6 1 4 1 2 267 7 6 5'
          :       }
@@ -775,8 +926,8 @@ This is the Dilithium root certificate. It contains a Delta Certificate Descript
          :         }
          :       }
  196   30:     SEQUENCE {
- 198   13:       UTCTime 25/05/2023 20:35:19 GMT
- 213   13:       UTCTime 12/05/2033 20:35:19 GMT
+ 198   13:       UTCTime 26/05/2023 13:06:31 GMT
+ 213   13:       UTCTime 13/05/2033 13:06:31 GMT
          :       }
  228  143:     SEQUENCE {
  231   11:       SET {
@@ -810,14 +961,14 @@ This is the Dilithium root certificate. It contains a Delta Certificate Descript
  380   11:         OBJECT IDENTIFIER '1 3 6 1 4 1 2 267 7 6 5'
          :         }
  393 1953:       BIT STRING
-         :         EF 01 70 48 1F 60 F4 54 2D B9 31 EC D6 31 BD 97
-         :         60 A3 7A D7 42 BB 43 53 02 27 91 4B 9A F1 01 C0
-         :         3F 5A 00 47 AD 94 8F F3 8C 3B 85 95 FE 79 5D 71
-         :         FA BC 2D 3C 53 39 0E 2A 5B 5A BD C9 4C EB BA 65
-         :         3A 94 8F 50 BA 4D 94 67 32 3A 23 92 36 5C 96 AB
-         :         1B C7 83 ED 54 4D DC BF DC AE ED FB 8C 6A 4E 60
-         :         8E 3C 27 F3 D2 CD 5B F6 9D 8B C6 19 41 EF 60 D2
-         :         79 EA AC 47 69 86 4D CE 2B 94 67 91 2B 9D 08 F0
+         :         7B 4A D0 B9 DC F9 17 88 12 E1 46 9D 19 02 E1 CD
+         :         8E 43 A4 89 4F 2F 77 97 A1 E0 A1 F5 AA 22 CB 45
+         :         D6 B7 85 75 06 4F 56 8E 2D 71 8D 69 0A 80 E2 1D
+         :         1E F2 D1 FD CA C3 7C 82 BC F5 E3 6F CA 9D FC A9
+         :         4E 2B 66 FD 05 42 00 8A A7 58 C9 45 CB 90 79 B1
+         :         05 F5 95 25 58 C1 84 61 0D 79 32 89 C9 2E 8A 7A
+         :         81 73 F3 EF 44 7D 0C 23 FA 5C B2 1D 30 6B 06 42
+         :         64 91 48 B4 C9 D5 4A 40 6A BF 44 89 24 44 15 91
          :                 [ Another 1824 bytes skipped ]
          :       }
 2350  816:     [3] {
@@ -843,8 +994,8 @@ This is the Dilithium root certificate. It contains a Delta Certificate Descript
 2393    3:           OBJECT IDENTIFIER subjectKeyIdentifier (2 5 29 14)
 2398   22:           OCTET STRING, encapsulates {
 2400   20:             OCTET STRING
-         :               C4 91 2E B3 34 3C B6 D4 7B 43 05 22 79 FF 36 13
-         :               59 4E 4D AF
+         :               11 D9 28 17 0B E0 2A 47 CD 33 97 35 B7 0E 2B 2D
+         :               9C 94 4C 4A
          :             }
          :           }
 2422   31:         SEQUENCE {
@@ -852,18 +1003,19 @@ This is the Dilithium root certificate. It contains a Delta Certificate Descript
 2429   24:           OCTET STRING, encapsulates {
 2431   22:             SEQUENCE {
 2433   20:               [0]
-         :                 C4 91 2E B3 34 3C B6 D4 7B 43 05 22 79 FF 36 13
-         :                 59 4E 4D AF
+         :                 11 D9 28 17 0B E0 2A 47 CD 33 97 35 B7 0E 2B 2D
+         :                 9C 94 4C 4A
          :               }
          :             }
          :           }
 2455  711:         SEQUENCE {
-2459   10:           OBJECT IDENTIFIER '2 16 840 1 114027 80 6 1'
+2459   10:           OBJECT IDENTIFIER
+         :             deltaCertificateDescriptor (2 16 840 1 114027 80 6 1)
 2471  695:           OCTET STRING, encapsulates {
 2475  691:             SEQUENCE {
 2479   20:               INTEGER
-         :                 61 9B 9D 7E D8 62 16 3E 33 4D EA 15 D2 63 83 68
-         :                 50 91 4C 63
+         :                 75 91 1E BB 89 44 3C 03 4C 43 85 2D FC E7 67 73
+         :                 8D F5 10 C4
 2501   10:               [0] {
 2503    8:                 OBJECT IDENTIFIER
          :                   ecdsaWithSHA512 (1 2 840 10045 4 3 4)
@@ -968,17 +1120,17 @@ This is the Dilithium root certificate. It contains a Delta Certificate Descript
 3027  140:               BIT STRING, encapsulates {
 3031  136:                 SEQUENCE {
 3034   66:                   INTEGER
-         :                     01 74 D5 A3 F9 4B CC F0 BC 1C 03 81 EA 81 02 40
-         :                     68 E2 BF C0 FF 57 78 4A 66 F0 57 20 DF 2A 43 AA
-         :                     10 9D 42 E9 7E C4 FA 9F 1F 8F 40 3D E3 D6 2A D3
-         :                     4C E9 04 D9 70 BE 44 FC 0C 9D B7 68 98 05 D4 B9
-         :                     6B 8B
+         :                     01 E2 BD B2 22 9C F6 20 D3 91 AA 9C 98 A2 4D B6
+         :                     24 F7 DA 01 BA C2 0F AF 22 9E 51 69 A7 EE 1A 62
+         :                     55 E9 3E DA BB F2 4E 18 1B DF C1 CF 59 20 15 60
+         :                     AC F3 76 BF 94 DF B3 BD 44 1D 63 76 76 30 75 4E
+         :                     B4 7C
 3102   66:                   INTEGER
-         :                     01 F8 79 09 8C FC 4E E8 72 89 10 D1 75 08 07 79
-         :                     8D 5D EA BA C1 F4 83 E7 78 DD E6 9E 34 50 B9 CF
-         :                     A8 54 75 B0 27 C0 D1 81 23 B9 A2 3C 47 C2 0A ED
-         :                     5C 70 4D 8A 5D 01 D7 F9 04 9D 98 B0 72 18 79 A0
-         :                     A9 52
+         :                     00 BE DF 68 F8 C4 F4 EB CA 56 8D 87 9D FB A9 E8
+         :                     9E E9 D1 10 F4 9F EF 18 01 CD 72 60 9C 17 37 7D
+         :                     16 7B 57 F1 C2 4D 43 91 41 B8 48 3E 4F E6 D2 09
+         :                     2F F7 0F A2 01 E6 99 A6 4C 1A 0C C6 B2 90 36 9D
+         :                     1A 61
          :                   }
          :                 }
          :               }
@@ -991,161 +1143,667 @@ This is the Dilithium root certificate. It contains a Delta Certificate Descript
 3172   11:     OBJECT IDENTIFIER '1 3 6 1 4 1 2 267 7 6 5'
          :     }
 3185 3294:   BIT STRING
-         :     58 AB 83 89 40 B2 A7 75 AB 34 97 5F 41 A9 4B 12
-         :     C1 4F 6F 09 8F C6 A3 65 2E 11 56 68 C2 2D D0 B7
-         :     F7 52 44 90 99 EA C4 33 33 60 2F FC C3 B5 2F AC
-         :     EC 59 97 E7 82 94 FD 90 3C 32 71 10 C9 C9 D2 1A
-         :     25 70 3E 49 05 42 80 0B DC 77 8B 2E 88 99 96 36
-         :     DC ED FA 83 E5 5C B1 13 34 CA CF 8F 9D C4 B2 27
-         :     AA D7 41 31 91 0E EC 51 0F EF E6 2A FF 00 0F AD
-         :     6C B9 58 97 7D B8 12 D8 11 5E F0 7C BE B4 A0 B0
+         :     63 48 4B DD 18 24 F0 A7 B9 7B E8 69 BE 80 40 18
+         :     C2 B3 95 1C 3D 23 AA AA 81 3C A6 91 B3 E2 A0 B9
+         :     D1 E8 D6 B8 9A 52 EE 59 D7 C9 CB 80 B7 B0 89 5A
+         :     44 21 4D E1 75 88 FE 47 4F 66 9E 52 69 52 F7 DE
+         :     36 C8 7D 3E 1C 32 C1 29 E2 A3 6B BA 86 E6 33 A4
+         :     9C 2B 6C FB 8D 48 DD 14 F4 59 C2 B8 34 F6 7D 45
+         :     83 AD 13 21 75 CD FB F5 24 F9 FA 49 64 81 89 C3
+         :     C3 5C D5 21 D2 DC 83 E2 12 FD 32 DD 31 AF 0F 92
          :             [ Another 3165 bytes skipped ]
          :   }
 
+~~~
+
+## Algorithm migration example
+
+### Dilithium signing end-entity certificate
+
+This is an end-entity signing certificate which certifies a Dilithium key.
+
+~~~
 -----BEGIN CERTIFICATE-----
-MIIZTzCCDFqgAwIBAgIUKjo3LAsBm1DBvsLBQHC4desfRXowDQYLKwYBBAECggsH
+MIIWHDCCCSegAwIBAgIUC3I3HCAo5RSH45s1sH6CS+5eAd4wDQYLKwYBBAECggsH
 BgUwgY8xCzAJBgNVBAYTAlhYMTUwMwYDVQQKDCxSb3lhbCBJbnN0aXR1dGUgb2Yg
 UHVibGljIEtleSBJbmZyYXN0cnVjdHVyZTErMCkGA1UECwwiUG9zdC1IZWZmYWx1
 bXAgUmVzZWFyY2ggRGVwYXJ0bWVudDEcMBoGA1UEAwwTRGlsaXRoaXVtIFJvb3Qg
-LSBHMTAeFw0yMzA1MjUyMDM1MTlaFw0zMzA1MTIyMDM1MTlaMIGPMQswCQYDVQQG
-EwJYWDE1MDMGA1UECgwsUm95YWwgSW5zdGl0dXRlIG9mIFB1YmxpYyBLZXkgSW5m
-cmFzdHJ1Y3R1cmUxKzApBgNVBAsMIlBvc3QtSGVmZmFsdW1wIFJlc2VhcmNoIERl
-cGFydG1lbnQxHDAaBgNVBAMME0RpbGl0aGl1bSBSb290IC0gRzEwgge0MA0GCysG
-AQQBAoILBwYFA4IHoQDvAXBIH2D0VC25MezWMb2XYKN610K7Q1MCJ5FLmvEBwD9a
-AEetlI/zjDuFlf55XXH6vC08UzkOKltavclM67plOpSPULpNlGcyOiOSNlyWqxvH
-g+1UTdy/3K7t+4xqTmCOPCfz0s1b9p2LxhlB72DSeeqsR2mGTc4rlGeRK50I8Mn+
-m+vs6jN61FLjp+402HR3oz3UDh5lPAIYShfSRSWMiL5W85TAWajEfrIas25x2qHx
-77fv8JGFzdbTMnvPbngjlNO/zWdfC05aCQHuh5cp3m0+aGqAdQoh7ntVltj2yzyc
-vEswYeG15tTUUfR4qHxQnyTifGXX7UP6uIkd9z3ZPitpIOw8G6lYg7Mi5xD4HQdz
-7bAIKGyVps8/BC/46oAcJqYj9R1Waw6WTlwDt1rvN/kJEP+hSo7SpnMkIDWTk5z6
-Suh2ZmTmrmU8BLjBW72JdV1FaUIEIR6Kr0oDOO+crpIz0WfObYU/MN7kGGRrdW+R
-gKB6Gpad1J9A6AKihOWHkvCoxWsB6o216jtFfoDzrR2xXGtnsWW8i+KXI5CP6aPg
-QfM27PqsGzxYtaaGkRnDE5XmeSQfLQyIkzMNI1lIWV9+CcN4AIHA2v5H4/YwBZAV
-gOhsJQd8zGZlX06ZCjrO/LnFWLAfHLYb9X0qSPMW7ez2NhfswFYamgjIy2hp3dgh
-w9A3Z5SzESvoRratEaqjZnLNreZuMCyKGZip/go/qw6I/CQr/tse1XsymCBuaKLb
-MkG3tLM0l7+ihfjy9l+sumYxlY7H/Y5ovleXcUdhDZ1khAtYKmCPQhYDYLYJfJst
-c2etZJQol33RwtT5fwxH1KQV3NRI50nqZjN+d0NyDJ2jQBdT4/L/YdZ30fs9MpWV
-0nLiHgdiNxW9ZFVc/VTpPb5M9HcSd7gsTa9CLT4nAeq3FfW2XTCGboMHd9YTJTPV
-y3tfnAAZS5MPuwUwbknP65gjbpapo0PceDk7ywB+ab2bmpTiSrptu0WoZA2kTnsM
-a5SWrz+ETr1ukmX6l3ShmbShYE3ALh1C5YLps/OjZ7DNajzDHXGbrMcAMbqUjmIt
-EiVF0Vva2JIX1VI5TC0kfV6vqSayAtdqYDcng0PukQjdm4ZRKxC3oBi1wmi0hUnQ
-oYYBrbEz+DHPRHcvvKwsNdqsUXKGwHcoDy2lJHSvvJA3WDlF4JkYd8e76pyzPjdV
-F14qiEeufy5j0lklCHDhT0oQJxWi4H3bgizF4JwA4YRgUWNppw3i4XmuurWnPTlo
-XuXej0qp71fJX4l3CwBL9mN2nT7xDIJIyPjLD9n+oTEbt1/qwJO41QeQ07slzb9X
-XQeOm4IVvmyGiWx6ymtHwOoTu0noUvkDsYpigZSgOTXn+OSYkd/AxzJQsXcY3WvR
-mMvTyLcsZGiZL9C9kncbmtUwqR3hVnFxcxcw4STNgNeNDvE7qNqXZTNuQ1WY+RSJ
-1L01G3uMeco8OLCqJwfnYU/6/2lAZ8SOUEST54CcZ52fqnp6iruD9i8VH8iKyVFO
-Ky/hX+2H7BmL3raQkTzCzQNZJpPFAoj1GT2ghv38VU6Biad3Mcja09puo1LEhBI5
-0SCWswDeFeay3L4rI3RruZAHaCmDoPFM4eXXD68kmSZeZo0vCMkv2/FG84KdMvBi
-65gxArrGE/QLMWP5A3S8QBUvwGtc0yOHTYJfhhyEpBdm2PFGti1SaPp0BCoEj9vq
-+/is1xXxCABxZcCF6rsBN0e2Kj1Bmfv+bfz0yY3aCspJP25Uvw1d0sbWmU3tkkeF
-Yqvsu/xz0ATz1jfLD3j3M1sWUP5Akdey9Jq4crQmCkccNH9H/fwGWRT3hgqOQOSv
-FSRqeSshkZRkhl9rFo0KcK7dcyfnpQjq0T2xlBeOqtDfujldTLgr8/HbcYpM8Ivg
-PWqm1h7ANuBvt4uzYaPMVTVZKX+NmqYrz9/3uCr1En0v9u6D3y1SGzr8kZHib1oe
-IY0snH494zwVb0ak6nv+MIj4+A5bFG1cm2eBgRyqeiT7JZAdBa9AQz64ZMd98Tz3
-Jn2KgQyUlHylE/xfyw1112oar7d7nEJXZCrMswKLHvo/gx2NdjChU9N0F+rYuKu1
-yIFfZpgQVwFaEzhiLK/XZvnltJkHcI7Q5Vjuiu6RDpxBqjmume8mx6O6ZmFkNzwr
-iSE9y3SbPBxoij/LUh8rmBt1n0mkx1RFCltQE8aQjajNIw/kpptydqYDC5Vl1M2I
-JecL357Wqk3eDVKAUO5cYxox1X9rVRj/aDiUaMjRLESM7blf183tHgHYaHNBXp5+
-c0X29xCiqUduRO0MahGHrifMJDXo82WJA4ghNyuVnY45/gTYO4HTzP2pLTcsewoQ
-ufoHWp2LfgzlfTykT0a2rdkgS/fzMu4PKx0RFixnTe2bPHnHs7aukyWrSTV28Wvs
-aut+LriWLRdZSPJpIFejOZBl0ghF4uXFepKWfYygrVoNVhpeX41XYQR2xS9vz8CK
-h2z0ePnvQPsiCVnVHOtddKu3sd/XK5+PXFlK+l8Xs8ioxG3UmVy/C6fuwu1Ki7hR
-qLKIs5GNT2vqJHyIqe5kihpY9xeXmm6+cDhXfLuuzGaEBpwMAa33OdNmVGGcDKOC
-AzAwggMsMA8GA1UdEwEB/wQFMAMBAf8wDgYDVR0PAQH/BAQDAgEGMB0GA1UdDgQW
-BBTEkS6zNDy21HtDBSJ5/zYTWU5NrzAfBgNVHSMEGDAWgBTEkS6zNDy21HtDBSJ5
-/zYTWU5NrzCCAscGCmCGSAGG+mtQBgEEggK3MIICswIUYZudfthiFj4zTeoV0mOD
-aFCRTGOgCgYIKoZIzj0EAwShgY4wgYsxCzAJBgNVBAYTAlhYMTUwMwYDVQQKDCxS
-b3lhbCBJbnN0aXR1dGUgb2YgUHVibGljIEtleSBJbmZyYXN0cnVjdHVyZTErMCkG
-A1UECwwiUG9zdC1IZWZmYWx1bXAgUmVzZWFyY2ggRGVwYXJ0bWVudDEYMBYGA1UE
-AwwPRUNEU0EgUm9vdCAtIEcxo4GOMIGLMQswCQYDVQQGEwJYWDE1MDMGA1UECgws
-Um95YWwgSW5zdGl0dXRlIG9mIFB1YmxpYyBLZXkgSW5mcmFzdHJ1Y3R1cmUxKzAp
-BgNVBAsMIlBvc3QtSGVmZmFsdW1wIFJlc2VhcmNoIERlcGFydG1lbnQxGDAWBgNV
-BAMMD0VDRFNBIFJvb3QgLSBHMTCBmzAQBgcqhkjOPQIBBgUrgQQAIwOBhgAEAdD9
-cleoTHR/ViV1wHOF2+vy9SvqWAg9uC/dFTHYquPMh1/wL/f6LaJg2Oti1tL11kkn
-jjIXNqBijLuzAwi25hjbAPYq0gTGRgNZvIGKuJYb8PD8DsWq6KQoFzzlbwDemxV8
-HlyCxk9WL8re/EpMKPbTQs8+9hb8gtM7coXJIfK/Nv3YpEAwHQYDVR0OBBYEFI7C
-FAlgduqQOOk5rhttUsQXfZ++MB8GA1UdIwQYMBaAFI7CFAlgduqQOOk5rhttUsQX
-fZ++A4GMADCBiAJCAXTVo/lLzPC8HAOB6oECQGjiv8D/V3hKZvBXIN8qQ6oQnULp
-fsT6nx+PQD3j1irTTOkE2XC+RPwMnbdomAXUuWuLAkIB+HkJjPxO6HKJENF1CAd5
-jV3qusH0g+d43eaeNFC5z6hUdbAnwNGBI7miPEfCCu1ccE2KXQHX+QSdmLByGHmg
-qVIwDQYLKwYBBAECggsHBgUDggzeAFirg4lAsqd1qzSXX0GpSxLBT28Jj8ajZS4R
-VmjCLdC391JEkJnqxDMzYC/8w7UvrOxZl+eClP2QPDJxEMnJ0holcD5JBUKAC9x3
-iy6ImZY23O36g+VcsRM0ys+PncSyJ6rXQTGRDuxRD+/mKv8AD61suViXfbgS2BFe
-8Hy+tKCwJrkY5OwhjwTelDEzs2FDEWd6YcisH7nh9mtU2RCYQJqH84nEiLMbOuCi
-FG1LAR9/ihsHp281e5p4YrYqDqwjvVIeIHRl7miXMz6PH2t7F1h2mGHeIS6tVpW6
-3U+kIF2jd9OxVp9Zzs10Ok3F3HrQaJ6ym7HGaNfdYV7vu5GQV8uQk5eZuEsLMKHv
-IK2uk+5p9fC8B9ipxijz/hJeGhir6+2NUq2p/f/n0Eav3MYH2nC16mwg1hCwcAER
-K8G6/uddS9NjAs9u70W8ApWbln2oS84NwCaTx690/Bg1E8MwQkmd55vKB64YmvHL
-unjWIgWWjPl1LjPKj2R8nnPNRcH3CxtMhL0JPU6vTofji8ANmd/3igL3w5cvr3Rb
-CVxSDZD1fQf3ctK+5f76mNGzXl1nuGianArUx/yROO3Jt6pD3/oHvkWHqhnGZVG2
-UtWkPqo+9HLrtFJ7WmdrhRIP2aOB0/xuKTFo4Ma9z+XqVoxNT9zDy5Z9LlK0hmJh
-NbqVTnq0iF6OxsF7xXlaG/z8u9JtqMlplAJZKI3aJpjZ9Qex3F4h5V1/hG4EFri1
-UEM98q4AXOqDDN2twN/dg2NttwK6HqDH2Jy6rAUP8QsxCWts/4kPUEEGq9SVHM2d
-VgIxfyVUSfClnBO3CpLQBCzsdOUJDqMs6Jok5RoMDx3NQYbznKEaFgKnnD+ie8B9
-9fe4XvThKQ7n4Es4b7A5Cn8ddCMjb6UilaTotqO9immA7VjEovNSVJ9NqLXCeTS6
-3iBMaLwIfFDNgYSNfX8lIUvuc/m6en59kDOGp5nkCQK584lh0qim0eVwnSr+TWsg
-eI6yBF7iTyr5FSjSne0ysbIscGpgewGNmduKhBsatX51tf2waXgi0MFIdx7n1LfG
-mCA1EczIBMIgUyDQFP6hIywxN/Kwo10Ls9MhCSNiyMBewcxoa6Vc9ZPBu36FH45U
-UvMgD6QQMuGTwhkD5T1p76gw0hYLCcIuAK+/vlVY0q6YJ7EBxQ6PnxuO5g5WdI+O
-MER4sv7XvWnoC10uMUSrtxpA7CycS07m8LMi+n5RqoQWA45kMjAN4rb/2V+5Poet
-cI0AhtG+b56fUn3uBQe60v6q0d1gw5Bzr46AAO49RbcYUi2Ls7EPmk1MAfx4Mxc7
-+Cgqqb/qz7Wpog5MWCuMCk68Kmbm4gaPr1GPIyjFfvXjbc6/o8nsEmd+lDUms7pL
-Ne65baMPVRhSER2EffyrqjMn2adBysqVEJU2vWs+mRND2KVzMWNyWvt5KWovp89E
-PX1RFp7H/wKw6rEL4Hp1Gn/xUyi/dAIUo7U3mhhlvAEWZxEqD3ABxj1j6H34uTxY
-mz6mO0QPjZAcIhRXRYfXxC3aXMFIm+AkxrWCva6IF7cobeWMIe4Uh0dcoKP5VXbO
-ZPJ0tV1ug9tzNywC+JXpXZagCTMOxQJpPTxgRl1iZZT/U7sSUPBWnyPTH/lUAuld
-T9W+6qxSvb9VlcGeEKyWYDKij13V7els3nbYlLL7cEJR+lA1HkaEoCQEGu3YdwLK
-ZVE4MfYearU0gm7S/QXfxLh5MR6phhp5y8Ve6suoXiS4dP1S2C5J8Md5sOASM38n
-tIdXhR2dRk3LbmJIvhXqqtO5nBTx6LLznqUKyGaJd+lmTDhpLXzbnm7K4+Mdkt+P
-paXsBHbzj+13fTzBQ5zyxz8TNfk0J2m4qBDMf12SsFj0NZ4Lco0meYnhsbkWr1YA
-7cc4DPl4xrR8JpfKdRHNg+yVmkfSfmBeLiEaLH61h6a3QKHSLGkpJk1x6h+WpVHY
-eMYahsk4sDALaN+QerJfgxO8D6W7xbQc6fHLPmFSVqltqq/DsKTpIErD57+Ir0uo
-EQECk70GVNy9WiwLPWvvQtBLcpG0ANPhkJxp7OYho4EQPyTMDjJMqSRB6ZCi7KTJ
-StfjUSftvO121L1MjtjQLKkSRQJUM7qWXKqHDym8k8ELh7rwsT7yxH4I5wZg/iEe
-ZY8YfBVXakThB4iH+zWqJktxmQJ94LccDYPHORDeBVTC1oygS5z414UQP632CV5O
-TX6OTQ3AKDmzOdVJsqH0RpH1lrH6tOgtaBN+c+mN/iOZgtiEBYyomw0W7AKsfU0h
-hjZDuEWk+4IE7nNJP39prS5rpGtMIqgXiuFmDe1n8wt009QIy5GfF3ZslO6AoIHA
-yv8V/5UYPCq1VVqPYIyHDVGWII+stbKqdPF5I+ZP10oEaZgH3zYuXF5cyImyaxT6
-71t8fl5nnKTmBlHe7aDHxnluuvZIwQd1GavQQD+TGTfdMaA73p2k2GvYRIR1D+C9
-pO1BDstPBfKzH/gKiLEDc1MDqzibQ32zJ7j9ZgnBdoaQeYlSMKl6WrgO2q1x5Z1Z
-DHZ5UohTMTOOcgiiWsDEsZzud35DoUXV1rCfp3pr+lPjqAokZlNK3nxelZMu/VEB
-pGOeLnv17WSOeiV9w7rjTAvompyCZF4RgI1gTkHzBvMU6oBjyIj/RuI4FVJGvOmH
-wSop9ZX7OWZx/oSfuZWhboP7+DKdPNfni/ntHJOoH3ew0NoCWvvtuVUb2LbB5fbT
-OnRg6U9zEhpECwwkC81xl3mb7EwGdDDj+iiUbuLPiCnEXlndWVzn4kNj9de/kPil
-8gj/Klpdagdb0UoLtiPt3Qx1bWzblIcxFrLFviDXlyvA2LS+d3SswAelulevM6TB
-7gIqbJ1IPI0KV1P5996yDnKOUY5R5kmTdcRjx8vN8CPnJtyL40TYz+bI4svJjEPL
-ZKT6EmUFtEkhD/EZcHFOvbArMtD7+CseuNWpbhlSG7NxQWh6oTputGuyKCGlKtyr
-4Ai9p7BiRmSAlpTzUborzvM8/C6NVmwolkmObYmAr7OtNc39LVKTXbk8crTPnZ6O
-OGvoBrv+z4NF/kW92TOjyzAPl/HWgifCqqxE+NnbxtLy5nqM7EiFvdnFhJzxMK+9
-729vMUw6iyaDfE/v1EchRoleNsGf9vJaBH0BUjv4k2J4GruMX8Bab++zv2O18znr
-h+dgLf7sWA2+DWcRfyKIF0pwYhedC7BP14lY3fnqH5cvMtMui8lgY86AkhQo9bNH
-yu/JG+SHE+j3m2vRTPey/TA6pGIh8wOoQmfmkNRzO8Jaw88wGHM+BHwJKVTJFKM6
-hC4sSozBgWhCLnNy3F5t/3e7EsC4DDtVh/IqBPfCYY0IFjVEZuv0MOKQ7yetZmxh
-Bwk8fyfZBjjkUGYVcHimgPaPQFad1mQLBdz/5qAPdHtK+qrr9uoiD+UTq2PZunaG
-09IPhf6OeXFSHxg4xTtzaJuL3gcwBsnPE3ODTx4eBzTlfCSGSHqtoftTUl6ODb6z
-Sp51vyIopD6bAeg7eJOW8y9vBsTDMJqRb+66ab/QSnApF2kBH3m1874m/U1KBshk
-y9XDdsBJtmVQt4MKWIJEF+7kohNlATqlIPyBUcE6uR4cPTTXyQof1IxYxdFsxSNW
-GFia9tLmL2HkKzVK5zv/V93kiFi6ISHjZ9+bbVRcwKnkyVM18NndIUNwgqh8l2a1
-UsX4Xmf7r/SzvY9k4bhsg/XnmUi38X1RI1zvZZAPQm0giNMQRljDI4SnaTT/M0cs
-f03MSJ/+rfe/5df53qhBVB6VO4UCRCLspn9Hw+gaA2MkZSOW6360zp39i5Qmt2U6
-KYfbrYPIaqnmvsXRnZFRvUSkqkXFuNPmIH7AIGVt6esazETnl0qqcDXgiuHdm6zd
-2fQ9Fp6b9YVpTKXscFhJ0xvVtZrkavtODGrpjbiHd1mw9AIKKgf0T3QWrbaDkKy5
-cq6IrrLkMj9dGi/uDs/kmafDVfRf2119wbE46ESe9s2O6xHHQhaEWKjaoX2rZimn
-vI3K3I/ClhEkM+Ja2g42jta+PEPL1Cv1iA/W8sdM+TfdbPwokvJ/a7UGjjIvdNcQ
-VGjoEHUckxxepUhwF25tD/Wv0k36iEN9x02O7G/dmhZCzuRcfzTvKW7mDlP527E6
-pBYCU/FtzcMqZjc0bTAEVZd+heLAWj52+C06xXBfHtUco8ZWpyB8L4uTDxY3lqNa
-EbqeOEIFkuyuqrx64f7XQWiPxMVutWG9JzcqzX/pxo9tzChBs+ivXIE5mkG6gD+c
-gi1iERWk+MCvVC+19l31QKdEABMN+CJFGst8Zxr3Shug3BP8uOgFDDI2PICFiq3R
-LJCTosLUKTdOirnZFxkpMktgh6TF/SI3SWSAkL7d4hkwS2a35e0AAAAAAAAAChAW
-ICkw
+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
 -----END CERTIFICATE-----
 
 ~~~
 
-## ECDSA signing end-entity
+~~~
+   0 5660: SEQUENCE {
+   4 2343:   SEQUENCE {
+   8    3:     [0] {
+  10    1:       INTEGER 2
+         :       }
+  13   20:     INTEGER 0B 72 37 1C 20 28 E5 14 87 E3 9B 35 B0 7E 82 4B EE 5E 01 DE
+  35   13:     SEQUENCE {
+  37   11:       OBJECT IDENTIFIER '1 3 6 1 4 1 2 267 7 6 5'
+         :       }
+  50  143:     SEQUENCE {
+  53   11:       SET {
+  55    9:         SEQUENCE {
+  57    3:           OBJECT IDENTIFIER countryName (2 5 4 6)
+  62    2:           PrintableString 'XX'
+         :           }
+         :         }
+  66   53:       SET {
+  68   51:         SEQUENCE {
+  70    3:           OBJECT IDENTIFIER organizationName (2 5 4 10)
+  75   44:           UTF8String
+         :             'Royal Institute of Public Key Infrastructure'
+         :           }
+         :         }
+ 121   43:       SET {
+ 123   41:         SEQUENCE {
+ 125    3:           OBJECT IDENTIFIER organizationalUnitName (2 5 4 11)
+ 130   34:           UTF8String 'Post-Heffalump Research Department'
+         :           }
+         :         }
+ 166   28:       SET {
+ 168   26:         SEQUENCE {
+ 170    3:           OBJECT IDENTIFIER commonName (2 5 4 3)
+ 175   19:           UTF8String 'Dilithium Root - G1'
+         :           }
+         :         }
+         :       }
+ 196   30:     SEQUENCE {
+ 198   13:       UTCTime 26/05/2023 13:06:31 GMT
+ 213   13:       UTCTime 22/05/2026 13:06:31 GMT
+         :       }
+ 228   47:     SEQUENCE {
+ 230   11:       SET {
+ 232    9:         SEQUENCE {
+ 234    3:           OBJECT IDENTIFIER countryName (2 5 4 6)
+ 239    2:           PrintableString 'XX'
+         :           }
+         :         }
+ 243   15:       SET {
+ 245   13:         SEQUENCE {
+ 247    3:           OBJECT IDENTIFIER surname (2 5 4 4)
+ 252    6:           UTF8String 'Yamada'
+         :           }
+         :         }
+ 260   15:       SET {
+ 262   13:         SEQUENCE {
+ 264    3:           OBJECT IDENTIFIER givenName (2 5 4 42)
+ 269    6:           UTF8String 'Hanako'
+         :           }
+         :         }
+         :       }
+ 277 1972:     SEQUENCE {
+ 281   13:       SEQUENCE {
+ 283   11:         OBJECT IDENTIFIER '1 3 6 1 4 1 2 267 7 6 5'
+         :         }
+ 296 1953:       BIT STRING
+         :         6C 8F 49 B8 98 2F D3 71 94 3C 63 36 4D 6F E6 9F
+         :         C1 42 67 9D 69 89 1E 9E 2A FA 34 D5 81 21 C6 76
+         :         18 32 93 9A 70 B5 65 46 79 BF A0 62 AC C5 25 01
+         :         8B BE D8 0B 52 CC 33 DE 2D 15 69 79 B9 8D F3 A4
+         :         C6 85 54 A2 7D E1 11 72 FE 4E 85 BD 0C B3 40 A9
+         :         9E FA AF DD 91 3D DC 3E F8 7D DC 98 9F BB B2 8B
+         :         21 62 2E 67 48 F2 E3 C4 94 78 8B 2E EB 92 E9 80
+         :         A5 1A A6 62 B6 DF 36 14 A6 92 94 FE 42 98 E9 BC
+         :                 [ Another 1824 bytes skipped ]
+         :       }
+2253   96:     [3] {
+2255   94:       SEQUENCE {
+2257   12:         SEQUENCE {
+2259    3:           OBJECT IDENTIFIER basicConstraints (2 5 29 19)
+2264    1:           BOOLEAN TRUE
+2267    2:           OCTET STRING, encapsulates {
+2269    0:             SEQUENCE {}
+         :             }
+         :           }
+2271   14:         SEQUENCE {
+2273    3:           OBJECT IDENTIFIER keyUsage (2 5 29 15)
+2278    1:           BOOLEAN TRUE
+2281    4:           OCTET STRING, encapsulates {
+2283    2:             BIT STRING 7 unused bits
+         :               '1'B (bit 0)
+         :             }
+         :           }
+2287   29:         SEQUENCE {
+2289    3:           OBJECT IDENTIFIER subjectKeyIdentifier (2 5 29 14)
+2294   22:           OCTET STRING, encapsulates {
+2296   20:             OCTET STRING
+         :               A3 5F EA B6 FA CB 63 81 3D D5 94 1F A8 41 2D F0
+         :               96 DB BA 5B
+         :             }
+         :           }
+2318   31:         SEQUENCE {
+2320    3:           OBJECT IDENTIFIER authorityKeyIdentifier (2 5 29 35)
+2325   24:           OCTET STRING, encapsulates {
+2327   22:             SEQUENCE {
+2329   20:               [0]
+         :                 11 D9 28 17 0B E0 2A 47 CD 33 97 35 B7 0E 2B 2D
+         :                 9C 94 4C 4A
+         :               }
+         :             }
+         :           }
+         :         }
+         :       }
+         :     }
+2351   13:   SEQUENCE {
+2353   11:     OBJECT IDENTIFIER '1 3 6 1 4 1 2 267 7 6 5'
+         :     }
+2366 3294:   BIT STRING
+         :     74 1D 80 C6 D0 26 06 E1 7F 1C B8 99 3A 02 C0 32
+         :     9A F4 75 71 A5 F8 AE AC E4 48 0D EF 77 97 6A 6A
+         :     CB AE BF 37 BD FA 68 B4 AC 37 D3 41 7A 10 9F F9
+         :     97 1A 16 90 32 48 3E 8E 6C A3 49 56 C3 D8 C8 5D
+         :     58 79 A4 13 BE AB 46 03 D1 85 92 64 27 04 5E B7
+         :     5E C6 65 CE 0A D4 9F 50 9A BA 0F 2B 35 67 75 2C
+         :     98 51 9B E2 19 7E 67 08 37 AB C4 05 99 50 A4 91
+         :     97 8C CF 6F F2 43 45 CD 77 6C BA 7F 94 F7 57 A6
+         :             [ Another 3165 bytes skipped ]
+         :   }
 
-This is an end-entity signing certificate which certifies an ECDSA key.
+~~~
+
+### EC signing end-entity certificate with encoded Delta Certificate
+
+This is an end-entity signing certificate which certifies an EC key. It contains a Delta Certificate Descriptor extension which includes sufficient information to recreate the Dilithium signing end-entity certificate.
+
+~~~
+-----BEGIN CERTIFICATE-----
+MIIYEzCCF3WgAwIBAgIUVSjCfFKRz32x2VXdKmhcOKCiAeIwCgYIKoZIzj0EAwQw
+gYsxCzAJBgNVBAYTAlhYMTUwMwYDVQQKDCxSb3lhbCBJbnN0aXR1dGUgb2YgUHVi
+bGljIEtleSBJbmZyYXN0cnVjdHVyZTErMCkGA1UECwwiUG9zdC1IZWZmYWx1bXAg
+UmVzZWFyY2ggRGVwYXJ0bWVudDEYMBYGA1UEAwwPRUNEU0EgUm9vdCAtIEcxMB4X
+DTIzMDUyNjEzMDYzMVoXDTI2MDUyMjEzMDYzMVowLzELMAkGA1UEBhMCWFgxDzAN
+BgNVBAQMBllhbWFkYTEPMA0GA1UEKgwGSGFuYWtvMFkwEwYHKoZIzj0CAQYIKoZI
+zj0DAQcDQgAEQiVI+I+3gv+17KN0RFLHKh5Vj71vc75eSOkyMsxFxbFsTNEMTLjV
+uKFxOelIgsiZJXKZNCX0FBmrfpCkKklCcqOCFhAwghYMMAwGA1UdEwEB/wQCMAAw
+DgYDVR0PAQH/BAQDAgeAMB0GA1UdDgQWBBRbcKeYF/ef9jfS9+PcRGwhCde71DAf
+BgNVHSMEGDAWgBSOwhQJYHbqkDjpOa4bbVLEF32fvjCCFaoGCmCGSAGG+mtQBgEE
+ghWaMIIVlgIUC3I3HCAo5RSH45s1sH6CS+5eAd6gDQYLKwYBBAECggsHBgWhgZIw
+gY8xCzAJBgNVBAYTAlhYMTUwMwYDVQQKDCxSb3lhbCBJbnN0aXR1dGUgb2YgUHVi
+bGljIEtleSBJbmZyYXN0cnVjdHVyZTErMCkGA1UECwwiUG9zdC1IZWZmYWx1bXAg
+UmVzZWFyY2ggRGVwYXJ0bWVudDEcMBoGA1UEAwwTRGlsaXRoaXVtIFJvb3QgLSBH
+MTCCB7QwDQYLKwYBBAECggsHBgUDggehAGyPSbiYL9NxlDxjNk1v5p/BQmedaYke
+nir6NNWBIcZ2GDKTmnC1ZUZ5v6BirMUlAYu+2AtSzDPeLRVpebmN86TGhVSifeER
+cv5Ohb0Ms0Cpnvqv3ZE93D74fdyYn7uyiyFiLmdI8uPElHiLLuuS6YClGqZitt82
+FKaSlP5CmOm8qt+8JQ+oZ/zCkJOVHOfAKgjz3klNxK0vBcHVOLx02ciHNnCqCUU+
+wvt2R7rkm5oOqlGqjvRiofYOC7saMEtx4WKrTq7VcGPCIZQFIkietxVRqH+X+UAp
+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
+dWfd9sixl7+a5dc1mQpHcIorcQ/VAWA=
+-----END CERTIFICATE-----
+
+~~~
+
+~~~
+   0 6163: SEQUENCE {
+   4 6005:   SEQUENCE {
+   8    3:     [0] {
+  10    1:       INTEGER 2
+         :       }
+  13   20:     INTEGER 55 28 C2 7C 52 91 CF 7D B1 D9 55 DD 2A 68 5C 38 A0 A2 01 E2
+  35   10:     SEQUENCE {
+  37    8:       OBJECT IDENTIFIER ecdsaWithSHA512 (1 2 840 10045 4 3 4)
+         :       }
+  47  139:     SEQUENCE {
+  50   11:       SET {
+  52    9:         SEQUENCE {
+  54    3:           OBJECT IDENTIFIER countryName (2 5 4 6)
+  59    2:           PrintableString 'XX'
+         :           }
+         :         }
+  63   53:       SET {
+  65   51:         SEQUENCE {
+  67    3:           OBJECT IDENTIFIER organizationName (2 5 4 10)
+  72   44:           UTF8String
+         :             'Royal Institute of Public Key Infrastructure'
+         :           }
+         :         }
+ 118   43:       SET {
+ 120   41:         SEQUENCE {
+ 122    3:           OBJECT IDENTIFIER organizationalUnitName (2 5 4 11)
+ 127   34:           UTF8String 'Post-Heffalump Research Department'
+         :           }
+         :         }
+ 163   24:       SET {
+ 165   22:         SEQUENCE {
+ 167    3:           OBJECT IDENTIFIER commonName (2 5 4 3)
+ 172   15:           UTF8String 'ECDSA Root - G1'
+         :           }
+         :         }
+         :       }
+ 189   30:     SEQUENCE {
+ 191   13:       UTCTime 26/05/2023 13:06:31 GMT
+ 206   13:       UTCTime 22/05/2026 13:06:31 GMT
+         :       }
+ 221   47:     SEQUENCE {
+ 223   11:       SET {
+ 225    9:         SEQUENCE {
+ 227    3:           OBJECT IDENTIFIER countryName (2 5 4 6)
+ 232    2:           PrintableString 'XX'
+         :           }
+         :         }
+ 236   15:       SET {
+ 238   13:         SEQUENCE {
+ 240    3:           OBJECT IDENTIFIER surname (2 5 4 4)
+ 245    6:           UTF8String 'Yamada'
+         :           }
+         :         }
+ 253   15:       SET {
+ 255   13:         SEQUENCE {
+ 257    3:           OBJECT IDENTIFIER givenName (2 5 4 42)
+ 262    6:           UTF8String 'Hanako'
+         :           }
+         :         }
+         :       }
+ 270   89:     SEQUENCE {
+ 272   19:       SEQUENCE {
+ 274    7:         OBJECT IDENTIFIER ecPublicKey (1 2 840 10045 2 1)
+ 283    8:         OBJECT IDENTIFIER prime256v1 (1 2 840 10045 3 1 7)
+         :         }
+ 293   66:       BIT STRING
+         :         04 42 25 48 F8 8F B7 82 FF B5 EC A3 74 44 52 C7
+         :         2A 1E 55 8F BD 6F 73 BE 5E 48 E9 32 32 CC 45 C5
+         :         B1 6C 4C D1 0C 4C B8 D5 B8 A1 71 39 E9 48 82 C8
+         :         99 25 72 99 34 25 F4 14 19 AB 7E 90 A4 2A 49 42
+         :         72
+         :       }
+ 361 5648:     [3] {
+ 365 5644:       SEQUENCE {
+ 369   12:         SEQUENCE {
+ 371    3:           OBJECT IDENTIFIER basicConstraints (2 5 29 19)
+ 376    1:           BOOLEAN TRUE
+ 379    2:           OCTET STRING, encapsulates {
+ 381    0:             SEQUENCE {}
+         :             }
+         :           }
+ 383   14:         SEQUENCE {
+ 385    3:           OBJECT IDENTIFIER keyUsage (2 5 29 15)
+ 390    1:           BOOLEAN TRUE
+ 393    4:           OCTET STRING, encapsulates {
+ 395    2:             BIT STRING 7 unused bits
+         :               '1'B (bit 0)
+         :             }
+         :           }
+ 399   29:         SEQUENCE {
+ 401    3:           OBJECT IDENTIFIER subjectKeyIdentifier (2 5 29 14)
+ 406   22:           OCTET STRING, encapsulates {
+ 408   20:             OCTET STRING
+         :               5B 70 A7 98 17 F7 9F F6 37 D2 F7 E3 DC 44 6C 21
+         :               09 D7 BB D4
+         :             }
+         :           }
+ 430   31:         SEQUENCE {
+ 432    3:           OBJECT IDENTIFIER authorityKeyIdentifier (2 5 29 35)
+ 437   24:           OCTET STRING, encapsulates {
+ 439   22:             SEQUENCE {
+ 441   20:               [0]
+         :                 8E C2 14 09 60 76 EA 90 38 E9 39 AE 1B 6D 52 C4
+         :                 17 7D 9F BE
+         :               }
+         :             }
+         :           }
+ 463 5546:         SEQUENCE {
+ 467   10:           OBJECT IDENTIFIER
+         :             deltaCertificateDescriptor (2 16 840 1 114027 80 6 1)
+ 479 5530:           OCTET STRING, encapsulates {
+ 483 5526:             SEQUENCE {
+ 487   20:               INTEGER
+         :                 0B 72 37 1C 20 28 E5 14 87 E3 9B 35 B0 7E 82 4B
+         :                 EE 5E 01 DE
+ 509   13:               [0] {
+ 511   11:                 OBJECT IDENTIFIER '1 3 6 1 4 1 2 267 7 6 5'
+         :                 }
+ 524  146:               [1] {
+ 527  143:                 SEQUENCE {
+ 530   11:                   SET {
+ 532    9:                     SEQUENCE {
+ 534    3:                       OBJECT IDENTIFIER countryName (2 5 4 6)
+ 539    2:                       PrintableString 'XX'
+         :                       }
+         :                     }
+ 543   53:                   SET {
+ 545   51:                     SEQUENCE {
+ 547    3:                       OBJECT IDENTIFIER organizationName (2 5 4 10)
+ 552   44:                       UTF8String
+         :                   'Royal Institute of Public Key Infrastructure'
+         :                       }
+         :                     }
+ 598   43:                   SET {
+ 600   41:                     SEQUENCE {
+ 602    3:                       OBJECT IDENTIFIER
+         :                         organizationalUnitName (2 5 4 11)
+ 607   34:                       UTF8String 'Post-Heffalump Research Department'
+         :                       }
+         :                     }
+ 643   28:                   SET {
+ 645   26:                     SEQUENCE {
+ 647    3:                       OBJECT IDENTIFIER commonName (2 5 4 3)
+ 652   19:                       UTF8String 'Dilithium Root - G1'
+         :                       }
+         :                     }
+         :                   }
+         :                 }
+ 673 1972:               SEQUENCE {
+ 677   13:                 SEQUENCE {
+ 679   11:                   OBJECT IDENTIFIER '1 3 6 1 4 1 2 267 7 6 5'
+         :                   }
+ 692 1953:                 BIT STRING
+         :                   6C 8F 49 B8 98 2F D3 71 94 3C 63 36 4D 6F E6 9F
+         :                   C1 42 67 9D 69 89 1E 9E 2A FA 34 D5 81 21 C6 76
+         :                   18 32 93 9A 70 B5 65 46 79 BF A0 62 AC C5 25 01
+         :                   8B BE D8 0B 52 CC 33 DE 2D 15 69 79 B9 8D F3 A4
+         :                   C6 85 54 A2 7D E1 11 72 FE 4E 85 BD 0C B3 40 A9
+         :                   9E FA AF DD 91 3D DC 3E F8 7D DC 98 9F BB B2 8B
+         :                   21 62 2E 67 48 F2 E3 C4 94 78 8B 2E EB 92 E9 80
+         :                   A5 1A A6 62 B6 DF 36 14 A6 92 94 FE 42 98 E9 BC
+         :                           [ Another 1824 bytes skipped ]
+         :                 }
+2649   64:               [4] {
+2651   29:                 SEQUENCE {
+2653    3:                   OBJECT IDENTIFIER subjectKeyIdentifier (2 5 29 14)
+2658   22:                   OCTET STRING, encapsulates {
+2660   20:                     OCTET STRING
+         :                     A3 5F EA B6 FA CB 63 81 3D D5 94 1F A8 41 2D F0
+         :                     96 DB BA 5B
+         :                     }
+         :                   }
+2682   31:                 SEQUENCE {
+2684    3:                   OBJECT IDENTIFIER
+         :                     authorityKeyIdentifier (2 5 29 35)
+2689   24:                   OCTET STRING, encapsulates {
+2691   22:                     SEQUENCE {
+2693   20:                       [0]
+         :                     11 D9 28 17 0B E0 2A 47 CD 33 97 35 B7 0E 2B 2D
+         :                     9C 94 4C 4A
+         :                       }
+         :                     }
+         :                   }
+         :                 }
+2715 3294:               BIT STRING
+         :                 74 1D 80 C6 D0 26 06 E1 7F 1C B8 99 3A 02 C0 32
+         :                 9A F4 75 71 A5 F8 AE AC E4 48 0D EF 77 97 6A 6A
+         :                 CB AE BF 37 BD FA 68 B4 AC 37 D3 41 7A 10 9F F9
+         :                 97 1A 16 90 32 48 3E 8E 6C A3 49 56 C3 D8 C8 5D
+         :                 58 79 A4 13 BE AB 46 03 D1 85 92 64 27 04 5E B7
+         :                 5E C6 65 CE 0A D4 9F 50 9A BA 0F 2B 35 67 75 2C
+         :                 98 51 9B E2 19 7E 67 08 37 AB C4 05 99 50 A4 91
+         :                 97 8C CF 6F F2 43 45 CD 77 6C BA 7F 94 F7 57 A6
+         :                         [ Another 3165 bytes skipped ]
+         :               }
+         :             }
+         :           }
+         :         }
+         :       }
+         :     }
+6013   10:   SEQUENCE {
+6015    8:     OBJECT IDENTIFIER ecdsaWithSHA512 (1 2 840 10045 4 3 4)
+         :     }
+6025  139:   BIT STRING, encapsulates {
+6029  135:     SEQUENCE {
+6032   65:       INTEGER
+         :         24 53 DA 37 44 84 C7 2A 91 A5 51 BC 66 27 83 7F
+         :         55 05 5B 56 56 62 FA C1 C5 66 4D F0 11 27 18 55
+         :         D9 AF 64 AA 1B D6 2F 2E E7 F9 3F D7 35 97 F2 C5
+         :         8E 66 57 D2 C8 AB E6 98 0E 70 10 2B 03 66 61 EE
+         :         FF
+6099   66:       INTEGER
+         :         01 E5 11 06 BD B4 02 53 44 F0 56 BC 09 D9 E1 B7
+         :         75 5D AE B0 4F 61 FD A2 56 4D 62 6F 18 CC CA CE
+         :         95 FB 2A C8 A1 82 DC 7F 0E 9F 65 75 67 DD F6 C8
+         :         B1 97 BF 9A E5 D7 35 99 0A 47 70 8A 2B 71 0F D5
+         :         01 60
+         :       }
+         :     }
+         :   }
+
+~~~
+
+## Dual use example
+
+### EC signing end-entity certificate
+
+This is an end-entity signing certificate which certifies an EC key.
+
+~~~
+-----BEGIN CERTIFICATE-----
+MIICYTCCAcOgAwIBAgIUVcVNficoipRs4c6JBiF731VtDLAwCgYIKoZIzj0EAwQw
+gYsxCzAJBgNVBAYTAlhYMTUwMwYDVQQKDCxSb3lhbCBJbnN0aXR1dGUgb2YgUHVi
+bGljIEtleSBJbmZyYXN0cnVjdHVyZTErMCkGA1UECwwiUG9zdC1IZWZmYWx1bXAg
+UmVzZWFyY2ggRGVwYXJ0bWVudDEYMBYGA1UEAwwPRUNEU0EgUm9vdCAtIEcxMB4X
+DTIzMDUyNjEzMDYzMVoXDTI2MDUyMjEzMDYzMVowLzELMAkGA1UEBhMCWFgxDzAN
+BgNVBAQMBllhbWFkYTEPMA0GA1UEKgwGSGFuYWtvMFkwEwYHKoZIzj0CAQYIKoZI
+zj0DAQcDQgAEQiVI+I+3gv+17KN0RFLHKh5Vj71vc75eSOkyMsxFxbFsTNEMTLjV
+uKFxOelIgsiZJXKZNCX0FBmrfpCkKklCcqNgMF4wDAYDVR0TAQH/BAIwADAOBgNV
+HQ8BAf8EBAMCB4AwHQYDVR0OBBYEFFtwp5gX95/2N9L349xEbCEJ17vUMB8GA1Ud
+IwQYMBaAFI7CFAlgduqQOOk5rhttUsQXfZ++MAoGCCqGSM49BAMEA4GLADCBhwJC
+ATB+4mSAPRhLdoM3WSPx4l7PoZeuiYObCVZF7vV61bqmPhFskmZ+1aXSMIABfaNE
+L5Tc+fiSFOXuZs4JSfWxyTlaAkFiK9X4q5kvyHWy97YbxkMOODeEq0ImwaMabmNO
+Es40EGEHbEPLIHzW347BR8iZquPCA9wspc6y8edyXcBv/g2Yhw==
+-----END CERTIFICATE-----
+
+~~~
 
 ~~~
   0 609: SEQUENCE {
@@ -1153,7 +1811,7 @@ This is an end-entity signing certificate which certifies an ECDSA key.
   8   3:     [0] {
  10   1:       INTEGER 2
        :       }
- 13  20:     INTEGER 35 FE 9A 5B 0F 76 7D AE 26 CB D0 71 6C 9A 9E DE 62 49 3A 5D
+ 13  20:     INTEGER 55 C5 4D 7E 27 28 8A 94 6C E1 CE 89 06 21 7B DF 55 6D 0C B0
  35  10:     SEQUENCE {
  37   8:       OBJECT IDENTIFIER ecdsaWithSHA512 (1 2 840 10045 4 3 4)
        :       }
@@ -1185,8 +1843,8 @@ This is an end-entity signing certificate which certifies an ECDSA key.
        :         }
        :       }
 189  30:     SEQUENCE {
-191  13:       UTCTime 25/05/2023 20:35:19 GMT
-206  13:       UTCTime 21/05/2026 20:35:19 GMT
+191  13:       UTCTime 26/05/2023 13:06:31 GMT
+206  13:       UTCTime 22/05/2026 13:06:31 GMT
        :       }
 221  47:     SEQUENCE {
 223  11:       SET {
@@ -1263,411 +1921,62 @@ This is an end-entity signing certificate which certifies an ECDSA key.
        :     }
 471 139:   BIT STRING, encapsulates {
 475 135:     SEQUENCE {
-478  65:       INTEGER
-       :         76 32 73 9A 33 9E CF 60 5B CD F5 60 09 58 D6 6C
-       :         65 48 F6 B3 C9 68 16 07 80 B1 6A CD 0D D5 73 57
-       :         97 1A 17 98 FA 6E 1C 0B AA 17 98 32 A3 32 00 D6
-       :         A4 FF C6 2D 2A F2 AB DC 96 6F 28 25 4D 80 5F 61
-       :         A3
-545  66:       INTEGER
-       :         01 27 6A 87 C7 1E 72 ED 67 D2 ED C5 A3 0F 88 A7
-       :         7D 6A 84 64 74 7E C2 CF A3 4A 17 27 09 03 CB AB
-       :         D5 1F A7 38 D2 A8 11 FC 00 EE FB C0 46 85 66 23
-       :         28 80 8C 19 07 4D EB 1E B0 1E 53 2C 53 90 D6 96
-       :         97 6F
+478  66:       INTEGER
+       :         01 30 7E E2 64 80 3D 18 4B 76 83 37 59 23 F1 E2
+       :         5E CF A1 97 AE 89 83 9B 09 56 45 EE F5 7A D5 BA
+       :         A6 3E 11 6C 92 66 7E D5 A5 D2 30 80 01 7D A3 44
+       :         2F 94 DC F9 F8 92 14 E5 EE 66 CE 09 49 F5 B1 C9
+       :         39 5A
+546  65:       INTEGER
+       :         62 2B D5 F8 AB 99 2F C8 75 B2 F7 B6 1B C6 43 0E
+       :         38 37 84 AB 42 26 C1 A3 1A 6E 63 4E 12 CE 34 10
+       :         61 07 6C 43 CB 20 7C D6 DF 8E C1 47 C8 99 AA E3
+       :         C2 03 DC 2C A5 CE B2 F1 E7 72 5D C0 6F FE 0D 98
+       :         87
        :       }
        :     }
        :   }
 
+~~~
+
+### EC dual use end-entity certificate with encoded Delta Certificate
+
+This is an end-entity key exchange certificate which certifies an EC key. It contains a Delta Certificate Descriptor extension which includes sufficient information to the recreate the EC signing end-entity certificate.
+
+~~~
 -----BEGIN CERTIFICATE-----
-MIICYTCCAcOgAwIBAgIUNf6aWw92fa4my9BxbJqe3mJJOl0wCgYIKoZIzj0EAwQw
+MIIDyjCCAyygAwIBAgIUczxcVsNa7M9uSs598vuGatGLDuIwCgYIKoZIzj0EAwQw
 gYsxCzAJBgNVBAYTAlhYMTUwMwYDVQQKDCxSb3lhbCBJbnN0aXR1dGUgb2YgUHVi
 bGljIEtleSBJbmZyYXN0cnVjdHVyZTErMCkGA1UECwwiUG9zdC1IZWZmYWx1bXAg
 UmVzZWFyY2ggRGVwYXJ0bWVudDEYMBYGA1UEAwwPRUNEU0EgUm9vdCAtIEcxMB4X
-DTIzMDUyNTIwMzUxOVoXDTI2MDUyMTIwMzUxOVowLzELMAkGA1UEBhMCWFgxDzAN
-BgNVBAQMBllhbWFkYTEPMA0GA1UEKgwGSGFuYWtvMFkwEwYHKoZIzj0CAQYIKoZI
-zj0DAQcDQgAEQiVI+I+3gv+17KN0RFLHKh5Vj71vc75eSOkyMsxFxbFsTNEMTLjV
-uKFxOelIgsiZJXKZNCX0FBmrfpCkKklCcqNgMF4wDAYDVR0TAQH/BAIwADAOBgNV
-HQ8BAf8EBAMCB4AwHQYDVR0OBBYEFFtwp5gX95/2N9L349xEbCEJ17vUMB8GA1Ud
-IwQYMBaAFI7CFAlgduqQOOk5rhttUsQXfZ++MAoGCCqGSM49BAMEA4GLADCBhwJB
-djJzmjOez2BbzfVgCVjWbGVI9rPJaBYHgLFqzQ3Vc1eXGheY+m4cC6oXmDKjMgDW
-pP/GLSryq9yWbyglTYBfYaMCQgEnaofHHnLtZ9LtxaMPiKd9aoRkdH7Cz6NKFycJ
-A8ur1R+nONKoEfwA7vvARoVmIyiAjBkHTesesB5TLFOQ1paXbw==
+DTIzMDUyNjEzMDYzMVoXDTI2MDUyMjEzMDYzMVowLzELMAkGA1UEBhMCWFgxDzAN
+BgNVBAQMBllhbWFkYTEPMA0GA1UEKgwGSGFuYWtvMHYwEAYHKoZIzj0CAQYFK4EE
+ACIDYgAEWwkBuIUjKW65GdUP+hqcs3S8TUCVhigr/soRsdla27VHNK9XC/grcijP
+ImvPTCXdvP47GjrTlDDv92Ph1o0uFR2Rcgt3lbWNprNGOWE6j7m1qNpIxnRxF/mR
+noQk837Io4IBqjCCAaYwDAYDVR0TAQH/BAIwADAOBgNVHQ8BAf8EBAMCAwgwHQYD
+VR0OBBYEFArjoP6d1CV2mLXrcuvKDOe/PfXxMB8GA1UdIwQYMBaAFI7CFAlgduqQ
+OOk5rhttUsQXfZ++MIIBRAYKYIZIAYb6a1AGAQSCATQwggEwAhRVxU1+JyiKlGzh
+zokGIXvfVW0MsDBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABEIlSPiPt4L/teyj
+dERSxyoeVY+9b3O+XkjpMjLMRcWxbEzRDEy41bihcTnpSILImSVymTQl9BQZq36Q
+pCpJQnKkLzAOBgNVHQ8BAf8EBAMCB4AwHQYDVR0OBBYEFFtwp5gX95/2N9L349xE
+bCEJ17vUA4GLADCBhwJCATB+4mSAPRhLdoM3WSPx4l7PoZeuiYObCVZF7vV61bqm
+PhFskmZ+1aXSMIABfaNEL5Tc+fiSFOXuZs4JSfWxyTlaAkFiK9X4q5kvyHWy97Yb
+xkMOODeEq0ImwaMabmNOEs40EGEHbEPLIHzW347BR8iZquPCA9wspc6y8edyXcBv
+/g2YhzAKBggqhkjOPQQDBAOBiwAwgYcCQXY+Rtd1hMrl4tW7Is3cNjiwHNYs5L12
+J5Rv+O78opL/a6UfbGpceiB1OIeBkjj/RyVCTTSQit67FWc/gmDkkyiMAkIB+YuM
+wRXlfQVO3ivNdTluEOAI44SjpmXo63QjwqXLViTE66mOWZHBoXL6IilEtFajrkO/
+HAuJrywI2E3RoOHS+lY=
 -----END CERTIFICATE-----
 
 ~~~
 
-## Dilithium signing end-entity
-
-This is an end-entity signing certificate which certifies a Dilithium key. It contains a Delta Certificate Descriptor extension which includes sufficient information to recreate the ECDSA signing end-entity certificate.
-
 ~~~
-   0 6166: SEQUENCE {
-   4 2849:   SEQUENCE {
-   8    3:     [0] {
-  10    1:       INTEGER 2
-         :       }
-  13   20:     INTEGER 0D 8C F2 DF 03 16 03 78 8D DD FE CD E4 EB EB 56 86 BB 4B C6
-  35   13:     SEQUENCE {
-  37   11:       OBJECT IDENTIFIER '1 3 6 1 4 1 2 267 7 6 5'
-         :       }
-  50  143:     SEQUENCE {
-  53   11:       SET {
-  55    9:         SEQUENCE {
-  57    3:           OBJECT IDENTIFIER countryName (2 5 4 6)
-  62    2:           PrintableString 'XX'
-         :           }
-         :         }
-  66   53:       SET {
-  68   51:         SEQUENCE {
-  70    3:           OBJECT IDENTIFIER organizationName (2 5 4 10)
-  75   44:           UTF8String
-         :             'Royal Institute of Public Key Infrastructure'
-         :           }
-         :         }
- 121   43:       SET {
- 123   41:         SEQUENCE {
- 125    3:           OBJECT IDENTIFIER organizationalUnitName (2 5 4 11)
- 130   34:           UTF8String 'Post-Heffalump Research Department'
-         :           }
-         :         }
- 166   28:       SET {
- 168   26:         SEQUENCE {
- 170    3:           OBJECT IDENTIFIER commonName (2 5 4 3)
- 175   19:           UTF8String 'Dilithium Root - G1'
-         :           }
-         :         }
-         :       }
- 196   30:     SEQUENCE {
- 198   13:       UTCTime 25/05/2023 20:35:19 GMT
- 213   13:       UTCTime 21/05/2026 20:35:19 GMT
-         :       }
- 228   47:     SEQUENCE {
- 230   11:       SET {
- 232    9:         SEQUENCE {
- 234    3:           OBJECT IDENTIFIER countryName (2 5 4 6)
- 239    2:           PrintableString 'XX'
-         :           }
-         :         }
- 243   15:       SET {
- 245   13:         SEQUENCE {
- 247    3:           OBJECT IDENTIFIER surname (2 5 4 4)
- 252    6:           UTF8String 'Yamada'
-         :           }
-         :         }
- 260   15:       SET {
- 262   13:         SEQUENCE {
- 264    3:           OBJECT IDENTIFIER givenName (2 5 4 42)
- 269    6:           UTF8String 'Hanako'
-         :           }
-         :         }
-         :       }
- 277 1972:     SEQUENCE {
- 281   13:       SEQUENCE {
- 283   11:         OBJECT IDENTIFIER '1 3 6 1 4 1 2 267 7 6 5'
-         :         }
- 296 1953:       BIT STRING
-         :         26 B7 9D 05 2D DA 22 4D BB F4 CC 11 00 21 88 46
-         :         45 A8 B0 B0 58 29 23 0E 96 98 0F D2 0A EB 18 53
-         :         FE 86 B8 78 71 96 38 E3 07 7F A8 4B BB B8 78 BB
-         :         B4 9D DC 7D 06 EB 88 43 9D AB 5B A0 E7 A5 81 0B
-         :         C4 A8 4D 27 02 2F BA 2D 71 C5 EB 9B 7E B6 1E 4F
-         :         23 EB EA 28 FF 6C 10 FE 1E F8 D2 29 DB DD C2 77
-         :         22 42 D5 A1 8F 1D 20 33 FD 1A 6D 07 A1 B2 86 D4
-         :         D4 02 CF 23 38 8B 17 A8 6F 0C 6E D7 A2 6B 33 87
-         :                 [ Another 1824 bytes skipped ]
-         :       }
-2253  600:     [3] {
-2257  596:       SEQUENCE {
-2261   12:         SEQUENCE {
-2263    3:           OBJECT IDENTIFIER basicConstraints (2 5 29 19)
-2268    1:           BOOLEAN TRUE
-2271    2:           OCTET STRING, encapsulates {
-2273    0:             SEQUENCE {}
-         :             }
-         :           }
-2275   14:         SEQUENCE {
-2277    3:           OBJECT IDENTIFIER keyUsage (2 5 29 15)
-2282    1:           BOOLEAN TRUE
-2285    4:           OCTET STRING, encapsulates {
-2287    2:             BIT STRING 7 unused bits
-         :               '1'B (bit 0)
-         :             }
-         :           }
-2291   29:         SEQUENCE {
-2293    3:           OBJECT IDENTIFIER subjectKeyIdentifier (2 5 29 14)
-2298   22:           OCTET STRING, encapsulates {
-2300   20:             OCTET STRING
-         :               8F E9 0D 6F F4 13 3C A4 4C C2 04 D5 E6 39 CB FD
-         :               5C C7 83 11
-         :             }
-         :           }
-2322   31:         SEQUENCE {
-2324    3:           OBJECT IDENTIFIER authorityKeyIdentifier (2 5 29 35)
-2329   24:           OCTET STRING, encapsulates {
-2331   22:             SEQUENCE {
-2333   20:               [0]
-         :                 C4 91 2E B3 34 3C B6 D4 7B 43 05 22 79 FF 36 13
-         :                 59 4E 4D AF
-         :               }
-         :             }
-         :           }
-2355  498:         SEQUENCE {
-2359   10:           OBJECT IDENTIFIER '2 16 840 1 114027 80 6 1'
-2371  482:           OCTET STRING, encapsulates {
-2375  478:             SEQUENCE {
-2379   20:               INTEGER
-         :                 35 FE 9A 5B 0F 76 7D AE 26 CB D0 71 6C 9A 9E DE
-         :                 62 49 3A 5D
-2401   10:               [0] {
-2403    8:                 OBJECT IDENTIFIER
-         :                   ecdsaWithSHA512 (1 2 840 10045 4 3 4)
-         :                 }
-2413  142:               [1] {
-2416  139:                 SEQUENCE {
-2419   11:                   SET {
-2421    9:                     SEQUENCE {
-2423    3:                       OBJECT IDENTIFIER countryName (2 5 4 6)
-2428    2:                       PrintableString 'XX'
-         :                       }
-         :                     }
-2432   53:                   SET {
-2434   51:                     SEQUENCE {
-2436    3:                       OBJECT IDENTIFIER organizationName (2 5 4 10)
-2441   44:                       UTF8String
-         :                   'Royal Institute of Public Key Infrastructure'
-         :                       }
-         :                     }
-2487   43:                   SET {
-2489   41:                     SEQUENCE {
-2491    3:                       OBJECT IDENTIFIER
-         :                         organizationalUnitName (2 5 4 11)
-2496   34:                       UTF8String 'Post-Heffalump Research Department'
-         :                       }
-         :                     }
-2532   24:                   SET {
-2534   22:                     SEQUENCE {
-2536    3:                       OBJECT IDENTIFIER commonName (2 5 4 3)
-2541   15:                       UTF8String 'ECDSA Root - G1'
-         :                       }
-         :                     }
-         :                   }
-         :                 }
-2558   89:               SEQUENCE {
-2560   19:                 SEQUENCE {
-2562    7:                   OBJECT IDENTIFIER ecPublicKey (1 2 840 10045 2 1)
-2571    8:                   OBJECT IDENTIFIER prime256v1 (1 2 840 10045 3 1 7)
-         :                   }
-2581   66:                 BIT STRING
-         :                   04 42 25 48 F8 8F B7 82 FF B5 EC A3 74 44 52 C7
-         :                   2A 1E 55 8F BD 6F 73 BE 5E 48 E9 32 32 CC 45 C5
-         :                   B1 6C 4C D1 0C 4C B8 D5 B8 A1 71 39 E9 48 82 C8
-         :                   99 25 72 99 34 25 F4 14 19 AB 7E 90 A4 2A 49 42
-         :                   72
-         :                 }
-2649   64:               [4] {
-2651   29:                 SEQUENCE {
-2653    3:                   OBJECT IDENTIFIER subjectKeyIdentifier (2 5 29 14)
-2658   22:                   OCTET STRING, encapsulates {
-2660   20:                     OCTET STRING
-         :                     5B 70 A7 98 17 F7 9F F6 37 D2 F7 E3 DC 44 6C 21
-         :                     09 D7 BB D4
-         :                     }
-         :                   }
-2682   31:                 SEQUENCE {
-2684    3:                   OBJECT IDENTIFIER
-         :                     authorityKeyIdentifier (2 5 29 35)
-2689   24:                   OCTET STRING, encapsulates {
-2691   22:                     SEQUENCE {
-2693   20:                       [0]
-         :                     8E C2 14 09 60 76 EA 90 38 E9 39 AE 1B 6D 52 C4
-         :                     17 7D 9F BE
-         :                       }
-         :                     }
-         :                   }
-         :                 }
-2715  139:               BIT STRING, encapsulates {
-2719  135:                 SEQUENCE {
-2722   65:                   INTEGER
-         :                     76 32 73 9A 33 9E CF 60 5B CD F5 60 09 58 D6 6C
-         :                     65 48 F6 B3 C9 68 16 07 80 B1 6A CD 0D D5 73 57
-         :                     97 1A 17 98 FA 6E 1C 0B AA 17 98 32 A3 32 00 D6
-         :                     A4 FF C6 2D 2A F2 AB DC 96 6F 28 25 4D 80 5F 61
-         :                     A3
-2789   66:                   INTEGER
-         :                     01 27 6A 87 C7 1E 72 ED 67 D2 ED C5 A3 0F 88 A7
-         :                     7D 6A 84 64 74 7E C2 CF A3 4A 17 27 09 03 CB AB
-         :                     D5 1F A7 38 D2 A8 11 FC 00 EE FB C0 46 85 66 23
-         :                     28 80 8C 19 07 4D EB 1E B0 1E 53 2C 53 90 D6 96
-         :                     97 6F
-         :                   }
-         :                 }
-         :               }
-         :             }
-         :           }
-         :         }
-         :       }
-         :     }
-2857   13:   SEQUENCE {
-2859   11:     OBJECT IDENTIFIER '1 3 6 1 4 1 2 267 7 6 5'
-         :     }
-2872 3294:   BIT STRING
-         :     AB 1C 18 8F 51 6D AC F2 C2 4B EB 47 0C 25 A3 54
-         :     BF 6E 3F EF DB 96 44 C3 BA 54 A1 E6 43 C9 88 13
-         :     1B ED 8D C6 22 C6 F2 EC 95 8F 5E E2 C7 A2 DE 92
-         :     9E 49 32 35 33 B6 93 07 EF 60 41 4B CB 3F ED E9
-         :     21 91 EB 6F 61 F5 15 60 57 60 9B 93 DC 73 C1 54
-         :     FF EF AA 07 2F 46 57 CD DE EE BD B0 23 EF 20 C6
-         :     17 68 D4 D0 11 35 79 85 5B 80 DB 90 25 7E A8 17
-         :     11 FC DA 0C BD F9 31 91 FA 4D C7 6D 80 4C AB FB
-         :             [ Another 3165 bytes skipped ]
-         :   }
-
------BEGIN CERTIFICATE-----
-MIIYFjCCCyGgAwIBAgIUDYzy3wMWA3iN3f7N5OvrVoa7S8YwDQYLKwYBBAECggsH
-BgUwgY8xCzAJBgNVBAYTAlhYMTUwMwYDVQQKDCxSb3lhbCBJbnN0aXR1dGUgb2Yg
-UHVibGljIEtleSBJbmZyYXN0cnVjdHVyZTErMCkGA1UECwwiUG9zdC1IZWZmYWx1
-bXAgUmVzZWFyY2ggRGVwYXJ0bWVudDEcMBoGA1UEAwwTRGlsaXRoaXVtIFJvb3Qg
-LSBHMTAeFw0yMzA1MjUyMDM1MTlaFw0yNjA1MjEyMDM1MTlaMC8xCzAJBgNVBAYT
-AlhYMQ8wDQYDVQQEDAZZYW1hZGExDzANBgNVBCoMBkhhbmFrbzCCB7QwDQYLKwYB
-BAECggsHBgUDggehACa3nQUt2iJNu/TMEQAhiEZFqLCwWCkjDpaYD9IK6xhT/oa4
-eHGWOOMHf6hLu7h4u7Sd3H0G64hDnatboOelgQvEqE0nAi+6LXHF65t+th5PI+vq
-KP9sEP4e+NIp293CdyJC1aGPHSAz/RptB6GyhtTUAs8jOIsXqG8MbteiazOHHpqI
-w3bL4185e0VLkk2X/I26+qaiJyTstWIzT0xmp2P1dtDFA/7pJkpvt7bnCjY6dPQx
-Fm1h2OEOIdAL91ujNqKcx5mh5gq956ms4MyjnW6qFJuPm+txzIT/YOFlWwSnaEm0
-HCVZO8ah4yTKJqXbzjv4IeoQ0ZzU8FsNm7NL2TA+26WhBEdK3JlHPMOgKftjQBd5
-fR5M+9hS1wJ+88RfUqQZw4pHSsVpq7DbyUV3e13aVOD6qTOcralEibUD6gVrhIbt
-2jfD24fBI+mEO2+uxtaLJy83fUz9kEoOayjqyl7iyJLaiC5POoCq0WX2JZD0olD9
-nzSxkWXhKwtCnbRSrFLTqNbkTjRG2R6dqRsLPpXQSzHuH1AP+nfWsxZm0w3i7PGQ
-AXUDMGieaPKvN5GIKB77WzPOOu8cecoCAC4znAM5JtTS+AyXUPhRa0baRpJMBmdp
-74kLxsjv4dKJ3PHZEEgFBBonfVe1WL49byD8L1tMTyMtJIyeULojyQEDSiIeQ3O8
-U1SuCExX/CJUnwMkGcabJWvNOB3PoWd1Ub/39cHcyA+S+/W5jCJhHypt4tPRZE4Y
-1tx1tJbyRfI4JDi4NhXjI7mpY3Ny5NgYqvI4EcY3hryy8ICM61wFAEIaIkM4H7Iw
-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
-t9bkPD9cnN8AAAAAAAAAAAAAAAAJEBkhJis=
------END CERTIFICATE-----
-
-~~~
-
-## EC dual use end-entity
-
-This is an end-entity key exchange certificate which certifies a EC key. It contains a Delta Certificate Descriptor extension which includes sufficient information to the recreate the ECDSA signing end-entity certificate.
-
-~~~
-  0 971: SEQUENCE {
+  0 970: SEQUENCE {
   4 812:   SEQUENCE {
   8   3:     [0] {
  10   1:       INTEGER 2
        :       }
- 13  20:     INTEGER 7B D9 3E F5 D3 01 58 7A 40 F8 5D 73 F0 AC 7E 5E 0B AB 88 16
+ 13  20:     INTEGER 73 3C 5C 56 C3 5A EC CF 6E 4A CE 7D F2 FB 86 6A D1 8B 0E E2
  35  10:     SEQUENCE {
  37   8:       OBJECT IDENTIFIER ecdsaWithSHA512 (1 2 840 10045 4 3 4)
        :       }
@@ -1699,8 +2008,8 @@ This is an end-entity key exchange certificate which certifies a EC key. It cont
        :         }
        :       }
 189  30:     SEQUENCE {
-191  13:       UTCTime 25/05/2023 20:35:19 GMT
-206  13:       UTCTime 21/05/2026 20:35:19 GMT
+191  13:       UTCTime 26/05/2023 13:06:31 GMT
+206  13:       UTCTime 22/05/2026 13:06:31 GMT
        :       }
 221  47:     SEQUENCE {
 223  11:       SET {
@@ -1772,12 +2081,13 @@ This is an end-entity key exchange certificate which certifies a EC key. It cont
        :             }
        :           }
 492 324:         SEQUENCE {
-496  10:           OBJECT IDENTIFIER '2 16 840 1 114027 80 6 1'
+496  10:           OBJECT IDENTIFIER
+       :             deltaCertificateDescriptor (2 16 840 1 114027 80 6 1)
 508 308:           OCTET STRING, encapsulates {
 512 304:             SEQUENCE {
 516  20:               INTEGER
-       :                 35 FE 9A 5B 0F 76 7D AE 26 CB D0 71 6C 9A 9E DE
-       :                 62 49 3A 5D
+       :                 55 C5 4D 7E 27 28 8A 94 6C E1 CE 89 06 21 7B DF
+       :                 55 6D 0C B0
 538  89:               SEQUENCE {
 540  19:                 SEQUENCE {
 542   7:                   OBJECT IDENTIFIER ecPublicKey (1 2 840 10045 2 1)
@@ -1810,18 +2120,18 @@ This is an end-entity key exchange certificate which certifies a EC key. It cont
        :                 }
 678 139:               BIT STRING, encapsulates {
 682 135:                 SEQUENCE {
-685  65:                   INTEGER
-       :                     76 32 73 9A 33 9E CF 60 5B CD F5 60 09 58 D6 6C
-       :                     65 48 F6 B3 C9 68 16 07 80 B1 6A CD 0D D5 73 57
-       :                     97 1A 17 98 FA 6E 1C 0B AA 17 98 32 A3 32 00 D6
-       :                     A4 FF C6 2D 2A F2 AB DC 96 6F 28 25 4D 80 5F 61
-       :                     A3
-752  66:                   INTEGER
-       :                     01 27 6A 87 C7 1E 72 ED 67 D2 ED C5 A3 0F 88 A7
-       :                     7D 6A 84 64 74 7E C2 CF A3 4A 17 27 09 03 CB AB
-       :                     D5 1F A7 38 D2 A8 11 FC 00 EE FB C0 46 85 66 23
-       :                     28 80 8C 19 07 4D EB 1E B0 1E 53 2C 53 90 D6 96
-       :                     97 6F
+685  66:                   INTEGER
+       :                     01 30 7E E2 64 80 3D 18 4B 76 83 37 59 23 F1 E2
+       :                     5E CF A1 97 AE 89 83 9B 09 56 45 EE F5 7A D5 BA
+       :                     A6 3E 11 6C 92 66 7E D5 A5 D2 30 80 01 7D A3 44
+       :                     2F 94 DC F9 F8 92 14 E5 EE 66 CE 09 49 F5 B1 C9
+       :                     39 5A
+753  65:                   INTEGER
+       :                     62 2B D5 F8 AB 99 2F C8 75 B2 F7 B6 1B C6 43 0E
+       :                     38 37 84 AB 42 26 C1 A3 1A 6E 63 4E 12 CE 34 10
+       :                     61 07 6C 43 CB 20 7C D6 DF 8E C1 47 C8 99 AA E3
+       :                     C2 03 DC 2C A5 CE B2 F1 E7 72 5D C0 6F FE 0D 98
+       :                     87
        :                   }
        :                 }
        :               }
@@ -1833,47 +2143,23 @@ This is an end-entity key exchange certificate which certifies a EC key. It cont
 820  10:   SEQUENCE {
 822   8:     OBJECT IDENTIFIER ecdsaWithSHA512 (1 2 840 10045 4 3 4)
        :     }
-832 140:   BIT STRING, encapsulates {
-836 136:     SEQUENCE {
-839  66:       INTEGER
-       :         01 D2 2C 49 9F E5 03 D7 DA D3 27 60 83 1F 9A AF
-       :         DF 0A DA D8 45 EF 1D 7F C4 63 AF D2 F5 8C 05 95
-       :         05 86 9E 83 3B 91 32 49 22 1E 2C 71 23 8B 88 22
-       :         99 D1 8F A3 9A ED 95 58 7B 91 32 0F 2D 53 26 43
-       :         E6 50
-907  66:       INTEGER
-       :         01 D0 FD E2 6A E4 15 65 3D 54 97 E6 E2 59 A4 70
-       :         5F 26 93 DB 2B ED BD 68 24 A9 44 AB F4 9C 10 EA
-       :         D6 A5 FF D2 9E 4E 77 1C 8A 4C 3F DB E3 35 CE F6
-       :         BB CB 16 0E 1F BC 6C E5 1A 49 32 0D CB 91 5C F4
-       :         35 DD
+832 139:   BIT STRING, encapsulates {
+836 135:     SEQUENCE {
+839  65:       INTEGER
+       :         76 3E 46 D7 75 84 CA E5 E2 D5 BB 22 CD DC 36 38
+       :         B0 1C D6 2C E4 BD 76 27 94 6F F8 EE FC A2 92 FF
+       :         6B A5 1F 6C 6A 5C 7A 20 75 38 87 81 92 38 FF 47
+       :         25 42 4D 34 90 8A DE BB 15 67 3F 82 60 E4 93 28
+       :         8C
+906  66:       INTEGER
+       :         01 F9 8B 8C C1 15 E5 7D 05 4E DE 2B CD 75 39 6E
+       :         10 E0 08 E3 84 A3 A6 65 E8 EB 74 23 C2 A5 CB 56
+       :         24 C4 EB A9 8E 59 91 C1 A1 72 FA 22 29 44 B4 56
+       :         A3 AE 43 BF 1C 0B 89 AF 2C 08 D8 4D D1 A0 E1 D2
+       :         FA 56
        :       }
        :     }
        :   }
-
------BEGIN CERTIFICATE-----
-MIIDyzCCAyygAwIBAgIUe9k+9dMBWHpA+F1z8Kx+XguriBYwCgYIKoZIzj0EAwQw
-gYsxCzAJBgNVBAYTAlhYMTUwMwYDVQQKDCxSb3lhbCBJbnN0aXR1dGUgb2YgUHVi
-bGljIEtleSBJbmZyYXN0cnVjdHVyZTErMCkGA1UECwwiUG9zdC1IZWZmYWx1bXAg
-UmVzZWFyY2ggRGVwYXJ0bWVudDEYMBYGA1UEAwwPRUNEU0EgUm9vdCAtIEcxMB4X
-DTIzMDUyNTIwMzUxOVoXDTI2MDUyMTIwMzUxOVowLzELMAkGA1UEBhMCWFgxDzAN
-BgNVBAQMBllhbWFkYTEPMA0GA1UEKgwGSGFuYWtvMHYwEAYHKoZIzj0CAQYFK4EE
-ACIDYgAEWwkBuIUjKW65GdUP+hqcs3S8TUCVhigr/soRsdla27VHNK9XC/grcijP
-ImvPTCXdvP47GjrTlDDv92Ph1o0uFR2Rcgt3lbWNprNGOWE6j7m1qNpIxnRxF/mR
-noQk837Io4IBqjCCAaYwDAYDVR0TAQH/BAIwADAOBgNVHQ8BAf8EBAMCAwgwHQYD
-VR0OBBYEFArjoP6d1CV2mLXrcuvKDOe/PfXxMB8GA1UdIwQYMBaAFI7CFAlgduqQ
-OOk5rhttUsQXfZ++MIIBRAYKYIZIAYb6a1AGAQSCATQwggEwAhQ1/ppbD3Z9ribL
-0HFsmp7eYkk6XTBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABEIlSPiPt4L/teyj
-dERSxyoeVY+9b3O+XkjpMjLMRcWxbEzRDEy41bihcTnpSILImSVymTQl9BQZq36Q
-pCpJQnKkLzAOBgNVHQ8BAf8EBAMCB4AwHQYDVR0OBBYEFFtwp5gX95/2N9L349xE
-bCEJ17vUA4GLADCBhwJBdjJzmjOez2BbzfVgCVjWbGVI9rPJaBYHgLFqzQ3Vc1eX
-GheY+m4cC6oXmDKjMgDWpP/GLSryq9yWbyglTYBfYaMCQgEnaofHHnLtZ9LtxaMP
-iKd9aoRkdH7Cz6NKFycJA8ur1R+nONKoEfwA7vvARoVmIyiAjBkHTesesB5TLFOQ
-1paXbzAKBggqhkjOPQQDBAOBjAAwgYgCQgHSLEmf5QPX2tMnYIMfmq/fCtrYRe8d
-f8Rjr9L1jAWVBYaegzuRMkkiHixxI4uIIpnRj6Oa7ZVYe5EyDy1TJkPmUAJCAdD9
-4mrkFWU9VJfm4lmkcF8mk9sr7b1oJKlEq/ScEOrWpf/Snk53HIpMP9vjNc72u8sW
-Dh+8bOUaSTINy5Fc9DXd
------END CERTIFICATE-----
 
 ~~~
 
