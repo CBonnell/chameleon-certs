@@ -69,7 +69,7 @@ useful as part of a key or signature algorithm migration, where subjects
 may be issued multiple certificates containing different public keys or
 signed with different CA private keys or signature algorithms. This
 method does not require any changes to the certification path
-algorithm as described in {{!RFC5280}}. Additionally, this method
+algorithm as described in RFC 5280. Additionally, this method
 does not violate the constraints of serial number
 uniqueness for certificates issued by a single certification
 authority.
@@ -95,7 +95,14 @@ certificate as needed by relying parties.
 
 This document specifies an X.509 v3 certificate extension that includes
 sufficient information for a relying party to construct both paired
-certificates with a single certificate. Additionally, this document
+certificates with a single certificate. This
+method does not require any changes to the certification path
+algorithm as described in {{!RFC5280}}. Additionally, this method
+does not violate the constraints of serial number
+uniqueness for certificates issued by a single certification
+authority.
+
+In addition to the certificate extension, this document
 specifies two PKCS #10 Certification Signing Request attributes that can
 be used by applicants to request Paired Certificates using a single
 PKCS #10 Certification Signing Request.
