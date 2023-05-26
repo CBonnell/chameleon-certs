@@ -4,7 +4,7 @@
 
 Network Working Group                                         C. Bonnell
 Internet-Draft                                                  DigiCert
-Intended status: Informational                                   J. Gray
+Intended status: Standards Track                                 J. Gray
 Expires: 27 November 2023                                        Entrust
                                                                  D. Hook
                                                                KeyFactor
