@@ -1,6 +1,6 @@
 ---
 title: "A Mechanism for Encoding Differences in Paired Certificates"
-category: info
+category: std
 
 docname: draft-lamps-chameleon-certs-latest
 submissiontype: IETF  # also: "independent", "IAB", or "IRTF"
