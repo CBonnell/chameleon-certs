@@ -266,7 +266,7 @@ def print_cert(name, description, pyasn1_cert: rfc5280.Certificate):
             cert_file.write(encoded)
             cert_file.flush()
 
-            output = subprocess.check_output(['dumpasn1', '-c', config_file.name, cert_file.name]).decode()
+            output = subprocess.check_output(['dumpasn1', f'-c{config_file.name}', cert_file.name]).decode()
 
             print('~~~')
             print(output)
