@@ -2,7 +2,7 @@
 title: "A Mechanism for Encoding Differences in Paired Certificates"
 category: std
 
-docname: draft-lamps-chameleon-certs-latest
+docname: draft-bonnell-chameleon-certs-latest
 submissiontype: IETF  # also: "independent", "IAB", or "IRTF"
 number:
 date:
@@ -20,7 +20,7 @@ venue:
   mail: "spasm@ietf.org"
   arch: "https://mailarchive.ietf.org/arch/browse/spasm/"
   github: "CBonnell/chameleon-certs"
-  latest: "https://CBonnell.github.io/chameleon-certs/draft-lamps-chameleon-certs.html"
+  latest: "https://CBonnell.github.io/chameleon-certs/draft-bonnell-chameleon-certs.html"
 
 author:
  -
@@ -751,7 +751,7 @@ GgzGspA2nRph
 
 ### Dilithium root certificate
 
-This is the Dilithium root certificate. It contains a Delta Certificate Descriptor extension which includes sufficient information to recreate the ECDSA P-521 root
+This is the Dilithium root certificate. It contains a Delta Certificate Descriptor extension which includes sufficient information to recreate the ECDSA P-521 root.
 
 ~~~
 -----BEGIN CERTIFICATE-----

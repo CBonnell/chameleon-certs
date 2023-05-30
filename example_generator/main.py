@@ -289,7 +289,7 @@ print_cert('EC P-521 root certificate', 'This is the EC root certificate.', ecds
 dilithium_root = issue_dilthium_root(dilithium_root_key, ecdsa_root)
 print_cert('Dilithium root certificate',
            'This is the Dilithium root certificate. It contains a Delta Certificate Descriptor extension which '
-        'includes sufficient information to recreate the ECDSA P-521 root',
+        'includes sufficient information to recreate the ECDSA P-521 root.',
            dilithium_root)
 
 print('## Algorithm migration example')

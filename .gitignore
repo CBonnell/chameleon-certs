@@ -17,10 +17,13 @@
 /versioned/
 Gemfile.lock
 archive.json
-draft-lamps-chameleon-certs.xml
+draft-bonnell-chameleon-certs.xml
 package-lock.json
 report.xml
 !requirements.txt
 
 /liboqs/
 /libqos-python/
+/.idea/
+*.py
+*.pyc
