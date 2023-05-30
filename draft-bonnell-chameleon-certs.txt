@@ -5,18 +5,18 @@
 Network Working Group                                         C. Bonnell
 Internet-Draft                                                  DigiCert
 Intended status: Standards Track                                 J. Gray
-Expires: 27 November 2023                                        Entrust
+Expires: 1 December 2023                                         Entrust
                                                                  D. Hook
                                                                KeyFactor
                                                                 T. Okubo
                                                                 DigiCert
                                                             M. Ounsworth
                                                                  Entrust
-                                                             26 May 2023
+                                                             30 May 2023
 
 
       A Mechanism for Encoding Differences in Paired Certificates
-                   draft-lamps-chameleon-certs-latest
+                  draft-bonnell-chameleon-certs-latest
 
 Abstract
 
@@ -39,9 +39,9 @@ About This Document
    This note is to be removed before publishing as an RFC.
 
    The latest revision of this draft can be found at
-   https://CBonnell.github.io/chameleon-certs/draft-lamps-chameleon-
+   https://CBonnell.github.io/chameleon-certs/draft-bonnell-chameleon-
    certs.html.  Status information for this document may be found at
-   https://datatracker.ietf.org/doc/draft-lamps-chameleon-certs/.
+   https://datatracker.ietf.org/doc/draft-bonnell-chameleon-certs/.
 
    Discussion of this document takes place on the Limited Additional
    Mechanisms for PKIX and SMIME (lamps) Working Group mailing list
@@ -67,7 +67,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 27 November 2023.
+   This Internet-Draft will expire on 1 December 2023.
 
 Copyright Notice
 
@@ -821,7 +821,7 @@ B.1.2.  Dilithium root certificate
 
    This is the Dilithium root certificate.  It contains a Delta
    Certificate Descriptor extension which includes sufficient
-   information to recreate the ECDSA P-521 root
+   information to recreate the ECDSA P-521 root.
 
    -----BEGIN CERTIFICATE-----
    MIIZTzCCDFqgAwIBAgIUZnCGGMVMAm3yS76tvDlbOa45t5QwDQYLKwYBBAECggsH
