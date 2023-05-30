@@ -2,7 +2,7 @@
 title: "A Mechanism for Encoding Differences in Paired Certificates"
 category: std
 
-docname: draft-bonnell-chameleon-certs-latest
+docname: draft-bonnell-lamps-chameleoncerts-latest
 submissiontype: IETF  # also: "independent", "IAB", or "IRTF"
 number:
 date:
@@ -20,7 +20,7 @@ venue:
   mail: "spasm@ietf.org"
   arch: "https://mailarchive.ietf.org/arch/browse/spasm/"
   github: "CBonnell/chameleon-certs"
-  latest: "https://CBonnell.github.io/chameleon-certs/draft-bonnell-chameleon-certs.html"
+  latest: "https://CBonnell.github.io/chameleon-certs/draft-bonnell-lamps-chameleoncerts.html"
 
 author:
  -

@@ -2,10 +2,10 @@
 
 This is the working area for the individual Internet-Draft, "A Mechanism for Encoding Differences in Paired Certificates".
 
-* [Editor's Copy](https://CBonnell.github.io/chameleon-certs/#go.draft-bonnell-chameleon-certs.html)
-* [Datatracker Page](https://datatracker.ietf.org/doc/draft-bonnell-chameleon-certs)
-* [Individual Draft](https://datatracker.ietf.org/doc/html/draft-bonnell-chameleon-certs)
-* [Compare Editor's Copy to Individual Draft](https://CBonnell.github.io/chameleon-certs/#go.draft-bonnell-chameleon-certs.diff)
+* [Editor's Copy](https://CBonnell.github.io/chameleon-certs/#go.draft-bonnell-lamps-chameleoncerts.html)
+* [Datatracker Page](https://datatracker.ietf.org/doc/draft-bonnell-lamps-chameleoncerts)
+* [Individual Draft](https://datatracker.ietf.org/doc/html/draft-bonnell-lamps-chameleoncerts)
+* [Compare Editor's Copy to Individual Draft](https://CBonnell.github.io/chameleon-certs/#go.draft-bonnell-lamps-chameleoncerts.diff)
 
 
 ## Contributing
