@@ -23,7 +23,7 @@ report.xml
 !requirements.txt
 
 /liboqs/
-/libqos-python/
+/liboqs-python/
 /.idea/
 *.py
 *.pyc
