@@ -218,12 +218,14 @@ The ASN.1 syntax of the extension is as follows:
 ~~~
 DeltaCertificateDescriptor ::= SEQUENCE {
   serialNumber          CertificateSerialNumber,
-  signature             [0] IMPLICIT AlgorithmIdentifier {SIGNATURE_ALGORITHM, {...}} OPTIONAL,
+  signature             [0] IMPLICIT AlgorithmIdentifier
+       {SIGNATURE_ALGORITHM, {...}} OPTIONAL,
   issuer                [1] IMPLICIT Name OPTIONAL,
   validity              [2] IMPLICIT Validity OPTIONAL,
   subject               [3] IMPLICIT Name OPTIONAL,
   subjectPublicKeyInfo  SubjectPublicKeyInfo,
-  extensions            [4] IMPLICIT Extensions{CertExtensions} OPTIONAL,
+  extensions            [4] IMPLICIT Extensions{CertExtensions}
+       OPTIONAL,
   signatureValue        BIT STRING
 }
 ~~~
@@ -233,14 +235,15 @@ serial number of the Delta Certificate.
 
 If present, the signature field specifies the signature algorithm used
 by the issuing certification authority to sign the Delta Certificate.
-If the signature field is absent, then the value of the signature field
-of the Base Certificate and Delta Certificate is equal.
+If the signature field is absent, then the DER encoding of the value of
+the signature field of the Base Certificate and Delta Certificate is
+equal.
 
 If present, the issuer field specifies the distinguished name of the
 issuing certification authority which signed the Delta Certificate. If
-the issuer field is absent, then the distinguished name of the issuing
-certification authority for both the Base Certificate and Delta
-Certificate is the same.
+the issuer field is absent, then the DER encoding of the distinguished
+name of the issuing certification authority for both the Base
+Certificate and Delta Certificate is the same.
 
 If present, the validity field specifies the validity period of the
 Delta Certificate. If the validity field is absent, then the validity
@@ -248,8 +251,9 @@ period of both the Base Certificate and Delta Certificate is the same.
 
 If present, the subject field specifies the distinguished name of the
 named subject as encoded in the Delta Certificate. If the
-subject field is absent, then the distinguished name of the named
-subject for both the Base Certificate and Delta Certificate is the same.
+subject field is absent, then the DER encoding of the distinguished name
+of the named subject for both the Base Certificate and Delta Certificate
+is the same.
 
 The subjectPublicKeyInfo field contains the public key
 included in the Delta Certificate. The value of this field MUST differ
@@ -356,7 +360,8 @@ DeltaCertificateRequestValue ::= SEQUENCE {
   subject               [0] IMPLICIT Name OPTIONAL,
   subjectPKInfo         SubjectPublicKeyInfo,
   extensions            [1] IMPLICIT Extensions{CertExtensions} OPTIONAL,
-  signatureAlgorithm    [2] IMPLICIT AlgorithmIdentifier {SIGNATURE_ALGORITHM, {...}} OPTIONAL
+  signatureAlgorithm    [2] IMPLICIT AlgorithmIdentifier
+       {SIGNATURE_ALGORITHM, {...}} OPTIONAL
 }
 
 DeltaCertificateRequest ::= ATTRIBUTE {
@@ -473,13 +478,14 @@ The OID for the module should be allocated in the
 
 # ASN.1 Module {#asn1-module}
 
-The following ASN.1 {{X.680}} module provides the complete definition of the extensions, attributes, and
-associated identifiers specified in this document.
+The following ASN.1 {{X.680}} module provides the complete definition of
+the extensions, attributes, and associated identifiers specified in this
+document.
 
 ~~~
 
-DeltaCertificateDescriptor { iso(1) identified-organization(3) dod(6) internet(1)
-  security(5) mechanisms(5) pkix(7) id-mod(0)
+DeltaCertificateDescriptor { iso(1) identified-organization(3) dod(6)
+  internet(1) security(5) mechanisms(5) pkix(7) id-mod(0)
   id-mod-deltaCertificateDescriptor(TBD) }
 
 DEFINITIONS EXPLICIT TAGS ::=
@@ -501,8 +507,8 @@ IMPORTS
     security(5) mechanisms(5) pkix(7) id-mod(0)
     id-mod-pkixCommon-02(57) }
 
-  CertificateSerialNumber, Name, Validity, SubjectPublicKeyInfo, CertExtensions
-  FROM PKIX1Explicit-2009  -- RFC 5912
+  CertificateSerialNumber, Name, Validity, SubjectPublicKeyInfo,
+  CertExtensions FROM PKIX1Explicit-2009  -- RFC 5912
   { iso(1) identified-organization(3) dod(6) internet(1) security(5)
     mechanisms(5) pkix(7) id-mod(0) id-mod-pkix1-explicit-02(51) };
 
@@ -515,16 +521,19 @@ id-temporaryArc OBJECT IDENTIFIER ::= {
 
 -- Extension --
 
-id-ce-deltaCertificateDescriptor OBJECT IDENTIFIER ::= { id-temporaryArc 1 }
+id-ce-deltaCertificateDescriptor OBJECT IDENTIFIER ::= {
+       id-temporaryArc 1 }
 
 DeltaCertificateDescriptor ::= SEQUENCE {
   serialNumber          CertificateSerialNumber,
-  signature             [0] IMPLICIT AlgorithmIdentifier {SIGNATURE_ALGORITHM, {...}} OPTIONAL,
+  signature             [0] IMPLICIT AlgorithmIdentifier
+       {SIGNATURE_ALGORITHM, {...}} OPTIONAL,
   issuer                [1] IMPLICIT Name OPTIONAL,
   validity              [2] IMPLICIT Validity OPTIONAL,
   subject               [3] IMPLICIT Name OPTIONAL,
   subjectPublicKeyInfo  SubjectPublicKeyInfo,
-  extensions            [4] IMPLICIT Extensions{CertExtensions} OPTIONAL,
+  extensions            [4] IMPLICIT Extensions{CertExtensions}
+       OPTIONAL,
   signatureValue        BIT STRING
 }
 
@@ -536,13 +545,15 @@ ext-deltaCertificateDescriptor EXTENSION ::= {
 
 -- Request Attributes --
 
-id-at-deltaCertificateRequest OBJECT IDENTIFIER ::= { id-temporaryArc 2 }
+id-at-deltaCertificateRequest OBJECT IDENTIFIER ::= {
+       id-temporaryArc 2 }
 
 DeltaCertificateRequestValue ::= SEQUENCE {
   subject               [0] IMPLICIT Name OPTIONAL,
   subjectPKInfo         SubjectPublicKeyInfo,
   extensions            [1] IMPLICIT Extensions{CertExtensions} OPTIONAL,
-  signatureAlgorithm    [2] IMPLICIT AlgorithmIdentifier {SIGNATURE_ALGORITHM, {...}} OPTIONAL
+  signatureAlgorithm    [2] IMPLICIT AlgorithmIdentifier
+       {SIGNATURE_ALGORITHM, {...}} OPTIONAL
 }
 
 DeltaCertificateRequest ::= ATTRIBUTE {
@@ -551,7 +562,8 @@ DeltaCertificateRequest ::= ATTRIBUTE {
    ID id-at-deltaCertificateRequest
 }
 
-id-at-deltaCertificateRequestSignature OBJECT IDENTIFIER ::= { id-temporaryArc 3 }
+id-at-deltaCertificateRequestSignature OBJECT IDENTIFIER ::= {
+       id-temporaryArc 3 }
 
 DeltaCertificateRequestSignatureValue ::= BIT STRING
 
@@ -567,13 +579,16 @@ END
 
 # Examples
 
-This appendix includes some example certificates which demonstrate the use of the mechanism specified in this document.
-Two use cases of this mechanism are demonstrated: algorithm migration and dual use. The PEM text and dumpasn1 output for
-each certificate is provided.
+This appendix includes some example certificates which demonstrate the
+use of the mechanism specified in this document. Two use cases of this
+mechanism are demonstrated: algorithm migration and dual use. The PEM
+text and dumpasn1 output for each certificate is provided.
 
 ## Root certificates
 
-The two certificates in this section represent the two root Certification Authorities which issue the end-entity certificates in the following section.
+The two certificates in this section represent the two root
+Certification Authorities which issue the end-entity certificates in the
+following section.
 
 ### EC P-521 root certificate
 
