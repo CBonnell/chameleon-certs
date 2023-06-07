@@ -5,14 +5,14 @@
 Network Working Group                                         C. Bonnell
 Internet-Draft                                                  DigiCert
 Intended status: Standards Track                                 J. Gray
-Expires: 2 December 2023                                         Entrust
+Expires: 9 December 2023                                         Entrust
                                                                  D. Hook
                                                                KeyFactor
                                                                 T. Okubo
                                                                 DigiCert
                                                             M. Ounsworth
                                                                  Entrust
-                                                             31 May 2023
+                                                             7 June 2023
 
 
       A Mechanism for Encoding Differences in Paired Certificates
@@ -68,7 +68,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 2 December 2023.
+   This Internet-Draft will expire on 9 December 2023.
 
 Copyright Notice
 
@@ -259,31 +259,33 @@ Table of Contents
 
    The ASN.1 syntax of the extension is as follows:
 
-DeltaCertificateDescriptor ::= SEQUENCE {
-  serialNumber          CertificateSerialNumber,
-  signature             [0] IMPLICIT AlgorithmIdentifier {SIGNATURE_ALGORITHM, {...}} OPTIONAL,
-  issuer                [1] IMPLICIT Name OPTIONAL,
-  validity              [2] IMPLICIT Validity OPTIONAL,
-  subject               [3] IMPLICIT Name OPTIONAL,
-  subjectPublicKeyInfo  SubjectPublicKeyInfo,
-  extensions            [4] IMPLICIT Extensions{CertExtensions} OPTIONAL,
-  signatureValue        BIT STRING
-}
+   DeltaCertificateDescriptor ::= SEQUENCE {
+     serialNumber          CertificateSerialNumber,
+     signature             [0] IMPLICIT AlgorithmIdentifier
+          {SIGNATURE_ALGORITHM, {...}} OPTIONAL,
+     issuer                [1] IMPLICIT Name OPTIONAL,
+     validity              [2] IMPLICIT Validity OPTIONAL,
+     subject               [3] IMPLICIT Name OPTIONAL,
+     subjectPublicKeyInfo  SubjectPublicKeyInfo,
+     extensions            [4] IMPLICIT Extensions{CertExtensions}
+          OPTIONAL,
+     signatureValue        BIT STRING
+   }
 
    The serialNumber field MUST be present and contain the serial number
    of the Delta Certificate.
 
    If present, the signature field specifies the signature algorithm
    used by the issuing certification authority to sign the Delta
-   Certificate.  If the signature field is absent, then the value of the
-   signature field of the Base Certificate and Delta Certificate is
-   equal.
+   Certificate.  If the signature field is absent, then the DER encoding
+   of the value of the signature field of the Base Certificate and Delta
+   Certificate is equal.
 
    If present, the issuer field specifies the distinguished name of the
    issuing certification authority which signed the Delta Certificate.
-   If the issuer field is absent, then the distinguished name of the
-   issuing certification authority for both the Base Certificate and
-   Delta Certificate is the same.
+   If the issuer field is absent, then the DER encoding of the
+   distinguished name of the issuing certification authority for both
+   the Base Certificate and Delta Certificate is the same.
 
    If present, the validity field specifies the validity period of the
    Delta Certificate.  If the validity field is absent, then the
@@ -292,8 +294,9 @@ DeltaCertificateDescriptor ::= SEQUENCE {
 
    If present, the subject field specifies the distinguished name of the
    named subject as encoded in the Delta Certificate.  If the subject
-   field is absent, then the distinguished name of the named subject for
-   both the Base Certificate and Delta Certificate is the same.
+   field is absent, then the DER encoding of the distinguished name of
+   the named subject for both the Base Certificate and Delta Certificate
+   is the same.
 
    The subjectPublicKeyInfo field contains the public key included in
    the Delta Certificate.  The value of this field MUST differ from the
@@ -411,7 +414,8 @@ DeltaCertificateRequestValue ::= SEQUENCE {
   subject               [0] IMPLICIT Name OPTIONAL,
   subjectPKInfo         SubjectPublicKeyInfo,
   extensions            [1] IMPLICIT Extensions{CertExtensions} OPTIONAL,
-  signatureAlgorithm    [2] IMPLICIT AlgorithmIdentifier {SIGNATURE_ALGORITHM, {...}} OPTIONAL
+  signatureAlgorithm    [2] IMPLICIT AlgorithmIdentifier
+       {SIGNATURE_ALGORITHM, {...}} OPTIONAL
 }
 
 DeltaCertificateRequest ::= ATTRIBUTE {
@@ -552,8 +556,8 @@ Appendix A.  ASN.1 Module
    of the extensions, attributes, and associated identifiers specified
    in this document.
 
-DeltaCertificateDescriptor { iso(1) identified-organization(3) dod(6) internet(1)
-  security(5) mechanisms(5) pkix(7) id-mod(0)
+DeltaCertificateDescriptor { iso(1) identified-organization(3) dod(6)
+  internet(1) security(5) mechanisms(5) pkix(7) id-mod(0)
   id-mod-deltaCertificateDescriptor(TBD) }
 
 DEFINITIONS EXPLICIT TAGS ::=
@@ -575,8 +579,8 @@ IMPORTS
     security(5) mechanisms(5) pkix(7) id-mod(0)
     id-mod-pkixCommon-02(57) }
 
-  CertificateSerialNumber, Name, Validity, SubjectPublicKeyInfo, CertExtensions
-  FROM PKIX1Explicit-2009  -- RFC 5912
+  CertificateSerialNumber, Name, Validity, SubjectPublicKeyInfo,
+  CertExtensions FROM PKIX1Explicit-2009  -- RFC 5912
   { iso(1) identified-organization(3) dod(6) internet(1) security(5)
     mechanisms(5) pkix(7) id-mod(0) id-mod-pkix1-explicit-02(51) };
 
@@ -589,16 +593,19 @@ id-temporaryArc OBJECT IDENTIFIER ::= {
 
 -- Extension --
 
-id-ce-deltaCertificateDescriptor OBJECT IDENTIFIER ::= { id-temporaryArc 1 }
+id-ce-deltaCertificateDescriptor OBJECT IDENTIFIER ::= {
+       id-temporaryArc 1 }
 
 DeltaCertificateDescriptor ::= SEQUENCE {
   serialNumber          CertificateSerialNumber,
-  signature             [0] IMPLICIT AlgorithmIdentifier {SIGNATURE_ALGORITHM, {...}} OPTIONAL,
+  signature             [0] IMPLICIT AlgorithmIdentifier
+       {SIGNATURE_ALGORITHM, {...}} OPTIONAL,
   issuer                [1] IMPLICIT Name OPTIONAL,
   validity              [2] IMPLICIT Validity OPTIONAL,
   subject               [3] IMPLICIT Name OPTIONAL,
   subjectPublicKeyInfo  SubjectPublicKeyInfo,
-  extensions            [4] IMPLICIT Extensions{CertExtensions} OPTIONAL,
+  extensions            [4] IMPLICIT Extensions{CertExtensions}
+       OPTIONAL,
   signatureValue        BIT STRING
 }
 
@@ -610,13 +617,15 @@ ext-deltaCertificateDescriptor EXTENSION ::= {
 
 -- Request Attributes --
 
-id-at-deltaCertificateRequest OBJECT IDENTIFIER ::= { id-temporaryArc 2 }
+id-at-deltaCertificateRequest OBJECT IDENTIFIER ::= {
+       id-temporaryArc 2 }
 
 DeltaCertificateRequestValue ::= SEQUENCE {
   subject               [0] IMPLICIT Name OPTIONAL,
   subjectPKInfo         SubjectPublicKeyInfo,
   extensions            [1] IMPLICIT Extensions{CertExtensions} OPTIONAL,
-  signatureAlgorithm    [2] IMPLICIT AlgorithmIdentifier {SIGNATURE_ALGORITHM, {...}} OPTIONAL
+  signatureAlgorithm    [2] IMPLICIT AlgorithmIdentifier
+       {SIGNATURE_ALGORITHM, {...}} OPTIONAL
 }
 
 DeltaCertificateRequest ::= ATTRIBUTE {
@@ -625,7 +634,8 @@ DeltaCertificateRequest ::= ATTRIBUTE {
    ID id-at-deltaCertificateRequest
 }
 
-id-at-deltaCertificateRequestSignature OBJECT IDENTIFIER ::= { id-temporaryArc 3 }
+id-at-deltaCertificateRequestSignature OBJECT IDENTIFIER ::= {
+       id-temporaryArc 3 }
 
 DeltaCertificateRequestSignatureValue ::= BIT STRING
 
