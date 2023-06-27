@@ -86,12 +86,12 @@ signature algorithms. In cases where relying party systems cannot be
 immediately updated to support new algorithms, it is useful to issue
 certificates to subjects that convey public keys whose algorithm is
 being phased out to maintain interoperability. However, multiple
-certificates adds complexity to certificate management and exposes
-limitations in applications and protocols that support a single
-certificate chain. For this reason, it is useful to efficiently convey
-information concerning the elements of two certificates within a single
-certificate. This information can then be used to construct the paired
-certificate as needed by relying parties.
+certificates adds complexity to certificate management for relying
+parties and exposes limitations in applications and protocols that
+support a single certificate chain. For this reason, it is useful to
+efficiently convey information concerning the elements of two
+certificates within a single certificate. This information can then be
+used to construct the paired certificate as needed by relying parties.
 
 This document specifies an X.509 v3 certificate extension that includes
 sufficient information for a relying party to construct both paired
@@ -134,21 +134,21 @@ DCD extension.
 # Relationship between Base Certificates and Delta Certificates
 
 In some public key infrastructures, it may be common to issue multiple
-certificates to the same subject. These certificates generally contain
-the same (or substantially similar) identity information and generally
-have identical validity periods. The differences in certificate content
-generally stem from the certification of different keys, where the named
-subject may have multiple keys of different algorithms certified by
-separate certificates. The use of different keys allows for the subject
-to use the key that is most appropriate for a given operation and
-intended recipient. For example, as part of an ongoing algorithm
-migration, it is useful to use stronger algorithms when both of the
-systems utilized by the subscriber/sender and recipient have been
-upgraded. However, in the case where systems have not yet been updated,
-the use of a legacy key algorithm may be required. Additionally,
-multiple certificates may be issued to the same subject that certify
-keys for different purposes, such as one key for signing and another
-key for encryption.
+certificates to the same subject. For example, these certificates
+generally contain the same (or substantially similar) identity
+information and generally have identical validity periods. The
+differences in certificate content generally stem from the certification
+of different keys, where the named subject may have multiple keys of
+different algorithms certified by separate certificates. The use of
+different keys allows for the subject to use the key that is most
+appropriate for a given operation and intended recipient. For example,
+as part of an ongoing algorithm migration, it is useful to use stronger
+algorithms when both of the systems utilized by the subscriber/sender
+and recipient have been upgraded. However, in the case where systems
+have not yet been updated, the use of a legacy key algorithm may be
+required. Additionally, multiple certificates may be issued to the same
+subject that certify keys for different purposes, such as one key for
+signing and another key for encryption.
 
 The management of multiple certificates may be complex, and there
 may be limitations in protocols regarding the handling of multiple
@@ -199,6 +199,20 @@ contained within the extension itself.
 Certification authorities SHOULD NOT mark this extension as critical so
 that applications that do not understand the extension will still be
 able to process the Base Certificate.
+
+The inclusion of the DCD extension within a Base Certificate is not a
+statement from the issuing Certification Authority of the Base
+Certificate that the contents of the Delta Certificate have been
+verified. Conversely, the DCD extension is merely a mechanism to
+encode the differences between two Paired Certificates. Given this,
+it is possible for the Base Certificate to expire prior to the Delta
+Certificate, and vice versa. However, the policies governing a public
+key infrastructure may add additional requirements for the content of
+the DCD extension or alignment of validity periods for Base Certificates
+and Delta Certificates. For example, a policy may require that the
+validity periods of the Base Certificate and Delta Certificate be
+identical, or that if the Delta Certificate is revoked, the Base
+Certificate must also be revoked.
 
 ## Delta certificate descriptor content {#dcd-extension-content}
 
@@ -263,18 +277,21 @@ MUST certify different keys.
 
 If present, the extensions field contains the extensions whose
 criticality and/or value are different in the Delta Certificate compared
-to the Base Certificate. If the extensions field is absent, then all
-extensions in the Delta Certificate MUST have the same
-criticality and value as the Base Certificate. This field MUST NOT
-contain any extension types which do not appear in the Base Certificate.
-Additionally, the Base Certificate SHALL NOT include any extensions
-which are not included in the Delta Certificate, with the exception of
-the DCD extension itself. Therefore, it is not possible to add or remove
-extensions using the DCD extension. The ordering of extensions in this
-field MUST be relative to the ordering of the extensions as they are
-encoded in the Delta Certificate. Maintaining this relative
-ordering ensures that the Delta Certificate's extensions can be
-constructed with a single pass.
+to the Base Certificate with the exception of the DCD extension itself.
+If the extensions field is absent, then all extensions in the Delta
+Certificate MUST have the same criticality and value as the Base
+Certificate (except for the DCD extension, which MUST be absent from
+the Delta Certificate). This field MUST NOT contain any extension types
+which do not appear in the Base Certificate, and this field MUST NOT
+contain any instance of the DCD extension (recursive Delta Certificates
+are not permitted). Additionally, the Base Certificate SHALL NOT include
+any extensions which are not included in the Delta Certificate, with the
+exception of the DCD extension itself. Therefore, it is not possible to
+add or remove extensions using the DCD extension. The ordering of
+extensions in this field MUST be relative to the ordering of the
+extensions as they are encoded in the Delta Certificate. Maintaining
+this relative ordering ensures that the Delta Certificate's extensions
+can be constructed with a single pass.
 
 The signatureValue field contains the value of the signature field
 of the Delta Certificate. It MUST be present.
@@ -336,11 +353,22 @@ from a Base Certificate:
 
 Using the two attributes that are defined below, it is possible to
 create Certification Signing Requests for both Base and Delta
-Certificates within a single PKCS #10 Certificate Signing Request.
+Certificates within a single PKCS #10 Certificate Signing Request. The
+mechanism presented in this section need not be used exclusively by
+requestors for the issuance of Paired Certificates; other mechanisms
+(such as the submission of two Certificate Signing Requests, etc.) are
+also acceptable. Additionally, this document does not place any
+restriction on the amount of time that may elapse between the issuance
+of a Delta Certificate and the request of a Base Certificate; such
+restrictions should be defined by the policy of a particular public key
+infrastructure.
 
 The delta certificate request attribute is used to convey the requested
 differences between the request for issuance of the Base Certificate
-and the requested Delta Certificate.
+and the requested Delta Certificate. Similar to the semantics of
+Certificate Signing Requests in general, the Certification Authority MAY
+add, modify, or selectively ignore information conveyed in the attribute
+when issuing the corresponding Delta Certificate.
 
 The attribute is identified with the following object identifier:
 
@@ -359,7 +387,8 @@ The ASN.1 syntax of the attribute is as follows:
 DeltaCertificateRequestValue ::= SEQUENCE {
   subject               [0] IMPLICIT Name OPTIONAL,
   subjectPKInfo         SubjectPublicKeyInfo,
-  extensions            [1] IMPLICIT Extensions{CertExtensions} OPTIONAL,
+  extensions            [1] IMPLICIT Extensions{CertExtensions}
+       OPTIONAL,
   signatureAlgorithm    [2] IMPLICIT AlgorithmIdentifier
        {SIGNATURE_ALGORITHM, {...}} OPTIONAL
 }
@@ -551,7 +580,8 @@ id-at-deltaCertificateRequest OBJECT IDENTIFIER ::= {
 DeltaCertificateRequestValue ::= SEQUENCE {
   subject               [0] IMPLICIT Name OPTIONAL,
   subjectPKInfo         SubjectPublicKeyInfo,
-  extensions            [1] IMPLICIT Extensions{CertExtensions} OPTIONAL,
+  extensions            [1] IMPLICIT Extensions{CertExtensions}
+       OPTIONAL,
   signatureAlgorithm    [2] IMPLICIT AlgorithmIdentifier
        {SIGNATURE_ALGORITHM, {...}} OPTIONAL
 }
@@ -766,7 +796,9 @@ GgzGspA2nRph
 
 ### Dilithium root certificate
 
-This is the Dilithium root certificate. It contains a Delta Certificate Descriptor extension which includes sufficient information to recreate the ECDSA P-521 root.
+This is the Dilithium root certificate. It contains a Delta Certificate
+Descriptor extension which includes sufficient information to recreate
+the ECDSA P-521 root.
 
 ~~~
 -----BEGIN CERTIFICATE-----
@@ -1182,7 +1214,8 @@ GyUp
 
 ### Dilithium signing end-entity certificate
 
-This is an end-entity signing certificate which certifies a Dilithium key.
+This is an end-entity signing certificate which certifies a Dilithium
+key.
 
 ~~~
 -----BEGIN CERTIFICATE-----
@@ -1441,7 +1474,10 @@ CxUZH1pqqK4KFj1fY2mv9RooO2OVmxIYGzhFj56go8IbRpWlztcAAAAADRUdIy0z
 
 ### EC signing end-entity certificate with encoded Delta Certificate
 
-This is an end-entity signing certificate which certifies an EC key. It contains a Delta Certificate Descriptor extension which includes sufficient information to recreate the Dilithium signing end-entity certificate.
+This is an end-entity signing certificate which certifies an EC key. It
+contains a Delta Certificate Descriptor extension which includes
+sufficient information to recreate the Dilithium signing end-entity
+certificate.
 
 ~~~
 -----BEGIN CERTIFICATE-----
@@ -1963,7 +1999,10 @@ Es40EGEHbEPLIHzW347BR8iZquPCA9wspc6y8edyXcBv/g2Yhw==
 
 ### EC dual use end-entity certificate with encoded Delta Certificate
 
-This is an end-entity key exchange certificate which certifies an EC key. It contains a Delta Certificate Descriptor extension which includes sufficient information to the recreate the EC signing end-entity certificate.
+This is an end-entity key exchange certificate which certifies an EC
+key. It contains a Delta Certificate Descriptor extension which includes
+sufficient information to the recreate the EC signing end-entity
+certificate.
 
 ~~~
 -----BEGIN CERTIFICATE-----
