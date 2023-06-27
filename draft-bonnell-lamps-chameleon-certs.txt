@@ -5,14 +5,14 @@
 Network Working Group                                         C. Bonnell
 Internet-Draft                                                  DigiCert
 Intended status: Standards Track                                 J. Gray
-Expires: 9 December 2023                                         Entrust
+Expires: 29 December 2023                                        Entrust
                                                                  D. Hook
                                                                KeyFactor
                                                                 T. Okubo
                                                                 DigiCert
                                                             M. Ounsworth
                                                                  Entrust
-                                                             7 June 2023
+                                                            27 June 2023
 
 
       A Mechanism for Encoding Differences in Paired Certificates
@@ -68,7 +68,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 9 December 2023.
+   This Internet-Draft will expire on 29 December 2023.
 
 Copyright Notice
 
@@ -127,12 +127,12 @@ Table of Contents
    is useful to issue certificates to subjects that convey public keys
    whose algorithm is being phased out to maintain interoperability.
    However, multiple certificates adds complexity to certificate
-   management and exposes limitations in applications and protocols that
-   support a single certificate chain.  For this reason, it is useful to
-   efficiently convey information concerning the elements of two
-   certificates within a single certificate.  This information can then
-   be used to construct the paired certificate as needed by relying
-   parties.
+   management for relying parties and exposes limitations in
+   applications and protocols that support a single certificate chain.
+   For this reason, it is useful to efficiently convey information
+   concerning the elements of two certificates within a single
+   certificate.  This information can then be used to construct the
+   paired certificate as needed by relying parties.
 
    This document specifies an X.509 v3 certificate extension that
    includes sufficient information for a relying party to construct both
@@ -178,10 +178,10 @@ Table of Contents
 3.  Relationship between Base Certificates and Delta Certificates
 
    In some public key infrastructures, it may be common to issue
-   multiple certificates to the same subject.  These certificates
-   generally contain the same (or substantially similar) identity
-   information and generally have identical validity periods.  The
-   differences in certificate content generally stem from the
+   multiple certificates to the same subject.  For example, these
+   certificates generally contain the same (or substantially similar)
+   identity information and generally have identical validity periods.
+   The differences in certificate content generally stem from the
    certification of different keys, where the named subject may have
    multiple keys of different algorithms certified by separate
    certificates.  The use of different keys allows for the subject to
@@ -246,6 +246,20 @@ Table of Contents
    so that applications that do not understand the extension will still
    be able to process the Base Certificate.
 
+   The inclusion of the DCD extension within a Base Certificate is not a
+   statement from the issuing Certification Authority of the Base
+   Certificate that the contents of the Delta Certificate have been
+   verified.  Conversely, the DCD extension is merely a mechanism to
+   encode the differences between two Paired Certificates.  Given this,
+   it is possible for the Base Certificate to expire prior to the Delta
+   Certificate, and vice versa.  However, the policies governing a
+   public key infrastructure may add additional requirements for the
+   content of the DCD extension or alignment of validity periods for
+   Base Certificates and Delta Certificates.  For example, a policy may
+   require that the validity periods of the Base Certificate and Delta
+   Certificate be identical, or that if the Delta Certificate is
+   revoked, the Base Certificate must also be revoked.
+
 4.1.  Delta certificate descriptor content
 
    The DCD extension is identified with the following object identifier:
@@ -306,18 +320,22 @@ Table of Contents
 
    If present, the extensions field contains the extensions whose
    criticality and/or value are different in the Delta Certificate
-   compared to the Base Certificate.  If the extensions field is absent,
-   then all extensions in the Delta Certificate MUST have the same
-   criticality and value as the Base Certificate.  This field MUST NOT
-   contain any extension types which do not appear in the Base
-   Certificate.  Additionally, the Base Certificate SHALL NOT include
-   any extensions which are not included in the Delta Certificate, with
-   the exception of the DCD extension itself.  Therefore, it is not
-   possible to add or remove extensions using the DCD extension.  The
-   ordering of extensions in this field MUST be relative to the ordering
-   of the extensions as they are encoded in the Delta Certificate.
-   Maintaining this relative ordering ensures that the Delta
-   Certificate's extensions can be constructed with a single pass.
+   compared to the Base Certificate with the exception of the DCD
+   extension itself.  If the extensions field is absent, then all
+   extensions in the Delta Certificate MUST have the same criticality
+   and value as the Base Certificate (except for the DCD extension,
+   which MUST be absent from the Delta Certificate).  This field MUST
+   NOT contain any extension types which do not appear in the Base
+   Certificate, and this field MUST NOT contain any instance of the DCD
+   extension (recursive Delta Certificates are not permitted).
+   Additionally, the Base Certificate SHALL NOT include any extensions
+   which are not included in the Delta Certificate, with the exception
+   of the DCD extension itself.  Therefore, it is not possible to add or
+   remove extensions using the DCD extension.  The ordering of
+   extensions in this field MUST be relative to the ordering of the
+   extensions as they are encoded in the Delta Certificate.  Maintaining
+   this relative ordering ensures that the Delta Certificate's
+   extensions can be constructed with a single pass.
 
    The signatureValue field contains the value of the signature field of
    the Delta Certificate.  It MUST be present.
@@ -394,10 +412,22 @@ Table of Contents
    Using the two attributes that are defined below, it is possible to
    create Certification Signing Requests for both Base and Delta
    Certificates within a single PKCS #10 Certificate Signing Request.
+   The mechanism presented in this section need not be used exclusively
+   by requestors for the issuance of Paired Certificates; other
+   mechanisms (such as the submission of two Certificate Signing
+   Requests, etc.) are also acceptable.  Additionally, this document
+   does not place any restriction on the amount of time that may elapse
+   between the issuance of a Delta Certificate and the request of a Base
+   Certificate; such restrictions should be defined by the policy of a
+   particular public key infrastructure.
 
    The delta certificate request attribute is used to convey the
    requested differences between the request for issuance of the Base
-   Certificate and the requested Delta Certificate.
+   Certificate and the requested Delta Certificate.  Similar to the
+   semantics of Certificate Signing Requests in general, the
+   Certification Authority MAY add, modify, or selectively ignore
+   information conveyed in the attribute when issuing the corresponding
+   Delta Certificate.
 
    The attribute is identified with the following object identifier:
 
@@ -410,19 +440,20 @@ Table of Contents
 
    The ASN.1 syntax of the attribute is as follows:
 
-DeltaCertificateRequestValue ::= SEQUENCE {
-  subject               [0] IMPLICIT Name OPTIONAL,
-  subjectPKInfo         SubjectPublicKeyInfo,
-  extensions            [1] IMPLICIT Extensions{CertExtensions} OPTIONAL,
-  signatureAlgorithm    [2] IMPLICIT AlgorithmIdentifier
-       {SIGNATURE_ALGORITHM, {...}} OPTIONAL
-}
+   DeltaCertificateRequestValue ::= SEQUENCE {
+     subject               [0] IMPLICIT Name OPTIONAL,
+     subjectPKInfo         SubjectPublicKeyInfo,
+     extensions            [1] IMPLICIT Extensions{CertExtensions}
+          OPTIONAL,
+     signatureAlgorithm    [2] IMPLICIT AlgorithmIdentifier
+          {SIGNATURE_ALGORITHM, {...}} OPTIONAL
+   }
 
-DeltaCertificateRequest ::= ATTRIBUTE {
-   WITH SYNTAX DeltaCertificateRequestValue
-   SINGLE VALUE TRUE
-   ID id-at-deltaCertificateRequest
-}
+   DeltaCertificateRequest ::= ATTRIBUTE {
+      WITH SYNTAX DeltaCertificateRequestValue
+      SINGLE VALUE TRUE
+      ID id-at-deltaCertificateRequest
+   }
 
    The delta certificate request signature attribute is used to convey
    the signature that is calculated over the CertificationRequestInfo
@@ -556,96 +587,97 @@ Appendix A.  ASN.1 Module
    of the extensions, attributes, and associated identifiers specified
    in this document.
 
-DeltaCertificateDescriptor { iso(1) identified-organization(3) dod(6)
-  internet(1) security(5) mechanisms(5) pkix(7) id-mod(0)
-  id-mod-deltaCertificateDescriptor(TBD) }
+   DeltaCertificateDescriptor { iso(1) identified-organization(3) dod(6)
+     internet(1) security(5) mechanisms(5) pkix(7) id-mod(0)
+     id-mod-deltaCertificateDescriptor(TBD) }
 
-DEFINITIONS EXPLICIT TAGS ::=
+   DEFINITIONS EXPLICIT TAGS ::=
 
-BEGIN
+   BEGIN
 
-EXPORTS ALL;
+   EXPORTS ALL;
 
-IMPORTS
-  AlgorithmIdentifier{}, SIGNATURE-ALGORITHM
-  FROM AlgorithmInformation-2009  -- RFC 5912
-  { iso(1) identified-organization(3) dod(6) internet(1) security(5)
-    mechanisms(5) pkix(7) id-mod(0)
-    id-mod-algorithmInformation-02(58) }
+   IMPORTS
+     AlgorithmIdentifier{}, SIGNATURE-ALGORITHM
+     FROM AlgorithmInformation-2009  -- RFC 5912
+     { iso(1) identified-organization(3) dod(6) internet(1) security(5)
+       mechanisms(5) pkix(7) id-mod(0)
+       id-mod-algorithmInformation-02(58) }
 
-  EXTENSION, ATTRIBUTE, Extensions{}
-  FROM PKIX-CommonTypes-2009  -- RFC 5912
-  { iso(1) identified-organization(3) dod(6) internet(1)
-    security(5) mechanisms(5) pkix(7) id-mod(0)
-    id-mod-pkixCommon-02(57) }
+     EXTENSION, ATTRIBUTE, Extensions{}
+     FROM PKIX-CommonTypes-2009  -- RFC 5912
+     { iso(1) identified-organization(3) dod(6) internet(1)
+       security(5) mechanisms(5) pkix(7) id-mod(0)
+       id-mod-pkixCommon-02(57) }
 
-  CertificateSerialNumber, Name, Validity, SubjectPublicKeyInfo,
-  CertExtensions FROM PKIX1Explicit-2009  -- RFC 5912
-  { iso(1) identified-organization(3) dod(6) internet(1) security(5)
-    mechanisms(5) pkix(7) id-mod(0) id-mod-pkix1-explicit-02(51) };
+     CertificateSerialNumber, Name, Validity, SubjectPublicKeyInfo,
+     CertExtensions FROM PKIX1Explicit-2009  -- RFC 5912
+     { iso(1) identified-organization(3) dod(6) internet(1) security(5)
+       mechanisms(5) pkix(7) id-mod(0) id-mod-pkix1-explicit-02(51) };
 
--- Temporary OID arc --
+   -- Temporary OID arc --
 
-id-temporaryArc OBJECT IDENTIFIER ::= {
-  joint-iso-itu-t(2) country(16) us(840) organization(1)
-  entrust(114027) 80 6
-}
+   id-temporaryArc OBJECT IDENTIFIER ::= {
+     joint-iso-itu-t(2) country(16) us(840) organization(1)
+     entrust(114027) 80 6
+   }
 
--- Extension --
+   -- Extension --
 
-id-ce-deltaCertificateDescriptor OBJECT IDENTIFIER ::= {
-       id-temporaryArc 1 }
+   id-ce-deltaCertificateDescriptor OBJECT IDENTIFIER ::= {
+          id-temporaryArc 1 }
 
-DeltaCertificateDescriptor ::= SEQUENCE {
-  serialNumber          CertificateSerialNumber,
-  signature             [0] IMPLICIT AlgorithmIdentifier
-       {SIGNATURE_ALGORITHM, {...}} OPTIONAL,
-  issuer                [1] IMPLICIT Name OPTIONAL,
-  validity              [2] IMPLICIT Validity OPTIONAL,
-  subject               [3] IMPLICIT Name OPTIONAL,
-  subjectPublicKeyInfo  SubjectPublicKeyInfo,
-  extensions            [4] IMPLICIT Extensions{CertExtensions}
-       OPTIONAL,
-  signatureValue        BIT STRING
-}
+   DeltaCertificateDescriptor ::= SEQUENCE {
+     serialNumber          CertificateSerialNumber,
+     signature             [0] IMPLICIT AlgorithmIdentifier
+          {SIGNATURE_ALGORITHM, {...}} OPTIONAL,
+     issuer                [1] IMPLICIT Name OPTIONAL,
+     validity              [2] IMPLICIT Validity OPTIONAL,
+     subject               [3] IMPLICIT Name OPTIONAL,
+     subjectPublicKeyInfo  SubjectPublicKeyInfo,
+     extensions            [4] IMPLICIT Extensions{CertExtensions}
+          OPTIONAL,
+     signatureValue        BIT STRING
+   }
 
-ext-deltaCertificateDescriptor EXTENSION ::= {
-  SYNTAX DeltaCertificateDescriptor
-  IDENTIFIED BY id-ce-deltaCertificateDescriptor
-  CRITICALITY { FALSE }
-}
+   ext-deltaCertificateDescriptor EXTENSION ::= {
+     SYNTAX DeltaCertificateDescriptor
+     IDENTIFIED BY id-ce-deltaCertificateDescriptor
+     CRITICALITY { FALSE }
+   }
 
--- Request Attributes --
+   -- Request Attributes --
 
-id-at-deltaCertificateRequest OBJECT IDENTIFIER ::= {
-       id-temporaryArc 2 }
+   id-at-deltaCertificateRequest OBJECT IDENTIFIER ::= {
+          id-temporaryArc 2 }
 
-DeltaCertificateRequestValue ::= SEQUENCE {
-  subject               [0] IMPLICIT Name OPTIONAL,
-  subjectPKInfo         SubjectPublicKeyInfo,
-  extensions            [1] IMPLICIT Extensions{CertExtensions} OPTIONAL,
-  signatureAlgorithm    [2] IMPLICIT AlgorithmIdentifier
-       {SIGNATURE_ALGORITHM, {...}} OPTIONAL
-}
+   DeltaCertificateRequestValue ::= SEQUENCE {
+     subject               [0] IMPLICIT Name OPTIONAL,
+     subjectPKInfo         SubjectPublicKeyInfo,
+     extensions            [1] IMPLICIT Extensions{CertExtensions}
+          OPTIONAL,
+     signatureAlgorithm    [2] IMPLICIT AlgorithmIdentifier
+          {SIGNATURE_ALGORITHM, {...}} OPTIONAL
+   }
 
-DeltaCertificateRequest ::= ATTRIBUTE {
-   WITH SYNTAX DeltaCertificateRequestValue
-   SINGLE VALUE TRUE
-   ID id-at-deltaCertificateRequest
-}
+   DeltaCertificateRequest ::= ATTRIBUTE {
+      WITH SYNTAX DeltaCertificateRequestValue
+      SINGLE VALUE TRUE
+      ID id-at-deltaCertificateRequest
+   }
 
-id-at-deltaCertificateRequestSignature OBJECT IDENTIFIER ::= {
-       id-temporaryArc 3 }
+   id-at-deltaCertificateRequestSignature OBJECT IDENTIFIER ::= {
+          id-temporaryArc 3 }
 
-DeltaCertificateRequestSignatureValue ::= BIT STRING
+   DeltaCertificateRequestSignatureValue ::= BIT STRING
 
-DeltaCertificateRequestSignature ::= ATTRIBUTE {
-   WITH SYNTAX DeltaCertificateRequestSignatureValue
-   SINGLE VALUE TRUE
-   ID id-at-deltaCertificateRequestSignature
-}
+   DeltaCertificateRequestSignature ::= ATTRIBUTE {
+      WITH SYNTAX DeltaCertificateRequestSignatureValue
+      SINGLE VALUE TRUE
+      ID id-at-deltaCertificateRequestSignature
+   }
 
-END
+   END
 
 Appendix B.  Examples
 
