@@ -326,8 +326,9 @@ from a Base Certificate:
 2. Replace the value of the serialNumber field of the Delta Certificate
    template with the value of the DCD extension's serialNumber field.
 3. If the DCD extension contains a value for the signature field, then
-   replace the value of the signature field of the Delta Certificate
-   template with the value of the DCD extension's signature field.
+   replace the value of the signature field and the signatureAlgorithm
+   field of the Delta Certificate template with the value of the DCD
+   extension's signature field.
 4. If the DCD extension contains a value for the issuer field, then
    replace the value of the issuer field of the Delta Certificate
    template with the value of the DCD extension's issuer field.
