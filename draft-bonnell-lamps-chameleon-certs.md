@@ -103,9 +103,9 @@ uniqueness for certificates issued by a single certification
 authority.
 
 In addition to the certificate extension, this document
-specifies two PKCS #10 Certification Signing Request attributes that can
+specifies two PKCS #10 Certificate Signing Request attributes that can
 be used by applicants to request Paired Certificates using a single
-PKCS #10 Certification Signing Request.
+PKCS #10 Certificate Signing Request.
 
 # Conventions and Definitions
 
@@ -353,7 +353,7 @@ from a Base Certificate:
 # Delta certificate request content and semantics {#dcr-attribute}
 
 Using the two attributes that are defined below, it is possible to
-create Certification Signing Requests for both Base and Delta
+create Certificate Signing Requests for both Base and Delta
 Certificates within a single PKCS #10 Certificate Signing Request. The
 mechanism presented in this section need not be used exclusively by
 requestors for the issuance of Paired Certificates; other mechanisms
@@ -430,30 +430,56 @@ deltaCertificateRequestSignature ATTRIBUTE ::= {
 }
 ~~~
 
-## Creating a certification signing request for Paired Certificates {#dcd-csr-create}
+## Creating a Certificate Signing Request for Paired Certificates {#dcd-csr-create}
 
-The following procedure is used by certificate requestors to create a
-combined certification signing request for Paired Certificates.
+The following procedure is used by a certificate requestor to create a
+combined Certificate Signing Request for Paired Certificates.
 
-1. The certificate requestor creates a CertificationRequestInfo
-   containing the subject, subjectPKInfo, and attributes for
-   the Base Certificate.
-2. The certificate requestor creates a delta certificate request
-   attribute that specifies the requested differences between the
-   to-be-issued Base Certificate and Delta Certificate requests.
-3. The certificate requestor adds the delta certificate request
-   attribute that was created by step 2 to the list of attributes in
-   the CertificationRequestInfo.
-4. The certificate requestor signs the CertificationRequestInfo using
-   the private key of the Delta certificate request subject.
-5. The certificate requestor creates a delta certificate request
-   signature attribute that contains the signature value calculated by
-   step 4.
-6. The certificate requestor adds the delta certificate request
-   signature attribute that was created by step 5 to the list of
-   attributes.
-7. The certificate requestor signs the CertificationRequestInfo using
-   the private key of the Base certificate request subject.
+1. Create a CertificationRequestInfo containing the subject,
+   subjectPKInfo, and attributes for the Base Certificate.
+2. Create a delta certificate request attribute that specifies the
+   requested differences between the to-be-issued Base Certificate and
+   Delta Certificate requests.
+3. Add the delta certificate request attribute that was created by step
+   2 to the list of attributes in the CertificationRequestInfo.
+4. Sign the CertificationRequestInfo using the private key of the delta
+   certificate request subject.
+5. Create a delta certificate request signature attribute that contains
+   the signature value calculated by step 4.
+6. Add the delta certificate request signature attribute that was
+   created by step 5 to the list of attributes.
+7. Sign the CertificationRequestInfo using the private key of the base
+   certificate request subject.
+
+## Verifying a Certificate Signing Request for Paired Certificates
+
+The following procedure is used by a Certification Authority to verify
+a Certificate Signing Request for Paired Certificates that was created
+using the process outlined in {{dcd-csr-create}}.
+
+1. Create a CertificationRequest template by copying the
+   CertificationRequest submitted by the certificate requestor.
+2. Verify the signature of the base certificate request using the
+   public key associated with the base certificate request subject and
+   the signature algorithm specified in the `signatureAlgorithm` field
+   of the CertificationRequest template. If
+   signature verification fails, then the Certification Authority MUST
+   treat the Certificate Signing Request as invalid.
+3. Remove the delta certificate request signature attribute from the
+   CertificationRequest template.
+4. Replace the value of the `signature` field of the
+   CertificationRequest template with the value of the delta certificate
+   request attribute that was removed in step 3.
+5. Verify the signature of the delta certificate request using the
+   public key associated with the delta certificate request subject.
+   If the `signatureAlgorithm` field of the delta certificate request
+   attribute is present, then the Certification Authority MUST perform
+   signature verification using the algorithm specified in this field.
+   Otherwise, the Certification Authority MUST perform signature
+   verification using the algorithm specified in the
+   `signatureAlgorithm` field of the CertificationRequest template. If
+   signature verification fails, then the Certification Authority MUST
+   treat the Certificate Signing Request as invalid.
 
 # Security Considerations
 
