@@ -302,7 +302,9 @@ The signature of the Delta Certificate must be known so that its
 value can be included in the signatureValue field of the delta
 certificate descriptor extension. Given this, Delta Certificate will
 necessarily need to be issued prior to the issuance of the Base
-Certificate.
+Certificate. To simplify reconstruction of the Delta Certificate,
+the signatures for Base and Delta Certificates MUST be calculated over
+the DER encoding of the `TBSCertificate` structure.
 
 After the Delta Certificate is issued, the certification authority
 compares the signature, issuer, validity, subject, subjectPublicKeyInfo,
