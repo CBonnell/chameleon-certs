@@ -289,7 +289,7 @@ contain any extension:
 * whose type does not appear in the Base Certificate, or
 * which is of the DCD extension type (recursive Delta Certificates are
   not permitted).
-  
+
 Additionally, the Base Certificate SHALL NOT include
 any extensions which are not included in the Delta Certificate, with the
 exception of the DCD extension itself. Therefore, it is not possible to
