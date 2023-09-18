@@ -247,35 +247,41 @@ DeltaCertificateDescriptor ::= SEQUENCE {
 The serialNumber field MUST be present and contain the
 serial number of the Delta Certificate.
 
-If present, the signature field specifies the signature algorithm used
-by the issuing certification authority to sign the Delta Certificate.
-If the signature field is absent, then the DER encoding of the value of
-the signature field of the Base Certificate and Delta Certificate is
-equal.
+The signature field specifies the signature algorithm used by the
+issuing certification authority to sign the Delta Certificate.
+If the DER encoding of the value of the signature field of the Base
+Certificate and Delta Certificate is the same, then this field MUST be
+absent. Otherwise, it MUST contain the DER encoding of the value of the
+signature field of the Delta Certificate.
 
-If present, the issuer field specifies the distinguished name of the
-issuing certification authority which signed the Delta Certificate. If
-the issuer field is absent, then the DER encoding of the distinguished
-name of the issuing certification authority for both the Base
-Certificate and Delta Certificate is the same.
+The issuer field specifies the distinguished name of the
+issuing certification authority which signed the Delta Certificate.
+If the DER encoding of the value of the issuer field of the Base
+Certificate and Delta Certificate is the same, then this field MUST be
+absent. Otherwise, it MUST contain the DER encoding of the value of the
+issuer field of the Delta Certificate.
 
-If present, the validity field specifies the validity period of the
-Delta Certificate. If the validity field is absent, then the validity
-period of both the Base Certificate and Delta Certificate is the same.
+The validity field specifies the validity period of the Delta
+Certificate.
+If the DER encoding of the value of the validity field of the Base
+Certificate and Delta Certificate is the same, then this field MUST be
+absent. Otherwise, it MUST contain the DER encoding of the value of the
+validity field of the Delta Certificate.
 
-If present, the subject field specifies the distinguished name of the
-named subject as encoded in the Delta Certificate. If the
-subject field is absent, then the DER encoding of the distinguished name
-of the named subject for both the Base Certificate and Delta Certificate
-is the same.
+The subject field specifies the distinguished name of the named subject
+as encoded in the Delta Certificate.
+If the DER encoding of the value of the subject field of the Base
+Certificate and Delta Certificate is the same, then this field MUST be
+absent. Otherwise, it MUST contain the DER encoding of the value of the
+subject field of the Delta Certificate.
 
-The subjectPublicKeyInfo field contains the public key
-included in the Delta Certificate. The value of this field MUST differ
+The subjectPublicKeyInfo field contains the public key certified
+in the Delta Certificate. The value of this field MUST differ
 from the value of the subjectPublicKeyInfo field of the Base
 Certificate. In other words, the Base Certificate and Delta Certificate
 MUST certify different keys.
 
-If present, the extensions field contains the extensions whose
+The extensions field contains the extensions whose
 criticality and/or DER-encoded value are different in the Delta
 Certificate compared to the Base Certificate with the exception of the
 DCD extension itself. If the extensions field is absent, then all
