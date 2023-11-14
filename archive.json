@@ -1,0 +1,83 @@
+{
+  "magic": "E!vIA5L86J2I",
+  "timestamp": "2023-11-14T00:38:23.793443+00:00",
+  "repo": "CBonnell/chameleon-certs",
+  "labels": [
+    {
+      "name": "bug",
+      "description": "Something isn't working",
+      "color": "d73a4a"
+    },
+    {
+      "name": "documentation",
+      "description": "Improvements or additions to documentation",
+      "color": "0075ca"
+    },
+    {
+      "name": "duplicate",
+      "description": "This issue or pull request already exists",
+      "color": "cfd3d7"
+    },
+    {
+      "name": "enhancement",
+      "description": "New feature or request",
+      "color": "a2eeef"
+    },
+    {
+      "name": "good first issue",
+      "description": "Good for newcomers",
+      "color": "7057ff"
+    },
+    {
+      "name": "help wanted",
+      "description": "Extra attention is needed",
+      "color": "008672"
+    },
+    {
+      "name": "invalid",
+      "description": "This doesn't seem right",
+      "color": "e4e669"
+    },
+    {
+      "name": "question",
+      "description": "Further information is requested",
+      "color": "d876e3"
+    },
+    {
+      "name": "wontfix",
+      "description": "This will not be worked on",
+      "color": "ffffff"
+    }
+  ],
+  "issues": [],
+  "pulls": [
+    {
+      "number": 1,
+      "id": "PR_kwDOJQyzGs5Wknjq",
+      "title": "CSR terminology clean-up, add CSR verification, clean up DCD definition",
+      "url": "https://github.com/CBonnell/chameleon-certs/pull/1",
+      "state": "MERGED",
+      "author": "CBonnell",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-07-27T17:33:39Z",
+      "updatedAt": "2023-09-21T16:38:53Z",
+      "baseRepository": "CBonnell/chameleon-certs",
+      "baseRefName": "main",
+      "baseRefOid": "006705120fd5c19c79b8983975538bb803880bd3",
+      "headRepository": "CBonnell/chameleon-certs",
+      "headRefName": "csr-verify",
+      "headRefOid": "43c64a050c1cf4c026ebf40b4e5e4db2247cdc4b",
+      "closedAt": "2023-09-21T16:38:49Z",
+      "mergedAt": "2023-09-21T16:38:49Z",
+      "mergedBy": "CBonnell",
+      "mergeCommit": {
+        "oid": "244f0c90825f5bfb9593f80a4bc942973b13c123"
+      },
+      "comments": [],
+      "reviews": []
+    }
+  ]
+}
