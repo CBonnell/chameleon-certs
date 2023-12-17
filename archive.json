@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-12-14T00:39:39.232499+00:00",
+  "timestamp": "2023-12-17T00:43:24.022306+00:00",
   "repo": "CBonnell/chameleon-certs",
   "labels": [
     {
@@ -76,6 +76,32 @@
       "mergeCommit": {
         "oid": "244f0c90825f5bfb9593f80a4bc942973b13c123"
       },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 2,
+      "id": "PR_kwDOJQyzGs5iAB9B",
+      "title": "Add testing blub + reference to path validation",
+      "url": "https://github.com/CBonnell/chameleon-certs/pull/2",
+      "state": "OPEN",
+      "author": "CBonnell",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-12-14T13:07:58Z",
+      "updatedAt": "2023-12-14T13:07:58Z",
+      "baseRepository": "CBonnell/chameleon-certs",
+      "baseRefName": "main",
+      "baseRefOid": "244f0c90825f5bfb9593f80a4bc942973b13c123",
+      "headRepository": "CBonnell/chameleon-certs",
+      "headRefName": "deltacert-validation-guidance",
+      "headRefOid": "bb03dc281cc717ddead729b1a8d3d874d8c44c93",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
       "comments": [],
       "reviews": []
     }
