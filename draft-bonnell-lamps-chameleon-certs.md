@@ -509,7 +509,12 @@ particular, the certification path validation algorithm defined in
 {{!RFC5280}} MUST be performed prior to using a Base or Delta
 Certificate; it is not sufficient to reconstruct a Delta Certificate
 and use it for any purpose without performing certification path
-validation.
+validation. If a use case requires it, a Delta Certificate can be
+reconstructed specifically for the purposes of validation to ensure that
+the Delta Certificate is valid for its intended purpose on final
+reconstruction. That being said, some form of validation such as
+revocation checking, and signature verification MUST always be applied
+at the point the certificate is used.
 
 There are some additional considerations for the software to
 handle the Base Certificate and Delta Certificate. The Base Certificate
