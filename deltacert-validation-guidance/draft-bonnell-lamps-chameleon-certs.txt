@@ -5,14 +5,14 @@
 Network Working Group                                         C. Bonnell
 Internet-Draft                                                  DigiCert
 Intended status: Standards Track                                 J. Gray
-Expires: 16 June 2024                                            Entrust
+Expires: 5 July 2024                                             Entrust
                                                                  D. Hook
                                                                KeyFactor
                                                                 T. Okubo
                                                                 DigiCert
                                                             M. Ounsworth
                                                                  Entrust
-                                                        14 December 2023
+                                                          2 January 2024
 
 
       A Mechanism for Encoding Differences in Paired Certificates
@@ -68,11 +68,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 16 June 2024.
+   This Internet-Draft will expire on 5 July 2024.
 
 Copyright Notice
 
-   Copyright (c) 2023 IETF Trust and the persons identified as the
+   Copyright (c) 2024 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -570,7 +570,12 @@ Table of Contents
    [RFC5280] MUST be performed prior to using a Base or Delta
    Certificate; it is not sufficient to reconstruct a Delta Certificate
    and use it for any purpose without performing certification path
-   validation.
+   validation.  If a use case requires it, a Delta Certificate can be
+   reconstructed specifically for the purposes of validation to ensure
+   that the Delta Certificate is valid for its intended purpose on final
+   reconstruction.  That being said, some form of validation such as
+   revocation checking, and signature verification MUST always be
+   applied at the point the certificate is used.
 
    There are some additional considerations for the software to handle
    the Base Certificate and Delta Certificate.  The Base Certificate and

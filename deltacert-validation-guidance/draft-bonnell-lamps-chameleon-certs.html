@@ -26,13 +26,13 @@ does not violate the constraints of serial number
 uniqueness for certificates issued by a single certification
 authority. 
     " name="description">
-<meta content="xml2rfc 3.18.2" name="generator">
+<meta content="xml2rfc 3.19.0" name="generator">
 <meta content="delta certificate" name="keyword">
 <meta content="chameleon certificate" name="keyword">
 <meta content="paired certificate" name="keyword">
 <meta content="draft-bonnell-lamps-chameleon-certs-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.18.2
+  xml2rfc 3.19.0
     Python 3.11.6
     ConfigArgParse 1.7
     google-i18n-address 3.1.0
@@ -1044,11 +1044,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">A Mechanism for Encoding Differences in </td>
-<td class="right">December 2023</td>
+<td class="right">January 2024</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Bonnell, et al.</td>
-<td class="center">Expires 16 June 2024</td>
+<td class="center">Expires 5 July 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1061,12 +1061,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-bonnell-lamps-chameleon-certs-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2023-12-14" class="published">14 December 2023</time>
+<time datetime="2024-01-02" class="published">2 January 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-06-16">16 June 2024</time></dd>
+<dd class="expires"><time datetime="2024-07-05">5 July 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1145,7 +1145,7 @@ authority.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 16 June 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 5 July 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1154,7 +1154,7 @@ authority.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 <a href="#name-copyright-notice" class="section-name selfRef">Copyright Notice</a>
         </h2>
 <p id="section-boilerplate.2-1">
-            Copyright (c) 2023 IETF Trust and the persons identified as the
+            Copyright (c) 2024 IETF Trust and the persons identified as the
             document authors. All rights reserved.<a href="#section-boilerplate.2-1" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.2-2">
             This document is subject to BCP 78 and the IETF Trust's Legal
@@ -1780,7 +1780,12 @@ particular, the certification path validation algorithm defined in
 <span>[<a href="#RFC5280" class="cite xref">RFC5280</a>]</span> <span class="bcp14">MUST</span> be performed prior to using a Base or Delta
 Certificate; it is not sufficient to reconstruct a Delta Certificate
 and use it for any purpose without performing certification path
-validation.<a href="#section-6-1" class="pilcrow">¶</a></p>
+validation. If a use case requires it, a Delta Certificate can be
+reconstructed specifically for the purposes of validation to ensure that
+the Delta Certificate is valid for its intended purpose on final
+reconstruction. That being said, some form of validation such as
+revocation checking, and signature verification <span class="bcp14">MUST</span> always be applied
+at the point the certificate is used.<a href="#section-6-1" class="pilcrow">¶</a></p>
 <p id="section-6-2">There are some additional considerations for the software to
 handle the Base Certificate and Delta Certificate. The Base Certificate
 and Delta Certificate may have different security properties such as
