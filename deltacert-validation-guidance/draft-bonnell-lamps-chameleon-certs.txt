@@ -5,14 +5,14 @@
 Network Working Group                                         C. Bonnell
 Internet-Draft                                                  DigiCert
 Intended status: Standards Track                                 J. Gray
-Expires: 5 July 2024                                             Entrust
+Expires: 6 July 2024                                             Entrust
                                                                  D. Hook
                                                                KeyFactor
                                                                 T. Okubo
                                                                 DigiCert
                                                             M. Ounsworth
                                                                  Entrust
-                                                          2 January 2024
+                                                          3 January 2024
 
 
       A Mechanism for Encoding Differences in Paired Certificates
@@ -68,7 +68,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 5 July 2024.
+   This Internet-Draft will expire on 6 July 2024.
 
 Copyright Notice
 
@@ -575,7 +575,7 @@ Table of Contents
    that the Delta Certificate is valid for its intended purpose on final
    reconstruction.  That being said, some form of validation such as
    revocation checking, and signature verification MUST always be
-   applied at the point the certificate is used.
+   assured at the point the certificate is used.
 
    There are some additional considerations for the software to handle
    the Base Certificate and Delta Certificate.  The Base Certificate and
