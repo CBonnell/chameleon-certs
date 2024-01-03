@@ -513,7 +513,7 @@ validation. If a use case requires it, a Delta Certificate can be
 reconstructed specifically for the purposes of validation to ensure that
 the Delta Certificate is valid for its intended purpose on final
 reconstruction. That being said, some form of validation such as
-revocation checking, and signature verification MUST always be applied
+revocation checking, and signature verification MUST always be assured
 at the point the certificate is used.
 
 There are some additional considerations for the software to
