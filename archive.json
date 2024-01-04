@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-01-02T00:38:53.861005+00:00",
+  "timestamp": "2024-01-04T00:40:06.208677+00:00",
   "repo": "CBonnell/chameleon-certs",
   "labels": [
     {
@@ -91,13 +91,13 @@
       "labels": [],
       "body": "",
       "createdAt": "2023-12-14T13:07:58Z",
-      "updatedAt": "2023-12-14T13:07:58Z",
+      "updatedAt": "2024-01-03T20:19:26Z",
       "baseRepository": "CBonnell/chameleon-certs",
       "baseRefName": "main",
       "baseRefOid": "244f0c90825f5bfb9593f80a4bc942973b13c123",
       "headRepository": "CBonnell/chameleon-certs",
       "headRefName": "deltacert-validation-guidance",
-      "headRefOid": "bb03dc281cc717ddead729b1a8d3d874d8c44c93",
+      "headRefOid": "6b67d2b4d9222f7311004611b0c6b3d937b51046",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
