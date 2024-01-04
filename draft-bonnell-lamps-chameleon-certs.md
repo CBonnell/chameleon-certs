@@ -364,6 +364,12 @@ from a Base Certificate:
 9. Replace the value of the signature field of the Delta Certificate
    template with the value of the DCD extension's signatureValue field.
 
+As part of testing implementations of this specification,
+implementers are encouraged to verify the signature of the
+reconstructed Delta Certificate using the issuing Certification
+Authority's public key to ensure that the Delta Certificate was
+reconstructed correctly.
+
 # Delta certificate request content and semantics {#dcr-attribute}
 
 Using the two attributes that are defined below, it is possible to
@@ -498,8 +504,19 @@ using the process outlined in {{dcd-csr-create}}.
 # Security Considerations
 
 The validation of Base Certificates and Delta Certificates follows the
-certification path validation algorithm defined in {{!RFC5280}}.
-However, there are some additional considerations for the software to
+certification path validation algorithm defined in {{!RFC5280}}. In
+particular, the certification path validation algorithm defined in
+{{!RFC5280}} MUST be performed prior to using a Base or Delta
+Certificate; it is not sufficient to reconstruct a Delta Certificate
+and use it for any purpose without performing certification path
+validation. If a use case requires it, a Delta Certificate can be
+reconstructed specifically for the purposes of validation to ensure that
+the Delta Certificate is valid for its intended purpose on final
+reconstruction. That being said, some form of validation such as
+revocation checking, and signature verification MUST always be assured
+at the point the certificate is used.
+
+There are some additional considerations for the software to
 handle the Base Certificate and Delta Certificate. The Base Certificate
 and Delta Certificate may have different security properties such as
 different signing algorithms, different key types or the same key types
