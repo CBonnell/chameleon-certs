@@ -298,7 +298,9 @@ contain any extension:
 
 Additionally, the Base Certificate SHALL NOT include
 any extensions which are not included in the Delta Certificate, with the
-exception of the DCD extension itself. Therefore, it is not possible to
+exception of the DCD extension itself. Likewise, there is no mechanism
+to remove extensions from the Delta Certificate that are present in the
+Base Certificate. Therefore, it is not possible to
 add or remove extensions using the DCD extension. The ordering of
 extensions in this field MUST be relative to the ordering of the
 extensions as they are encoded in the Delta Certificate. Maintaining
