@@ -5,14 +5,14 @@
 Network Working Group                                         C. Bonnell
 Internet-Draft                                                  DigiCert
 Intended status: Standards Track                                 J. Gray
-Expires: 7 July 2024                                             Entrust
+Expires: 28 July 2024                                            Entrust
                                                                  D. Hook
                                                                KeyFactor
                                                                 T. Okubo
                                                                 DigiCert
                                                             M. Ounsworth
                                                                  Entrust
-                                                          4 January 2024
+                                                         25 January 2024
 
 
       A Mechanism for Encoding Differences in Paired Certificates
@@ -68,7 +68,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 7 July 2024.
+   This Internet-Draft will expire on 28 July 2024.
 
 Copyright Notice
 
@@ -343,12 +343,14 @@ Table of Contents
 
    Additionally, the Base Certificate SHALL NOT include any extensions
    which are not included in the Delta Certificate, with the exception
-   of the DCD extension itself.  Therefore, it is not possible to add or
-   remove extensions using the DCD extension.  The ordering of
-   extensions in this field MUST be relative to the ordering of the
-   extensions as they are encoded in the Delta Certificate.  Maintaining
-   this relative ordering ensures that the Delta Certificate's
-   extensions can be constructed with a single pass.
+   of the DCD extension itself.  Likewise, there is no mechanism to
+   remove extensions from the Delta Certificate that are present in the
+   Base Certificate.  Therefore, it is not possible to add or remove
+   extensions using the DCD extension.  The ordering of extensions in
+   this field MUST be relative to the ordering of the extensions as they
+   are encoded in the Delta Certificate.  Maintaining this relative
+   ordering ensures that the Delta Certificate's extensions can be
+   constructed with a single pass.
 
    The signatureValue field contains the value of the signature field of
    the Delta Certificate.  It MUST be present.
