@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-01-23T00:41:48.447917+00:00",
+  "timestamp": "2024-01-25T00:41:18.803451+00:00",
   "repo": "CBonnell/chameleon-certs",
   "labels": [
     {
@@ -104,6 +104,32 @@
       "mergeCommit": {
         "oid": "e9859afb66f68c84c37920e508c7fe5c84b669f5"
       },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 3,
+      "id": "PR_kwDOJQyzGs5k_PON",
+      "title": "Clarify that it is not possible to remove extensions",
+      "url": "https://github.com/CBonnell/chameleon-certs/pull/3",
+      "state": "OPEN",
+      "author": "CBonnell",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-01-24T19:25:37Z",
+      "updatedAt": "2024-01-24T19:25:37Z",
+      "baseRepository": "CBonnell/chameleon-certs",
+      "baseRefName": "main",
+      "baseRefOid": "e9859afb66f68c84c37920e508c7fe5c84b669f5",
+      "headRepository": "CBonnell/chameleon-certs",
+      "headRefName": "extension-presence-fix",
+      "headRefOid": "19914da3cc32f51a780066a7d4b28a9e4548b639",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
       "comments": [],
       "reviews": []
     }
