@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-01-25T00:41:18.803451+00:00",
+  "timestamp": "2024-01-28T00:40:42.679937+00:00",
   "repo": "CBonnell/chameleon-certs",
   "labels": [
     {
@@ -112,26 +112,42 @@
       "id": "PR_kwDOJQyzGs5k_PON",
       "title": "Clarify that it is not possible to remove extensions",
       "url": "https://github.com/CBonnell/chameleon-certs/pull/3",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "CBonnell",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2024-01-24T19:25:37Z",
-      "updatedAt": "2024-01-24T19:25:37Z",
+      "updatedAt": "2024-01-25T22:50:50Z",
       "baseRepository": "CBonnell/chameleon-certs",
       "baseRefName": "main",
       "baseRefOid": "e9859afb66f68c84c37920e508c7fe5c84b669f5",
       "headRepository": "CBonnell/chameleon-certs",
       "headRefName": "extension-presence-fix",
       "headRefOid": "19914da3cc32f51a780066a7d4b28a9e4548b639",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-01-25T22:50:47Z",
+      "mergedAt": "2024-01-25T22:50:47Z",
+      "mergedBy": "CBonnell",
+      "mergeCommit": {
+        "oid": "774ec9b3645c8b0f9e5e7a08acd495a36b860174"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOJQyzGs5t9Swp",
+          "commit": {
+            "abbreviatedOid": "19914da"
+          },
+          "author": "ounsworth",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-01-25T22:24:32Z",
+          "updatedAt": "2024-01-25T22:24:32Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
