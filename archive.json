@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-06T00:37:32.428586+00:00",
+  "timestamp": "2024-02-08T00:37:36.455204+00:00",
   "repo": "CBonnell/chameleon-certs",
   "labels": [
     {
@@ -49,7 +49,24 @@
       "color": "ffffff"
     }
   ],
-  "issues": [],
+  "issues": [
+    {
+      "number": 4,
+      "id": "I_kwDOJQyzGs5-jjBI",
+      "title": "Add reference to \"Transitioning to a Quantum-Resistant Public Key Infrastructure\"",
+      "url": "https://github.com/CBonnell/chameleon-certs/issues/4",
+      "state": "OPEN",
+      "author": "CBonnell",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "Add reference to https://d1kjwivbowugqa.cloudfront.net/files/research/papers/PQCrypto-BHMS17-full.pdf, which has a description of \"nesting\" certificates as a migration strategy to PQC algorithms. This is very similar to the DCD approach taken by this document.",
+      "createdAt": "2024-02-07T15:08:29Z",
+      "updatedAt": "2024-02-07T15:08:30Z",
+      "closedAt": null,
+      "comments": []
+    }
+  ],
   "pulls": [
     {
       "number": 1,
