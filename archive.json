@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-04-11T00:39:14.629373+00:00",
+  "timestamp": "2024-04-14T00:46:24.358505+00:00",
   "repo": "CBonnell/chameleon-certs",
   "labels": [
     {
@@ -63,6 +63,22 @@
       "body": "Add reference to https://d1kjwivbowugqa.cloudfront.net/files/research/papers/PQCrypto-BHMS17-full.pdf, which has a description of \"nesting\" certificates as a migration strategy to PQC algorithms. This is very similar to the DCD approach taken by this document.",
       "createdAt": "2024-02-07T15:08:29Z",
       "updatedAt": "2024-02-07T15:08:30Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 5,
+      "id": "I_kwDOJQyzGs6FYdZP",
+      "title": "Explicitly mention server-side reconstruction of Delta Certificate",
+      "url": "https://github.com/CBonnell/chameleon-certs/issues/5",
+      "state": "OPEN",
+      "author": "CBonnell",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "The draft is not explicit that it is possible for the server-side of a protocol to dynamically reconstruct the Delta Certificate and send only the Delta Certificate to the remote peer, saving many bytes on the wire.\r\n\r\nGiven that this is one of the main features of this mechanism, it should be explained better.",
+      "createdAt": "2024-04-11T13:52:36Z",
+      "updatedAt": "2024-04-11T13:52:36Z",
       "closedAt": null,
       "comments": []
     }
