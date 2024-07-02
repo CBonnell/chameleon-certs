@@ -187,7 +187,10 @@ In a protocol, the sender may perform a cryptographic operation with
 the key conveyed within the Base Certificate. If it understands the DCD
 extension, then it may reconstruct the Delta Certificate and choose to
 perform the same operation with the key conveyed within the DCD
-extension. This behavior is deferred to the software in use.
+extension. Alternatively, if the sender understands the DCD extension
+and knows that the receiver will only process the Delta Certificate,
+the sender can reconstruct and send only the Delta Certificate. This
+behavior is deferred to the software in use.
 
 # Delta certificate descriptor extension
 
