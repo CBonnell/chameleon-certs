@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-07-02T00:43:06.422350+00:00",
+  "timestamp": "2024-07-04T00:43:15.178184+00:00",
   "repo": "CBonnell/chameleon-certs",
   "labels": [
     {
@@ -79,6 +79,22 @@
       "body": "The draft is not explicit that it is possible for the server-side of a protocol to dynamically reconstruct the Delta Certificate and send only the Delta Certificate to the remote peer, saving many bytes on the wire.\r\n\r\nGiven that this is one of the main features of this mechanism, it should be explained better.",
       "createdAt": "2024-04-11T13:52:36Z",
       "updatedAt": "2024-04-11T13:52:36Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 6,
+      "id": "I_kwDOJQyzGs6OPcuP",
+      "title": "Use dumpasn1 -i and -m options",
+      "url": "https://github.com/CBonnell/chameleon-certs/issues/6",
+      "state": "OPEN",
+      "author": "CBonnell",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "We received a suggestion to use the -i option to reduce the indent of the examples as well as the -m70 flag to ensure that output does not exceed 70 characters.\r\n\r\nThis should be added to the example_generator script and new artifacts produced.",
+      "createdAt": "2024-07-02T14:24:16Z",
+      "updatedAt": "2024-07-02T14:24:16Z",
       "closedAt": null,
       "comments": []
     }
