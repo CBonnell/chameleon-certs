@@ -1,0 +1,202 @@
+{
+  "magic": "E!vIA5L86J2I",
+  "timestamp": "2024-07-16T00:44:22.792439+00:00",
+  "repo": "CBonnell/chameleon-certs",
+  "labels": [
+    {
+      "name": "bug",
+      "description": "Something isn't working",
+      "color": "d73a4a"
+    },
+    {
+      "name": "documentation",
+      "description": "Improvements or additions to documentation",
+      "color": "0075ca"
+    },
+    {
+      "name": "duplicate",
+      "description": "This issue or pull request already exists",
+      "color": "cfd3d7"
+    },
+    {
+      "name": "enhancement",
+      "description": "New feature or request",
+      "color": "a2eeef"
+    },
+    {
+      "name": "good first issue",
+      "description": "Good for newcomers",
+      "color": "7057ff"
+    },
+    {
+      "name": "help wanted",
+      "description": "Extra attention is needed",
+      "color": "008672"
+    },
+    {
+      "name": "invalid",
+      "description": "This doesn't seem right",
+      "color": "e4e669"
+    },
+    {
+      "name": "question",
+      "description": "Further information is requested",
+      "color": "d876e3"
+    },
+    {
+      "name": "wontfix",
+      "description": "This will not be worked on",
+      "color": "ffffff"
+    }
+  ],
+  "issues": [
+    {
+      "number": 4,
+      "id": "I_kwDOJQyzGs5-jjBI",
+      "title": "Add reference to \"Transitioning to a Quantum-Resistant Public Key Infrastructure\"",
+      "url": "https://github.com/CBonnell/chameleon-certs/issues/4",
+      "state": "OPEN",
+      "author": "CBonnell",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "Add reference to https://d1kjwivbowugqa.cloudfront.net/files/research/papers/PQCrypto-BHMS17-full.pdf, which has a description of \"nesting\" certificates as a migration strategy to PQC algorithms. This is very similar to the DCD approach taken by this document.",
+      "createdAt": "2024-02-07T15:08:29Z",
+      "updatedAt": "2024-02-07T15:08:30Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 5,
+      "id": "I_kwDOJQyzGs6FYdZP",
+      "title": "Explicitly mention server-side reconstruction of Delta Certificate",
+      "url": "https://github.com/CBonnell/chameleon-certs/issues/5",
+      "state": "OPEN",
+      "author": "CBonnell",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "The draft is not explicit that it is possible for the server-side of a protocol to dynamically reconstruct the Delta Certificate and send only the Delta Certificate to the remote peer, saving many bytes on the wire.\r\n\r\nGiven that this is one of the main features of this mechanism, it should be explained better.",
+      "createdAt": "2024-04-11T13:52:36Z",
+      "updatedAt": "2024-04-11T13:52:36Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 6,
+      "id": "I_kwDOJQyzGs6OPcuP",
+      "title": "Use dumpasn1 -i and -m options",
+      "url": "https://github.com/CBonnell/chameleon-certs/issues/6",
+      "state": "OPEN",
+      "author": "CBonnell",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "We received a suggestion to use the -i option to reduce the indent of the examples as well as the -m70 flag to ensure that output does not exceed 70 characters.\r\n\r\nThis should be added to the example_generator script and new artifacts produced.",
+      "createdAt": "2024-07-02T14:24:16Z",
+      "updatedAt": "2024-07-02T14:24:16Z",
+      "closedAt": null,
+      "comments": []
+    }
+  ],
+  "pulls": [
+    {
+      "number": 1,
+      "id": "PR_kwDOJQyzGs5Wknjq",
+      "title": "CSR terminology clean-up, add CSR verification, clean up DCD definition",
+      "url": "https://github.com/CBonnell/chameleon-certs/pull/1",
+      "state": "MERGED",
+      "author": "CBonnell",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-07-27T17:33:39Z",
+      "updatedAt": "2023-09-21T16:38:53Z",
+      "baseRepository": "CBonnell/chameleon-certs",
+      "baseRefName": "main",
+      "baseRefOid": "006705120fd5c19c79b8983975538bb803880bd3",
+      "headRepository": "CBonnell/chameleon-certs",
+      "headRefName": "csr-verify",
+      "headRefOid": "43c64a050c1cf4c026ebf40b4e5e4db2247cdc4b",
+      "closedAt": "2023-09-21T16:38:49Z",
+      "mergedAt": "2023-09-21T16:38:49Z",
+      "mergedBy": "CBonnell",
+      "mergeCommit": {
+        "oid": "244f0c90825f5bfb9593f80a4bc942973b13c123"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 2,
+      "id": "PR_kwDOJQyzGs5iAB9B",
+      "title": "Add testing blub + reference to path validation",
+      "url": "https://github.com/CBonnell/chameleon-certs/pull/2",
+      "state": "MERGED",
+      "author": "CBonnell",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-12-14T13:07:58Z",
+      "updatedAt": "2024-01-04T21:13:41Z",
+      "baseRepository": "CBonnell/chameleon-certs",
+      "baseRefName": "main",
+      "baseRefOid": "244f0c90825f5bfb9593f80a4bc942973b13c123",
+      "headRepository": "CBonnell/chameleon-certs",
+      "headRefName": "deltacert-validation-guidance",
+      "headRefOid": "6b67d2b4d9222f7311004611b0c6b3d937b51046",
+      "closedAt": "2024-01-04T21:13:37Z",
+      "mergedAt": "2024-01-04T21:13:37Z",
+      "mergedBy": "CBonnell",
+      "mergeCommit": {
+        "oid": "e9859afb66f68c84c37920e508c7fe5c84b669f5"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 3,
+      "id": "PR_kwDOJQyzGs5k_PON",
+      "title": "Clarify that it is not possible to remove extensions",
+      "url": "https://github.com/CBonnell/chameleon-certs/pull/3",
+      "state": "MERGED",
+      "author": "CBonnell",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-01-24T19:25:37Z",
+      "updatedAt": "2024-01-25T22:50:50Z",
+      "baseRepository": "CBonnell/chameleon-certs",
+      "baseRefName": "main",
+      "baseRefOid": "e9859afb66f68c84c37920e508c7fe5c84b669f5",
+      "headRepository": "CBonnell/chameleon-certs",
+      "headRefName": "extension-presence-fix",
+      "headRefOid": "19914da3cc32f51a780066a7d4b28a9e4548b639",
+      "closedAt": "2024-01-25T22:50:47Z",
+      "mergedAt": "2024-01-25T22:50:47Z",
+      "mergedBy": "CBonnell",
+      "mergeCommit": {
+        "oid": "774ec9b3645c8b0f9e5e7a08acd495a36b860174"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOJQyzGs5t9Swp",
+          "commit": {
+            "abbreviatedOid": "19914da"
+          },
+          "author": "ounsworth",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-01-25T22:24:32Z",
+          "updatedAt": "2024-01-25T22:24:32Z",
+          "comments": []
+        }
+      ]
+    }
+  ]
+}
