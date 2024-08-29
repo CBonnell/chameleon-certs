@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-08-27T00:46:38.990363+00:00",
+  "timestamp": "2024-08-29T00:47:21.921905+00:00",
   "repo": "CBonnell/chameleon-certs",
   "labels": [
     {
@@ -95,6 +95,38 @@
       "body": "We received a suggestion to use the -i option to reduce the indent of the examples as well as the -m70 flag to ensure that output does not exceed 70 characters.\r\n\r\nThis should be added to the example_generator script and new artifacts produced.",
       "createdAt": "2024-07-02T14:24:16Z",
       "updatedAt": "2024-07-02T14:24:16Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 7,
+      "id": "I_kwDOJQyzGs6UX6jP",
+      "title": "Switch to EXPLICIT tagging for DCD Extension/attribute",
+      "url": "https://github.com/CBonnell/chameleon-certs/issues/7",
+      "state": "OPEN",
+      "author": "CBonnell",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-08-27T13:00:38Z",
+      "updatedAt": "2024-08-27T13:00:38Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 8,
+      "id": "I_kwDOJQyzGs6UYDds",
+      "title": "Update samples with final version of ML-DSA",
+      "url": "https://github.com/CBonnell/chameleon-certs/issues/8",
+      "state": "OPEN",
+      "author": "CBonnell",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-08-27T13:14:05Z",
+      "updatedAt": "2024-08-27T13:14:05Z",
       "closedAt": null,
       "comments": []
     }
