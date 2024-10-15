@@ -55,7 +55,22 @@ normative:
         ISO/IEC: 8824-1:2015
 
 informative:
-
+  TRANSQRPKI:
+       title: "Transitioning to a Quantum-Resistant Public Key Infrastructure"
+       date: May 24, 2017
+       author:
+         name: Nina Bindel
+         org: Technische Universität Darmstadt, Darmstadt, Germany
+       author:
+         name: Udyani Herath
+         org: Queensland University of Technology, Brisbane, Australia
+       author:
+         name: Matthew McKague
+         org: Queensland University of Technology, Brisbane, Australia
+       author:
+         name: Douglas Stebila
+         org: McMaster University, Hamilton, Ontario, Canada
+       url: https://d1kjwivbowugqa.cloudfront.net/files/research/papers/PQCrypto-BHMS17-full.pdf
 
 --- abstract
 
@@ -101,6 +116,15 @@ algorithm as described in {{!RFC5280}}. Additionally, this method
 does not violate the constraints of serial number
 uniqueness for certificates issued by a single certification
 authority.
+
+This mechanism is particularly relevant for the migration to
+quantum-resistant algorithms. Similar migration mechanisms have been
+proposed in the literature, such as the mechanism proposed in
+[TRANSQRPKI], where encoding the entire paired certificate in a
+non-critical extension is proposed. This specification builds on this
+idea by specifying a mechanism that requires only the differences
+between two paired certificates to be encoded, thus realizing a space
+savings.
 
 In addition to the certificate extension, this document
 specifies two PKCS #10 Certificate Signing Request attributes that can
@@ -235,13 +259,13 @@ The ASN.1 syntax of the extension is as follows:
 ~~~
 DeltaCertificateDescriptor ::= SEQUENCE {
   serialNumber          CertificateSerialNumber,
-  signature             [0] IMPLICIT AlgorithmIdentifier
+  signature             [0] EXPLICIT AlgorithmIdentifier
        {SIGNATURE_ALGORITHM, {...}} OPTIONAL,
-  issuer                [1] IMPLICIT Name OPTIONAL,
-  validity              [2] IMPLICIT Validity OPTIONAL,
-  subject               [3] IMPLICIT Name OPTIONAL,
+  issuer                [1] EXPLICIT Name OPTIONAL,
+  validity              [2] EXPLICIT Validity OPTIONAL,
+  subject               [3] EXPLICIT Name OPTIONAL,
   subjectPublicKeyInfo  SubjectPublicKeyInfo,
-  extensions            [4] IMPLICIT Extensions{CertExtensions}
+  extensions            [4] EXPLICIT Extensions{CertExtensions}
        OPTIONAL,
   signatureValue        BIT STRING
 }
@@ -411,11 +435,11 @@ The ASN.1 syntax of the attribute is as follows:
 
 ~~~
 DeltaCertificateRequestValue ::= SEQUENCE {
-  subject               [0] IMPLICIT Name OPTIONAL,
+  subject               [0] EXPLICIT Name OPTIONAL,
   subjectPKInfo         SubjectPublicKeyInfo,
-  extensions            [1] IMPLICIT Extensions{CertExtensions}
+  extensions            [1] EXPLICIT Extensions{CertExtensions}
        OPTIONAL,
-  signatureAlgorithm    [2] IMPLICIT AlgorithmIdentifier
+  signatureAlgorithm    [2] EXPLICIT AlgorithmIdentifier
        {SIGNATURE_ALGORITHM, {...}} OPTIONAL
 }
 
@@ -618,13 +642,13 @@ id-ce-deltaCertificateDescriptor OBJECT IDENTIFIER ::= {
 
 DeltaCertificateDescriptor ::= SEQUENCE {
   serialNumber          CertificateSerialNumber,
-  signature             [0] IMPLICIT AlgorithmIdentifier
+  signature             [0] EXPLICIT AlgorithmIdentifier
        {SIGNATURE_ALGORITHM, {...}} OPTIONAL,
-  issuer                [1] IMPLICIT Name OPTIONAL,
-  validity              [2] IMPLICIT Validity OPTIONAL,
-  subject               [3] IMPLICIT Name OPTIONAL,
+  issuer                [1] EXPLICIT Name OPTIONAL,
+  validity              [2] EXPLICIT Validity OPTIONAL,
+  subject               [3] EXPLICIT Name OPTIONAL,
   subjectPublicKeyInfo  SubjectPublicKeyInfo,
-  extensions            [4] IMPLICIT Extensions{CertExtensions}
+  extensions            [4] EXPLICIT Extensions{CertExtensions}
        OPTIONAL,
   signatureValue        BIT STRING
 }
@@ -641,11 +665,11 @@ id-at-deltaCertificateRequest OBJECT IDENTIFIER ::= {
        id-temporaryArc 2 }
 
 DeltaCertificateRequestValue ::= SEQUENCE {
-  subject               [0] IMPLICIT Name OPTIONAL,
+  subject               [0] EXPLICIT Name OPTIONAL,
   subjectPKInfo         SubjectPublicKeyInfo,
-  extensions            [1] IMPLICIT Extensions{CertExtensions}
+  extensions            [1] EXPLICIT Extensions{CertExtensions}
        OPTIONAL,
-  signatureAlgorithm    [2] IMPLICIT AlgorithmIdentifier
+  signatureAlgorithm    [2] EXPLICIT AlgorithmIdentifier
        {SIGNATURE_ALGORITHM, {...}} OPTIONAL
 }
 
