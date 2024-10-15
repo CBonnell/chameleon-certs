@@ -259,13 +259,13 @@ The ASN.1 syntax of the extension is as follows:
 ~~~
 DeltaCertificateDescriptor ::= SEQUENCE {
   serialNumber          CertificateSerialNumber,
-  signature             [0] IMPLICIT AlgorithmIdentifier
+  signature             [0] EXPLICIT AlgorithmIdentifier
        {SIGNATURE_ALGORITHM, {...}} OPTIONAL,
-  issuer                [1] IMPLICIT Name OPTIONAL,
-  validity              [2] IMPLICIT Validity OPTIONAL,
-  subject               [3] IMPLICIT Name OPTIONAL,
+  issuer                [1] EXPLICIT Name OPTIONAL,
+  validity              [2] EXPLICIT Validity OPTIONAL,
+  subject               [3] EXPLICIT Name OPTIONAL,
   subjectPublicKeyInfo  SubjectPublicKeyInfo,
-  extensions            [4] IMPLICIT Extensions{CertExtensions}
+  extensions            [4] EXPLICIT Extensions{CertExtensions}
        OPTIONAL,
   signatureValue        BIT STRING
 }
@@ -435,11 +435,11 @@ The ASN.1 syntax of the attribute is as follows:
 
 ~~~
 DeltaCertificateRequestValue ::= SEQUENCE {
-  subject               [0] IMPLICIT Name OPTIONAL,
+  subject               [0] EXPLICIT Name OPTIONAL,
   subjectPKInfo         SubjectPublicKeyInfo,
-  extensions            [1] IMPLICIT Extensions{CertExtensions}
+  extensions            [1] EXPLICIT Extensions{CertExtensions}
        OPTIONAL,
-  signatureAlgorithm    [2] IMPLICIT AlgorithmIdentifier
+  signatureAlgorithm    [2] EXPLICIT AlgorithmIdentifier
        {SIGNATURE_ALGORITHM, {...}} OPTIONAL
 }
 
@@ -642,13 +642,13 @@ id-ce-deltaCertificateDescriptor OBJECT IDENTIFIER ::= {
 
 DeltaCertificateDescriptor ::= SEQUENCE {
   serialNumber          CertificateSerialNumber,
-  signature             [0] IMPLICIT AlgorithmIdentifier
+  signature             [0] EXPLICIT AlgorithmIdentifier
        {SIGNATURE_ALGORITHM, {...}} OPTIONAL,
-  issuer                [1] IMPLICIT Name OPTIONAL,
-  validity              [2] IMPLICIT Validity OPTIONAL,
-  subject               [3] IMPLICIT Name OPTIONAL,
+  issuer                [1] EXPLICIT Name OPTIONAL,
+  validity              [2] EXPLICIT Validity OPTIONAL,
+  subject               [3] EXPLICIT Name OPTIONAL,
   subjectPublicKeyInfo  SubjectPublicKeyInfo,
-  extensions            [4] IMPLICIT Extensions{CertExtensions}
+  extensions            [4] EXPLICIT Extensions{CertExtensions}
        OPTIONAL,
   signatureValue        BIT STRING
 }
@@ -665,11 +665,11 @@ id-at-deltaCertificateRequest OBJECT IDENTIFIER ::= {
        id-temporaryArc 2 }
 
 DeltaCertificateRequestValue ::= SEQUENCE {
-  subject               [0] IMPLICIT Name OPTIONAL,
+  subject               [0] EXPLICIT Name OPTIONAL,
   subjectPKInfo         SubjectPublicKeyInfo,
-  extensions            [1] IMPLICIT Extensions{CertExtensions}
+  extensions            [1] EXPLICIT Extensions{CertExtensions}
        OPTIONAL,
-  signatureAlgorithm    [2] IMPLICIT AlgorithmIdentifier
+  signatureAlgorithm    [2] EXPLICIT AlgorithmIdentifier
        {SIGNATURE_ALGORITHM, {...}} OPTIONAL
 }
 
