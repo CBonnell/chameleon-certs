@@ -55,7 +55,22 @@ normative:
         ISO/IEC: 8824-1:2015
 
 informative:
-
+  TRANSQRPKI:
+       title: "Transitioning to a Quantum-Resistant Public Key Infrastructure"
+       date: May 24, 2017
+       author:
+         name: Nina Bindel
+         org: Technische Universität Darmstadt, Darmstadt, Germany
+       author:
+         name: Udyani Herath
+         org: Queensland University of Technology, Brisbane, Australia
+       author:
+         name: Matthew McKague
+         org: Queensland University of Technology, Brisbane, Australia
+       author:
+         name: Douglas Stebila
+         org: McMaster University, Hamilton, Ontario, Canada
+       url: https://d1kjwivbowugqa.cloudfront.net/files/research/papers/PQCrypto-BHMS17-full.pdf
 
 --- abstract
 
@@ -101,6 +116,15 @@ algorithm as described in {{!RFC5280}}. Additionally, this method
 does not violate the constraints of serial number
 uniqueness for certificates issued by a single certification
 authority.
+
+This mechanism is particularly relevant for the migration to
+quantum-resistant algorithms. Similar migration mechanisms have been
+proposed in the literature, such as the mechanism proposed in
+[TRANSQRPKI], where encoding the entire paired certificate in a
+non-critical extension is proposed. This specification builds on this
+idea by specifying a mechanism that requires only the differences
+between two paired certificates to be encoded, thus realizing a space
+savings.
 
 In addition to the certificate extension, this document
 specifies two PKCS #10 Certificate Signing Request attributes that can
