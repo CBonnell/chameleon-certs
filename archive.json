@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-15T00:52:33.423824+00:00",
+  "timestamp": "2024-10-17T00:51:52.808674+00:00",
   "repo": "CBonnell/chameleon-certs",
   "labels": [
     {
@@ -78,9 +78,17 @@
       "labels": [],
       "body": "The draft is not explicit that it is possible for the server-side of a protocol to dynamically reconstruct the Delta Certificate and send only the Delta Certificate to the remote peer, saving many bytes on the wire.\r\n\r\nGiven that this is one of the main features of this mechanism, it should be explained better.",
       "createdAt": "2024-04-11T13:52:36Z",
-      "updatedAt": "2024-04-11T13:52:36Z",
+      "updatedAt": "2024-10-15T15:10:50Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "CBonnell",
+          "authorAssociation": "OWNER",
+          "body": "I think this is already addressed by the following prose:\r\n\r\n> In a protocol, the sender may perform a cryptographic operation with\r\nthe key conveyed within the Base Certificate. If it understands the DCD\r\nextension, then it may reconstruct the Delta Certificate and choose to\r\nperform the same operation with the key conveyed within the DCD\r\nextension. Alternatively, if the sender understands the DCD extension\r\nand knows that the receiver will only process the Delta Certificate,\r\nthe sender can reconstruct and send only the Delta Certificate. This\r\nbehavior is deferred to the software in use.",
+          "createdAt": "2024-10-15T15:10:48Z",
+          "updatedAt": "2024-10-15T15:10:48Z"
+        }
+      ]
     },
     {
       "number": 6,
@@ -229,6 +237,32 @@
           "comments": []
         }
       ]
+    },
+    {
+      "number": 9,
+      "id": "PR_kwDOJQyzGs5-sQ0u",
+      "title": "Pre-IETF 121 updates",
+      "url": "https://github.com/CBonnell/chameleon-certs/pull/9",
+      "state": "OPEN",
+      "author": "CBonnell",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "Resolves #4.\r\n\r\nResolves #7.\r\n\r\nResolves #6.",
+      "createdAt": "2024-10-15T15:09:40Z",
+      "updatedAt": "2024-10-15T15:17:39Z",
+      "baseRepository": "CBonnell/chameleon-certs",
+      "baseRefName": "main",
+      "baseRefOid": "0c12d5783bbb2c6b694e5c247a3c89bc8e850d06",
+      "headRepository": "CBonnell/chameleon-certs",
+      "headRefName": "pre-121",
+      "headRefOid": "5d1146f16f08e22aa86511c55e0a6c946899d03a",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
