@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-17T00:51:52.808674+00:00",
+  "timestamp": "2024-10-20T00:56:36.094689+00:00",
   "repo": "CBonnell/chameleon-certs",
   "labels": [
     {
@@ -134,9 +134,17 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-08-27T13:14:05Z",
-      "updatedAt": "2024-08-27T13:14:05Z",
+      "updatedAt": "2024-10-19T22:21:36Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "dghgit",
+          "authorAssociation": "NONE",
+          "body": "Originally emailed these, I've attempted to make the zip more spam filter friendly, hoping this gets through.\r\n\r\nText file contains Java program for doing generation - requires use of latest BC betas at\r\n\r\nhttps://www.bouncycastle.org/betas - bcprov-*, bcutil-*, and bcpkix-*\r\n\r\nFiles should also now be using explicit tags in the extensions.\r\n\r\n[chameleon_artifacts.zip](https://github.com/user-attachments/files/17447488/chameleon_artifacts.zip)\r\n",
+          "createdAt": "2024-10-19T22:21:34Z",
+          "updatedAt": "2024-10-19T22:21:34Z"
+        }
+      ]
     }
   ],
   "pulls": [
@@ -250,7 +258,7 @@
       "labels": [],
       "body": "Resolves #4.\r\n\r\nResolves #7.\r\n\r\nResolves #6.",
       "createdAt": "2024-10-15T15:09:40Z",
-      "updatedAt": "2024-10-15T15:17:39Z",
+      "updatedAt": "2024-10-19T22:22:51Z",
       "baseRepository": "CBonnell/chameleon-certs",
       "baseRefName": "main",
       "baseRefOid": "0c12d5783bbb2c6b694e5c247a3c89bc8e850d06",
@@ -261,7 +269,15 @@
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "dghgit",
+          "authorAssociation": "NONE",
+          "body": "Have just uploaded a zip file to issue #8, which should resolve it. Sorry, should have tried this first!",
+          "createdAt": "2024-10-19T22:22:49Z",
+          "updatedAt": "2024-10-19T22:22:49Z"
+        }
+      ],
       "reviews": []
     }
   ]
