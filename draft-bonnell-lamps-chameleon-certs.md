@@ -59,18 +59,15 @@ informative:
        title: "Transitioning to a Quantum-Resistant Public Key Infrastructure"
        date: May 24, 2017
        author:
-         name: Nina Bindel
-         org: Technische Universität Darmstadt, Darmstadt, Germany
-       author:
-         name: Udyani Herath
-         org: Queensland University of Technology, Brisbane, Australia
-       author:
-         name: Matthew McKague
-         org: Queensland University of Technology, Brisbane, Australia
-       author:
-         name: Douglas Stebila
-         org: McMaster University, Hamilton, Ontario, Canada
-       url: https://d1kjwivbowugqa.cloudfront.net/files/research/papers/PQCrypto-BHMS17-full.pdf
+              -      ins: N. Bindel
+                     name: Nina Bindel
+              -      ins: U. Herath
+                     name: Udyani Herath
+              -      ins: M. McKague
+                     name: Matthew McKague
+              -      ins: D. Stebila
+                     name: Douglas Stebila
+       target: https://d1kjwivbowugqa.cloudfront.net/files/research/papers/PQCrypto-BHMS17-full.pdf
 
 --- abstract
 
