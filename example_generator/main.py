@@ -144,7 +144,7 @@ _ROOT_SHARED_RDNS = [
 
 
 _DILITHIUM_ROOT_NAME = x509.Name(_ROOT_SHARED_RDNS + [
-    x509.NameAttribute(x509.OID_COMMON_NAME, 'Dilithium Root - G1')
+    x509.NameAttribute(x509.OID_COMMON_NAME, 'ML-DSA-65 Root - G1')
 ])
 
 
@@ -164,7 +164,7 @@ def _add_shared_root_extensions(builder: x509.CertificateBuilder):
 
 
 def _generate_dilthium_key() -> PqcKeyPair:
-    instance = oqs.Signature('Dilithium3')
+    instance = oqs.Signature('ML-DSA-653')
     public_bytes = instance.generate_keypair()
 
     return PqcKeyPair(univ.ObjectIdentifier('1.3.6.1.4.1.2.267.7.6.5'), instance, public_bytes)
@@ -266,7 +266,9 @@ def print_cert(name, description, pyasn1_cert: rfc5280.Certificate):
             cert_file.write(encoded)
             cert_file.flush()
 
-            output = subprocess.check_output(['dumpasn1', f'-c{config_file.name}', cert_file.name]).decode()
+            output = subprocess.check_output(
+                ['dumpasn1', f'-c{config_file.name}', '-i', '-m70', cert_file.name]
+            ).decode()
 
             print('~~~')
             print(output)
@@ -287,8 +289,8 @@ ecdsa_root = issue_ecdsa_root()
 print_cert('EC P-521 root certificate', 'This is the EC root certificate.', ecdsa_root)
 
 dilithium_root = issue_dilthium_root(dilithium_root_key, ecdsa_root)
-print_cert('Dilithium root certificate',
-           'This is the Dilithium root certificate. It contains a Delta Certificate Descriptor extension which '
+print_cert('ML-DSA-65 root certificate',
+           'This is the ML-DSA-65 root certificate. It contains a Delta Certificate Descriptor extension which '
         'includes sufficient information to recreate the ECDSA P-521 root.',
            dilithium_root)
 
@@ -296,14 +298,14 @@ print('## Algorithm migration example')
 print()
 
 dilithium_signing_ee = issue_dilithium_signing_ee(dilithium_ee_key, dilithium_root_key)
-print_cert('Dilithium signing end-entity certificate',
-           'This is an end-entity signing certificate which certifies a Dilithium key.',
+print_cert('ML-DSA-65 signing end-entity certificate',
+           'This is an end-entity signing certificate which certifies a ML-DSA-65 key.',
            dilithium_signing_ee)
 
 ecdsa_signing_ee_base = issue_ecdsa_signing_ee(dilithium_signing_ee)
 print_cert('EC signing end-entity certificate with encoded Delta Certificate',
            'This is an end-entity signing certificate which certifies an EC key. It contains a Delta '
-            'Certificate Descriptor extension which includes sufficient information to recreate the Dilithium '
+            'Certificate Descriptor extension which includes sufficient information to recreate the ML-DSA-65 '
             'signing end-entity certificate.',
            ecdsa_signing_ee_base),
 
