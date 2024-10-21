@@ -881,9 +881,9 @@ fvRCLit6wo0=
 
 ~~~
 
-### Dilithium root certificate
+### ML-DSA-65 root certificate
 
-This is the Dilithium root certificate. It contains a Delta Certificate
+This is the ML-DSA-65 root certificate. It contains a Delta Certificate
 Descriptor extension which includes sufficient information to recreate
 the ECDSA P-521 root.
 
@@ -1303,9 +1303,9 @@ fYAjMD9K/AAAAAAAAAAAAAAAAAAAAAUNFR4jKA==
 
 ## Algorithm migration example
 
-### Dilithium signing end-entity certificate
+### ML-DSA-65 signing end-entity certificate
 
-This is an end-entity signing certificate which certifies a Dilithium
+This is an end-entity signing certificate which certifies a ML-DSA-65
 key.
 
 ~~~
@@ -1570,7 +1570,7 @@ AAAAAAAIEhcbIA==
 
 This is an end-entity signing certificate which certifies an EC key. It
 contains a Delta Certificate Descriptor extension which includes
-sufficient information to recreate the Dilithium signing end-entity
+sufficient information to recreate the ML-DSA-65 signing end-entity
 certificate.
 
 ~~~
