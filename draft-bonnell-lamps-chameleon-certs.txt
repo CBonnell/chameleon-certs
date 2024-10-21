@@ -664,8 +664,11 @@ Table of Contents
 8.2.  Informative References
 
    [TRANSQRPKI]
-              Stebila, D., "Transitioning to a Quantum-Resistant Public
-              Key Infrastructure", May 2017.
+              Bindel, N., Herath, U., McKague, M., and D. Stebila,
+              "Transitioning to a Quantum-Resistant Public Key
+              Infrastructure", May 2017,
+              <https://d1kjwivbowugqa.cloudfront.net/files/research/
+              papers/PQCrypto-BHMS17-full.pdf>.
 
 Appendix A.  ASN.1 Module
 
