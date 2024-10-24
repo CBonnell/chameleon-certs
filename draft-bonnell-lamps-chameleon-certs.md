@@ -74,9 +74,9 @@ informative:
 This document specifies a method to efficiently convey the
 differences between two certificates in an X.509 version 3 extension.
 This method allows a
-relying party to extract information sufficient to construct the paired
+relying party to extract information sufficient to reconstruct the paired
 certificate and perform certification path validation using the
-constructed certificate. In particular, this method is especially
+reconstructed certificate. In particular, this method is especially
 useful as part of a key or signature algorithm migration, where subjects
 may be issued multiple certificates containing different public keys or
 signed with different CA private keys or signature algorithms. This
@@ -329,7 +329,7 @@ add or remove extensions using the DCD extension. The ordering of
 extensions in this field MUST be relative to the ordering of the
 extensions as they are encoded in the Delta Certificate. Maintaining
 this relative ordering ensures that the Delta Certificate's extensions
-can be constructed with a single pass.
+can be reconstructed with a single pass.
 
 The signatureValue field contains the value of the signature field
 of the Delta Certificate. It MUST be present.
