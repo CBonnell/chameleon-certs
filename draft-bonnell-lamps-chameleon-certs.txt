@@ -5,14 +5,14 @@
 Network Working Group                                         C. Bonnell
 Internet-Draft                                                  DigiCert
 Intended status: Standards Track                                 J. Gray
-Expires: 24 April 2025                                           Entrust
+Expires: 27 April 2025                                           Entrust
                                                                  D. Hook
                                                                KeyFactor
                                                                 T. Okubo
                                                                 DigiCert
                                                             M. Ounsworth
                                                                  Entrust
-                                                         21 October 2024
+                                                         24 October 2024
 
 
       A Mechanism for Encoding Differences in Paired Certificates
@@ -23,8 +23,8 @@ Abstract
    This document specifies a method to efficiently convey the
    differences between two certificates in an X.509 version 3 extension.
    This method allows a relying party to extract information sufficient
-   to construct the paired certificate and perform certification path
-   validation using the constructed certificate.  In particular, this
+   to reconstruct the paired certificate and perform certification path
+   validation using the reconstructed certificate.  In particular, this
    method is especially useful as part of a key or signature algorithm
    migration, where subjects may be issued multiple certificates
    containing different public keys or signed with different CA private
@@ -68,7 +68,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 24 April 2025.
+   This Internet-Draft will expire on 27 April 2025.
 
 Copyright Notice
 
@@ -364,7 +364,7 @@ Table of Contents
    this field MUST be relative to the ordering of the extensions as they
    are encoded in the Delta Certificate.  Maintaining this relative
    ordering ensures that the Delta Certificate's extensions can be
-   constructed with a single pass.
+   reconstructed with a single pass.
 
    The signatureValue field contains the value of the signature field of
    the Delta Certificate.  It MUST be present.
